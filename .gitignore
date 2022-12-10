@@ -1,6 +1,3 @@
-# This .gitignore file should be placed at the root of your Unity project directory
-#
-# Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 /[Ll]ibrary/
 /[Tt]emp/
@@ -24,6 +21,9 @@
 
 # Gradle cache directory
 .gradle/
+
+# Rider cache directory
+.idea/
 
 # MacOS
 .DS_Store
@@ -60,5 +60,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-.idea/
