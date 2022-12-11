@@ -484,8 +484,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 1
-        functionName: CastingFinished
+      - time: 0.9169139
+        functionName: ProjectileCastingFinished
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
