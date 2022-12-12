@@ -1,6 +1,6 @@
-namespace States
+namespace Gameplay.Core.States
 {
-    public interface IStateSwitch
+    public interface IStateMachine
     {
         public void Switch(StateType type);
 

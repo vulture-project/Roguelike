@@ -1,11 +1,11 @@
 using UnityEngine;
 
-namespace States
+namespace Gameplay.Core.States
 {
     public abstract class State : MonoBehaviour
     {
         protected StateType _type;
-        protected IStateSwitch _stateSwitch;
+        protected IStateMachine _stateMachine;
 
         public StateType Type()
         {
@@ -16,15 +16,15 @@ namespace States
         {
             _type = type;
         }
-        
-        public void OnAdd(IStateSwitch stateSwitch)
+
+        public void OnAdd(IStateMachine stateMachine)
         {
-            _stateSwitch = stateSwitch;
+            _stateMachine = stateMachine;
         }
 
-        public void OnRemove(IStateSwitch stateSwitch)
+        public void OnRemove(IStateMachine stateMachine)
         {
-            _stateSwitch = null;
+            _stateMachine = null;
         }
         
         public abstract void OnEnter();

@@ -1,18 +1,27 @@
+using Gameplay.Core.States;
+using Gameplay.Core.Components;
+
+using Gameplay.Magic.Spells;
+
 using UnityEngine;
 
-namespace States
+namespace Gameplay.Magic.States
 {
+    [RequireComponent(typeof(Animator), typeof(Mana))]
     public class CastingSelfBuffState : State
     {
-        [SerializeField] private GameObject selfBuffPrefab;
-
         private Animator _animator;
         private int _isCastingSelfBuffHash;
+        private Mana _mana;
+        private SelfBuffCastSpell _spell;
+        private Transform _transform;        
 
         private void Start()
         {
             _animator = gameObject.GetComponent<Animator>();
             _isCastingSelfBuffHash = Animator.StringToHash("isCastingSelfBuff");
+            _mana = GetComponent<Mana>();
+            _transform = transform;
         }
 
         public override void OnEnter()
@@ -35,7 +44,7 @@ namespace States
 
         public void SelfBuffCastingFinished()
         {
-            _stateSwitch.Switch(StateType.Idle);
+            _stateMachine.Switch(StateType.Idle);
         }
     }
 }

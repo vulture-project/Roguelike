@@ -12,8 +12,6 @@ namespace States
         private int _isCastingProjectileHash;
         private Transform _transform;
 
-        private IStateSwitch _stateSwitch;
-
         private void Start()
         {
             _animator = gameObject.GetComponent<Animator>();
@@ -21,11 +19,6 @@ namespace States
             _transform = transform;
         }
 
-        public override void OnStart(IStateSwitch stateSwitch)
-        {
-            _stateSwitch = stateSwitch;
-        }
-    
         public override void OnEnter()
         {
             _animator.SetBool(_isCastingProjectileHash, true);
@@ -48,7 +41,7 @@ namespace States
 
         public void ProjectileCastingFinished()
         {
-            _stateSwitch.SwitchTo<MovementState>();
+            _stateSwitch.Switch(StateType.Idle);
         }
     }
 }
