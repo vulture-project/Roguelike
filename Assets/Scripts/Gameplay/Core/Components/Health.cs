@@ -12,6 +12,7 @@ namespace Gameplay.Core.Components
 
         [SerializeField]
         private float _value;
+
         [SerializeField]
         private float _maxValue;
 

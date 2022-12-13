@@ -4,7 +4,7 @@ namespace Gameplay.Core.States
     {
         public void Switch(StateType type);
 
-        public void SetTag(State state, StateType type);
+        public void SetType(State state, StateType type);
 
         public void AddState(State state);
 

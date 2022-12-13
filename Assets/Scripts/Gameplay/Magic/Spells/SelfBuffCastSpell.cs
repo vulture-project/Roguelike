@@ -7,5 +7,10 @@ namespace Gameplay.Magic.Spells
     {
         [SerializeField]
         private GameObject _selfBuffPrefab;
+
+        public GameObject SelfBuffPrefab()
+        {
+            return _selfBuffPrefab;
+        }
     }
 }

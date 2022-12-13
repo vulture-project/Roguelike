@@ -51,5 +51,10 @@ namespace Gameplay.Magic.States
         {
             _stateMachine.Switch(StateType.Idle);
         }
+
+        public void SetSpell(ProjectileCastSpell spell)
+        {
+            _spell = spell;
+        }
     }
 }

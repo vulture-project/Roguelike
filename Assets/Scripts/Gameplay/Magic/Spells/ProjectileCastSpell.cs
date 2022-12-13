@@ -6,18 +6,10 @@ namespace Gameplay.Magic.Spells
     public class ProjectileCastSpell : ScriptableObject
     {
         [SerializeField]
-        private float _damage;
-
-        [SerializeField]
         private GameObject _projectilePrefab;
 
         [SerializeField]
         private float _velocity;
-
-        public float Damage()
-        {
-            return _damage;
-        }
 
         public GameObject ProjectilePrefab()
         {
