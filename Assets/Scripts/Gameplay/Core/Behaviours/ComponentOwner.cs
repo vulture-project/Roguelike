@@ -12,20 +12,15 @@ namespace Gameplay.Core.Behaviours
         private const Int32 NotFoundIndex = -1;
 
         [SerializeField]
-        private List<IComponent> _components;
+        private List<ComponentBase> _components;
 
-        private void Awake()
-        {
-            _components = new List<IComponent>();
-        }
-
-        public bool Has<TComponent>() where TComponent : class, IComponent
+        public bool Has<TComponent>() where TComponent : ComponentBase
         {
             var index = Find<TComponent>();
             return index != NotFoundIndex;
         }
 
-        public TComponent Get<TComponent>() where TComponent : class, IComponent
+        public TComponent Get<TComponent>() where TComponent : ComponentBase
         {
             var index = Find<TComponent>();
             if (index == NotFoundIndex)
@@ -36,7 +31,7 @@ namespace Gameplay.Core.Behaviours
             return component;
         }
 
-        public bool Add<TComponent>(TComponent component) where TComponent : class, IComponent
+        public bool Add<TComponent>(TComponent component) where TComponent : ComponentBase
         {
             var index = Find<TComponent>();
             if (index != NotFoundIndex)
@@ -47,7 +42,7 @@ namespace Gameplay.Core.Behaviours
             return true;
         }
 
-        public bool Remove<TComponent>() where TComponent : class, IComponent
+        public bool Remove<TComponent>() where TComponent : ComponentBase
         {
             var index = Find<TComponent>();
             if (index == NotFoundIndex)
@@ -58,7 +53,7 @@ namespace Gameplay.Core.Behaviours
             return true;
         }
 
-        private int Find<TComponent>() where TComponent : class, IComponent
+        private int Find<TComponent>() where TComponent : ComponentBase
         {
             return _components.FindIndex(component => component is TComponent);
         }

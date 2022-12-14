@@ -20,6 +20,10 @@ namespace Gameplay.Common.States
             {
                 _stateSwitch.Switch(StateType.SecondaryAttack);   
             }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                _stateSwitch.Switch(StateType.FirstItemUsage);                
+            }
         }
 
         public override void OnExit()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Gameplay.Common.Components
 {
-    [CreateAssetMenu(fileName = "MovementComponent", menuName = "Component/Movement", order = 52)]
-    public class Movement : ScriptableObject, IComponent
+    [CreateAssetMenu(fileName = "Movement", menuName = "Component/Movement", order = 52)]
+    public class Movement : ComponentBase
     {
         public Vector3 Acceleration;
         
