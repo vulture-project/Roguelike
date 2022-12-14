@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bb39ce5add4640a05eedc6a717a80b, type: 3}
   m_Name: WizardMovement
   m_EditorClassIdentifier: 
-  Acceleration: {x: 0, y: 0, z: 0}
+  Acceleration: {x: 4, y: 0, z: 4}
   Velocity: {x: 0, y: 0, z: 0}
-  MaxVelocity: {x: 0, y: 0, z: 0}
+  MaxVelocity: {x: 4, y: 0, z: 4}
   Input: {x: 0, y: 0, z: 0}

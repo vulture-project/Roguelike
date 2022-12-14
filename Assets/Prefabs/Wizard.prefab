@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 2866758035380303599}
   - component: {fileID: 2866758035380303598}
   - component: {fileID: 2866758035380303597}
+  - component: {fileID: 1599855572}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Untagged
@@ -752,6 +753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85570e671e5141b5bccd4867894bfbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 11400000, guid: ea4ccc78f36a24c56a439a6f4f95c334, type: 2}
+  - {fileID: 11400000, guid: 911e75a540e7e40c6bedfb1f2366c72d, type: 2}
 --- !u!114 &2866758035380303606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,6 +784,7 @@ MonoBehaviour:
   - {fileID: 2866758035380303604}
   - {fileID: 2866758035380303598}
   - {fileID: 2866758035380303597}
+  - {fileID: 1599855572}
   _state: {fileID: 2866758035380303604}
 --- !u!114 &2866758035380303604
 MonoBehaviour:
@@ -806,7 +811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c3d92146c4474797a288bb187564b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 11400000, guid: 17ea91cfadf334b56b5f0bdff99615cc, type: 2}
 --- !u!114 &2866758035380303599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,6 +852,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 3
   _spell: {fileID: 11400000, guid: 4d9757321a0a34148ade7024e3172f6d, type: 2}
+--- !u!114 &1599855572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866758035380303610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fd8a811f1e4e6ba392e49668778412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 4
+  _consumable: {fileID: 11400000, guid: 27b3f1852cbb948ae9ee30ea182c4f88, type: 2}
 --- !u!1 &2866758035386002505
 GameObject:
   m_ObjectHideFlags: 0

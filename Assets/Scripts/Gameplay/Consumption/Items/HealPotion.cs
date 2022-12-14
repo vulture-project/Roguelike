@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Gameplay.Consumption.Items
 {
     [CreateAssetMenu(fileName = "HealPotion", menuName = "Consumables/HealPotion", order = 53)]
-    public class HealPotion : ConsumableBase
+    public class HealPotion : Consumable
     {
         [SerializeField]
         private float _value;

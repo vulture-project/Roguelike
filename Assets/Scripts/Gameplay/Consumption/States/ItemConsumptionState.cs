@@ -1,24 +1,28 @@
-using System;
 using Gameplay.Core.States;
 
 using Gameplay.Consumption.Items;
+
 using Gameplay.Core.Behaviours;
-using Gameplay.Core.Components;
+
+using Gameplay.Inventory.Behaviours;
+
 using UnityEngine;
 
 namespace Gameplay.Consumption.States
 {
-    [RequireComponent(typeof(ComponentOwner))]
+    [RequireComponent(typeof(ComponentOwner), typeof(InventoryOwner))]
     public class ItemConsumptionState : State
     {
         [SerializeField]
-        private ConsumableBase _consumable;
+        private Consumable _consumable;
 
-        private IComponentOwner _componentOwner;        
+        private ComponentOwner _componentOwner;
+        private InventoryOwner _inventoryOwner;
         
         private void Awake()
         {
             _componentOwner = gameObject.GetComponent<ComponentOwner>();
+            _inventoryOwner = gameObject.GetComponent<InventoryOwner>();
         }
         
         public override void OnEnter()
@@ -33,6 +37,11 @@ namespace Gameplay.Consumption.States
 
         public override void OnExit()
         {
-        } 
+        }
+
+        public void SetConsumable(Consumable consumable)
+        {
+            _consumable = consumable;
+        }
     }
 }
