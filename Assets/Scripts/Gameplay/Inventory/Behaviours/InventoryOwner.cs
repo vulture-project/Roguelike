@@ -8,7 +8,13 @@ namespace Gameplay.Inventory.Behaviours
 {
     public class InventoryOwner : MonoBehaviour
     {
+        [SerializeField]
         private List<Consumable> _consumables;
+
+        public List<Consumable> View()
+        {
+            return _consumables;
+        }
         
         public void Add(Consumable consumable)
         {

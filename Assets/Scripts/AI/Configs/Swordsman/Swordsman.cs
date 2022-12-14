@@ -38,7 +38,6 @@ namespace AI.Configs.Swordsman
             catchComp.Value = 2.5f;
 
             var sword = gameObject.GetComponent<Sword>();
-            sword.Damage = 50f;
         }
 
         private void BuildStateMachines()
