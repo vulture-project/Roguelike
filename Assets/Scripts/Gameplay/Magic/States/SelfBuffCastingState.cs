@@ -1,5 +1,4 @@
 using Gameplay.Core.States;
-using Gameplay.Core.Components;
 
 using Gameplay.Magic.Spells;
 
@@ -7,20 +6,20 @@ using UnityEngine;
 
 namespace Gameplay.Magic.States
 {
-    [RequireComponent(typeof(Animator), typeof(Mana))]
-    public class CastingSelfBuffState : State
+    [RequireComponent(typeof(Animator))]
+    public class SelfBuffCastingState : State
     {
+        [SerializeField]
+        private SelfBuffCastSpell _spell; 
+
         private Animator _animator;
         private int _isCastingSelfBuffHash;
-        private Mana _mana;
-        private SelfBuffCastSpell _spell;
         private Transform _transform;        
 
-        private void Start()
+        private void Awake()
         {
             _animator = gameObject.GetComponent<Animator>();
             _isCastingSelfBuffHash = Animator.StringToHash("isCastingSelfBuff");
-            _mana = GetComponent<Mana>();
             _transform = transform;
         }
 
@@ -44,7 +43,7 @@ namespace Gameplay.Magic.States
 
         public void SelfBuffCastingFinished()
         {
-            _stateMachine.Switch(StateType.Idle);
+            _stateSwitch.Switch(StateType.Idle);
         }
     }
 }

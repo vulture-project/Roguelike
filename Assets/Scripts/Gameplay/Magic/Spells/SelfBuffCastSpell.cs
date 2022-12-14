@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Magic.Spells
 {
-    [CreateAssetMenu(fileName = "SelfBuffCastSpell", menuName = "Self buff cast spell", order = 52)]
+    [CreateAssetMenu(fileName = "SelfBuffCastSpell", menuName = "Spell/Self buff", order = 52)]
     public class SelfBuffCastSpell : ScriptableObject
     {
         [SerializeField]

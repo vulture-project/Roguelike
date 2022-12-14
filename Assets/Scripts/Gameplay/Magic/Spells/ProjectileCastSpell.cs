@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Magic.Spells
 {
-    [CreateAssetMenu(fileName = "ProjectileCastSpell", menuName = "Projectile cast spell", order = 51)]
+    [CreateAssetMenu(fileName = "ProjectileCastSpell", menuName = "Spell/Projectile cast", order = 52)]
     public class ProjectileCastSpell : ScriptableObject
     {
         [SerializeField]

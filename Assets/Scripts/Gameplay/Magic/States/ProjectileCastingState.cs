@@ -1,29 +1,28 @@
-using Gameplay.Core.Components;
 using Gameplay.Core.States;
 
-using Gameplay.Magic.Components;
+using Gameplay.Magic.Behaviours;
 using Gameplay.Magic.Spells;
 
 using UnityEngine;
 
 namespace Gameplay.Magic.States
 {
-    [RequireComponent(typeof(Animator), typeof(FirePoint), typeof(Mana))]
-    public class CastingProjectileState : State
+    [RequireComponent(typeof(Animator), typeof(FirePoint))]
+    public class ProjectileCastingState : State
     {
+        [SerializeField]
+        private ProjectileCastSpell _spell;
+
         private Animator _animator;
         private int _isCastingProjectileHash;
         private FirePoint _firePoint;
-        private Mana _mana;
-        private ProjectileCastSpell _spell;
         private Transform _transform;        
 
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
             _isCastingProjectileHash = Animator.StringToHash("isCastingProjectile");
             _firePoint = GetComponent<FirePoint>();
-            _mana = GetComponent<Mana>();
             _transform = transform;
         }
 
@@ -49,12 +48,7 @@ namespace Gameplay.Magic.States
 
         public void ProjectileCastingFinished()
         {
-            _stateMachine.Switch(StateType.Idle);
-        }
-
-        public void SetSpell(ProjectileCastSpell spell)
-        {
-            _spell = spell;
+            _stateSwitch.Switch(StateType.Idle);
         }
     }
 }

@@ -4,8 +4,10 @@ namespace Gameplay.Core.States
 {
     public abstract class State : MonoBehaviour
     {
+        [SerializeField]
         protected StateType _type;
-        protected IStateMachine _stateMachine;
+
+        protected IStateSwitch _stateSwitch;
 
         public StateType Type()
         {
@@ -17,14 +19,19 @@ namespace Gameplay.Core.States
             _type = type;
         }
 
-        public void OnAdd(IStateMachine stateMachine)
+        public void SetStateSwitch(IStateSwitch stateSwitch)
         {
-            _stateMachine = stateMachine;
+            _stateSwitch = stateSwitch;
+        }
+        
+        public void OnAdd(IStateSwitch stateSwitch)
+        {
+            _stateSwitch = stateSwitch;
         }
 
-        public void OnRemove(IStateMachine stateMachine)
+        public void OnRemove()
         {
-            _stateMachine = null;
+            _stateSwitch = null;
         }
         
         public abstract void OnEnter();
