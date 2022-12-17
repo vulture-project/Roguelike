@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99be1be3bb2f40bbb71ad02e78df9ed2, type: 3}
+  m_Name: IceSpike
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1155329727532395086, guid: 5280b7eef5ad443b6baf3bd15d65314c, type: 3}
+  Damage:
+    Value: 10
+  Velocity:
+    Value: {x: 0, y: 0, z: 50}
+    MaxValue: {x: 0, y: 0, z: 50}

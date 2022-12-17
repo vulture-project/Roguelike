@@ -3,9 +3,9 @@ using System;
 namespace Components
 {
     [Serializable]
-    public class HealthComponent
+    public struct HealthComponent
     {
-        public float Value;
-        public float MaxValue;
+        public int Value;
+        public int MaxValue;
     }
 }

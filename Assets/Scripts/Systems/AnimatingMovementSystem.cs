@@ -2,38 +2,23 @@ using Components;
 
 using Leopotam.Ecs;
 
-using UnityEngine;
-
-namespace Gameplay.Common.Systems
+namespace Systems
 {
-    public class AnimatingMovementSystem : IEcsSystem
+    public class AnimatingMovementSystem : IEcsRunSystem
     {
-        private Animator _animator;
-        private int _velocityXHash;
-        private int _velocityZHash;
-        private Movement _movement;
-
-        public void OnAdd(GameObject gameObject, IComponentOwner componentOwner)
-        {
-            _animator = gameObject.GetComponent<Animator>();
-            _velocityXHash = Animator.StringToHash("velocityX");
-            _velocityZHash = Animator.StringToHash("velocityZ");
-            _movement = componentOwner.Get<Movement>();
-
-        }
-
-        public void OnRemove()
-        {
-            _animator = null;
-            _velocityXHash = 0;
-            _velocityZHash = 0;
-            _movement = null;
-        }
+        private EcsFilter<AnimatorComponent, MovementAnimationComponent, VelocityComponent> _filter;
         
-        public void OnUpdate()
+        public void Run()
         {
-            _animator.SetFloat(_velocityXHash, _movement.Velocity.x);
-            _animator.SetFloat(_velocityZHash, _movement.Velocity.z);
+            foreach (var i in _filter)
+            {
+                ref var animator = ref _filter.Get1(i);
+                ref var movementAnimation = ref _filter.Get2(i);
+                ref var velocity = ref _filter.Get3(i);
+
+                animator.Animator.SetFloat(movementAnimation.VelocityXHash, velocity.Value.x);
+                animator.Animator.SetFloat(movementAnimation.VelocityZHash, velocity.Value.z);
+            }
         }
     }
 }

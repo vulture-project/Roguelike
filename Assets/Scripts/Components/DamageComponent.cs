@@ -5,6 +5,6 @@ namespace Components
     [Serializable]
     public struct DamageComponent
     {
-        public float Value;
+        public int Value;
     }
 }

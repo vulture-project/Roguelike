@@ -8,15 +8,15 @@ namespace Systems
 { 
     public class AccelerationSystem : IEcsRunSystem
     {
-        private EcsFilter<AccelerationComponent, VelocityComponent, InputComponent> _entities;
+        private EcsFilter<AccelerationComponent, VelocityComponent, InputComponent> _filter;
 
         public void Run()
         {
-            foreach (var entity in _entities)
+            foreach (var i in _filter)
             {
-                ref var acceleration = ref _entities.Get1(entity);
-                ref var velocity = ref _entities.Get2(entity);
-                ref var input = ref _entities.Get3(entity);
+                ref var acceleration = ref _filter.Get1(i);
+                ref var velocity = ref _filter.Get2(i);
+                ref var input = ref _filter.Get3(i);
 
                 var deltaVelocity = acceleration.Value * Time.deltaTime;
 

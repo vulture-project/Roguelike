@@ -9,13 +9,13 @@ namespace Core
 
          public static T Instance()
          {
+             Assert.IsNotNull(_instance, typeof(T).ToString());
              return _instance;
          }
-
-         private void Awake()
+         
+         protected void SetInstance(T instance)
          {
-             Assert.IsNull(_instance);
-             _instance = GetComponent<T>();
+             _instance = instance;
          }
      }
 }
