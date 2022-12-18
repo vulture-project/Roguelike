@@ -10,12 +10,6 @@ namespace AI.Configs.Swordsman
     [RequireComponent(typeof(FieldOfView), typeof(Catch))]
     public class Swordsman : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject enemy;
-
-        [SerializeField]
-        private GameObject room;
-
         private AnimationNotifier _animationNotifier;
         private MasterStateMachine _masterStateMachine;
 
@@ -23,39 +17,33 @@ namespace AI.Configs.Swordsman
 
         private WatchStateMachine _watchStateMachine;
 
-        private void Awake()
+        private void Update()
         {
-            Init();
+            _watchStateMachine?.Execute();
+            _masterStateMachine?.Execute();
         }
 
-        private void Start()
+        public void Init(GameObject room, GameObject enemy)
         {
             _animationNotifier = new AnimationNotifier();
             _spottingManager = room.GetComponent<Room>().SpottingManager;
-            BuildStateMachines();
+            BuildStateMachines(room, enemy);
             _watchStateMachine.OnEntry();
             _masterStateMachine.OnEntry();
-        }
-
-        private void Update()
-        {
-            _watchStateMachine.Execute();
-            _masterStateMachine.Execute();
-        }
-
-        private void Init()
-        {
+            
             var fov = gameObject.GetComponent<FieldOfView>();
             fov.Value = 20.0f;
 
             var catchComp = gameObject.GetComponent<Catch>();
-            catchComp.Value = 4.0f;
+            catchComp.Value = 3.0f;
 
             var sword = gameObject.GetComponent<Sword>();
         }
 
-        private void BuildStateMachines()
+        private void BuildStateMachines(GameObject room, GameObject enemy)
         {
+            Debug.Log("BuildStateMachines");
+
             _watchStateMachine = new WatchStateMachine(gameObject, enemy, _spottingManager);
             _masterStateMachine = new MasterStateMachine(gameObject, enemy,
                 _spottingManager,

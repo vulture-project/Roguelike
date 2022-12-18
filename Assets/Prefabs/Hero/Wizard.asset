@@ -15,9 +15,14 @@ MonoBehaviour:
   Prefab: {fileID: 7795049188278579604, guid: 0859fa7f02c0f4ca48df24dd55c66ec0, type: 3}
   Acceleration:
     Value: {x: 5, y: 0, z: 5}
+  Deceleration:
+    Value: {x: 75, y: 0, z: 50}
   Armour:
     Value: 10
   Health:
+    Value: 100
+    MaxValue: 100
+  Mana:
     Value: 100
     MaxValue: 100
   LayerMask:
@@ -26,4 +31,4 @@ MonoBehaviour:
       m_Bits: 64
   Velocity:
     Value: {x: 0, y: 0, z: 0}
-    MaxValue: {x: 5, y: 0, z: 5}
+    MaxValue: {x: 4, y: 0, z: 6}

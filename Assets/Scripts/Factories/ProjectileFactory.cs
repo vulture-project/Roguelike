@@ -39,10 +39,11 @@ namespace Factories
             var clone = Instantiate(projectile.Prefab, position, Quaternion.identity);
 
             var entity = _world.NewEntity();
-            entity.Replace(_fireBlast.Damage);
+            entity.Replace(projectile.Damage);
             entity.Replace(new DamageSourceTag());
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
-            entity.Replace(_fireBlast.Velocity);
+            entity.Replace(projectile.Velocity);
+            entity.Replace(new GameObjectComponent(clone));
 
             clone.transform.forward = direction;
             clone.GetComponent<Entity>().Set(entity);

@@ -12,12 +12,11 @@ namespace Systems
         {
             foreach (var i in _filter)
             {
-                ref var gameObject = ref _filter.Get1(i);
-
-                Object.Destroy(gameObject.GameObject);
-
                 var entity = _filter.GetEntity(i);
+                var gameObject = _filter.Get1(i).GameObject;
+                
                 entity.Destroy();
+                Object.Destroy(gameObject);
             }
         }
     }

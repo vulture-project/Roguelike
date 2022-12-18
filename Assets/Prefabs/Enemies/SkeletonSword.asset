@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99be1be3bb2f40bbb71ad02e78df9ed2, type: 3}
-  m_Name: IceSpike
+  m_Script: {fileID: 11500000, guid: 620b18aea3124426a340df067d8af6a9, type: 3}
+  m_Name: SkeletonSword
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1155329727532395086, guid: 5280b7eef5ad443b6baf3bd15d65314c, type: 3}
   Damage:
     Value: 25
-  Velocity:
-    Value: {x: 0, y: 0, z: 25}
-    MaxValue: {x: 0, y: 0, z: 25}

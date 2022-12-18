@@ -30,25 +30,33 @@ namespace Factories
             _mainCamera = Camera.main;
         }
 
-        public void Spawn(Vector3 position)
+        public GameObject Spawn(Vector3 position)
         {
             var clone = Instantiate(_wizard.Prefab, position, Quaternion.identity);
 
             var entity = _world.NewEntity();
             entity.Replace(_wizard.Acceleration);
+            entity.Replace(_wizard.Deceleration);
             entity.Replace(_wizard.Armour);
             entity.Replace(new AnimatorComponent(clone.GetComponent<Animator>()));
             entity.Replace(new CameraComponent(_mainCamera));
             entity.Replace(new DamageTargetTag());
             entity.Replace(_wizard.Health);
+            entity.Replace(_wizard.Mana);
             entity.Replace(new HealTargetTag());
+            entity.Replace(new ManaBoostTargetTag());
             entity.Replace(new InputComponent());
             entity.Replace(_wizard.LayerMask);
-            entity.Replace(new MovementAnimationComponent(_velocityXHash, _velocityZHash));
+            entity.Replace(new MovementForwardAnimationComponent(_velocityZHash));
+            entity.Replace(new MovementSidewaysAnimationComponent(_velocityXHash));
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
             entity.Replace(_wizard.Velocity);
 
             clone.GetComponent<Entity>().Set(entity);
+
+            _mainCamera.gameObject.transform.SetParent(clone.transform);
+
+            return clone;
         }
     }
 }
