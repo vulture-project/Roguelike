@@ -1,11 +1,11 @@
 ﻿namespace Components
 {
-    public struct MovementAnimationComponent
+    public struct MovementForwardAnimationComponent
     {
         public int VelocityXHash;
         public int VelocityZHash;
 
-        public MovementAnimationComponent(int velocityXHash, int velocityZHash)
+        public MovementForwardAnimationComponent(int velocityXHash, int velocityZHash)
         {
             VelocityXHash = velocityXHash;
             VelocityZHash = velocityZHash;
