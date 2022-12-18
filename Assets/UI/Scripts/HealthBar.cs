@@ -16,16 +16,8 @@ public class HealthBar : MonoBehaviour
 
     public void SetHP(float percentage)
     {
+        Debug.Log("Setting hp");
         healthBar.fillAmount = percentage;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log("SHIT\n");
-            SetHP(0.5f);
-        }
     }
 
     void LateUpdate()
