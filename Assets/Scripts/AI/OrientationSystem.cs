@@ -16,7 +16,6 @@ namespace Systems
                 ref var layerMask = ref _filter.Get2(i);
                 ref var transform = ref _filter.Get3(i);
                 
-                Cursor.lockState = CursorLockMode.Locked;
                 transform.Transform.RotateAround(transform.Transform.position, Vector3.up, 3f * Input.GetAxis("Mouse X"));
                 
                 // var ray = camera.MainCamera.ScreenPointToRay(Input.mousePosition);

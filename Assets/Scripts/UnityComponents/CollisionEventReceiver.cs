@@ -18,6 +18,7 @@ namespace UnityComponents
         {
             var entity = collision.gameObject.GetComponent<Entity>();
             if (entity != null) _entity.Get().Replace(new CollisionComponent(entity.Get()));
+            // else _entity.Get().Replace(new DestroyTag());
         }
 
         private void OnTriggerExit(Collider collision)
