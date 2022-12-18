@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99be1be3bb2f40bbb71ad02e78df9ed2, type: 3}
-  m_Name: FireBlast
+  m_Script: {fileID: 11500000, guid: bb20e295957841b799cfcd5a54e46047, type: 3}
+  m_Name: ManaPotion
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 9146332246721054089, guid: e4588d839f97741428f6ef9c31bf3915, type: 3}
-  Damage:
-    Value: 100
-  Velocity:
-    Value: {x: 0, y: 0, z: 15}
-    MaxValue: {x: 0, y: 0, z: 15}
+  Prefab: {fileID: 8838453361438556795, guid: c0988537730774ec2a11cfc55d8da4d5, type: 3}
+  ManaBoost:
+    Value: 5

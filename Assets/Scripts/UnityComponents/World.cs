@@ -60,6 +60,9 @@ namespace Core
             var healPotionFactory = GetComponent<HealPotionFactory>();
             healPotionFactory.Init();
 
+            var manaPotionFactory = GetComponent<ManaPotionFactory>();
+            manaPotionFactory.Init();
+
             var projectileFactory = GetComponent<ProjectileFactory>();
             projectileFactory.Init();
 

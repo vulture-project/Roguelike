@@ -514,8 +514,8 @@ Transform:
   m_GameObject: {fileID: 9146332248247919665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9146332246721054088}
   m_RootOrder: 2
@@ -528,7 +528,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9146332248247919665}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 8ed9e31fdcd5a4dd4971ee140d52dc6f, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: f9b3d78bac190400fabddaa19cb97f7f, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -543,7 +543,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 10.603924, y: 2.5538244, z: 0, w: 1}
+      - m_Value: {x: 8.414107, y: 2.0264342, z: 0, w: 1}
         m_Name: Color
         m_Overridden: 1
     m_Uint:

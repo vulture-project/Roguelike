@@ -12,6 +12,7 @@ namespace Systems
         {
             foreach (var i in _filter)
             {
+                Debug.Log("Applied Heal Potion");
                 ref var heal = ref _filter.Get1(i);
                 ref var health = ref _filter.Get2(i);
 

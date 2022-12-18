@@ -7,6 +7,7 @@ namespace MapGeneration
     public class MapGenerator : Singleton<MapGenerator>
     {
         private HealPotionFactory _healPotionFactory;
+        private ManaPotionFactory _manaPotionFactory;
         private WizardFactory _wizardFactory;
 
         public void Init()
@@ -14,6 +15,7 @@ namespace MapGeneration
             SetInstance(this);
 
             _healPotionFactory = HealPotionFactory.Instance();
+            _manaPotionFactory = ManaPotionFactory.Instance();
             _wizardFactory = WizardFactory.Instance();
         }
 
@@ -22,6 +24,7 @@ namespace MapGeneration
             _wizardFactory.Spawn(Vector3.zero);
 
             _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));
+            _manaPotionFactory.Spawn(new Vector3(-2f, 0f, 2f));
         }
     }
 }
