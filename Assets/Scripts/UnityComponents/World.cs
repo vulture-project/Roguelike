@@ -1,22 +1,15 @@
-using Core;
 using Factories;
+using Leopotam.Ecs;
 using MapGeneration;
 using Systems;
-
-using Leopotam.Ecs;
 
 namespace Core
 {
     public class World : Singleton<World>
     {
-        private EcsWorld _world;
         private EcsSystems _systems;
+        private EcsWorld _world;
 
-        public EcsWorld Get()
-        {
-            return _world;
-        }
-        
         private void Start()
         {
             SetInstance(this);
@@ -35,6 +28,11 @@ namespace Core
         {
             _systems.Destroy();
             _world.Destroy();
+        }
+
+        public EcsWorld Get()
+        {
+            return _world;
         }
 
         private void InitEcs()
@@ -56,7 +54,7 @@ namespace Core
 
             _systems.Init();
         }
-        
+
         private void InitFactories()
         {
             var healPotionFactory = GetComponent<HealPotionFactory>();
@@ -64,7 +62,7 @@ namespace Core
 
             var projectileFactory = GetComponent<ProjectileFactory>();
             projectileFactory.Init();
-            
+
             var wizardFactory = GetComponent<WizardFactory>();
             wizardFactory.Init();
         }

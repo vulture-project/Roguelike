@@ -1,6 +1,5 @@
 ﻿using Factories;
 using UnityComponents;
-
 using UnityEngine;
 
 namespace States
@@ -23,7 +22,7 @@ namespace States
         {
             _animator.SetBool(_castMaintainHash, true);
         }
-    
+
         public override void OnUpdate()
         {
         }
@@ -40,10 +39,7 @@ namespace States
 
         public void MaintainFinished()
         {
-            if (!Input.GetButton("Fire2"))
-            {
-                _stateSwitch.SwitchTo<IdleState>();
-            }            
+            if (!Input.GetButton("Fire2")) _stateSwitch.SwitchTo<IdleState>();
         }
     }
 }

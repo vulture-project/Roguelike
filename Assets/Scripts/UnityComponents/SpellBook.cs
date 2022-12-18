@@ -1,5 +1,4 @@
 ﻿using States;
-
 using UnityEngine;
 
 namespace UnityComponents

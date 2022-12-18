@@ -1,5 +1,4 @@
 ﻿using Components;
-
 using Leopotam.Ecs;
 
 namespace Systems

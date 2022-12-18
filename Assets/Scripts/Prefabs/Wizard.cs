@@ -1,5 +1,4 @@
 using Components;
-
 using UnityEngine;
 
 namespace Prefabs
@@ -14,9 +13,9 @@ namespace Prefabs
         public ArmourComponent Armour;
 
         public HealthComponent Health;
-        
+
         public LayerMaskComponent LayerMask;
-        
+
         public VelocityComponent Velocity;
     }
 }

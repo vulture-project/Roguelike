@@ -1,11 +1,9 @@
 ﻿using Components;
-
 using Leopotam.Ecs;
-
 using UnityEngine;
 
 namespace Systems
-{ 
+{
     public class AccelerationSystem : IEcsRunSystem
     {
         private EcsFilter<AccelerationComponent, VelocityComponent, InputComponent> _filter;
@@ -24,7 +22,7 @@ namespace Systems
                 {
                     var x = velocity.Value.x + input.Value.x * deltaVelocity.x;
                     x = Mathf.Clamp(x, -velocity.MaxValue.x, velocity.MaxValue.x);
-                    velocity.Value += Vector3.right * (x - velocity.Value.x) ;
+                    velocity.Value += Vector3.right * (x - velocity.Value.x);
                 }
 
                 if (!Mathf.Approximately(input.Value.z, 0.0f))

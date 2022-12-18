@@ -1,7 +1,5 @@
 ﻿using Components;
-
 using Leopotam.Ecs;
-
 using UnityEngine;
 
 namespace Systems
@@ -20,9 +18,7 @@ namespace Systems
 
                 var ray = camera.MainCamera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out var hit, float.MaxValue, layerMask.GroundLayerMask))
-                {
-                    transform.Transform.forward = (hit.point - transform.Transform.position).normalized;                    
-                }
+                    transform.Transform.forward = (hit.point - transform.Transform.position).normalized;
             }
         }
     }

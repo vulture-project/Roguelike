@@ -1,6 +1,5 @@
 using Factories;
 using UnityComponents;
-
 using UnityEngine;
 
 namespace States
@@ -23,7 +22,7 @@ namespace States
         {
             _animator.SetTrigger(_castProjectileTriggerHash);
         }
-    
+
         public override void OnUpdate()
         {
         }

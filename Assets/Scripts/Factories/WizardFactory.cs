@@ -1,10 +1,8 @@
 using Components;
 using Core;
+using Leopotam.Ecs;
 using Prefabs;
 using UnityComponents;
-
-using Leopotam.Ecs;
-
 using UnityEngine;
 
 namespace Factories
@@ -13,28 +11,29 @@ namespace Factories
     {
         [SerializeField]
         private Wizard _wizard;
-        
-        private EcsWorld _world;
-        
+
+        private Camera _mainCamera;
+
         private int _velocityXHash;
         private int _velocityZHash;
-        private Camera _mainCamera;
+
+        private EcsWorld _world;
 
         public void Init()
         {
             SetInstance(this);
-            
+
             _world = World.Instance().Get();
-            
+
             _velocityXHash = Animator.StringToHash("velocityX");
             _velocityZHash = Animator.StringToHash("velocityZ");
             _mainCamera = Camera.main;
         }
-        
+
         public void Spawn(Vector3 position)
         {
             var clone = Instantiate(_wizard.Prefab, position, Quaternion.identity);
-            
+
             var entity = _world.NewEntity();
             entity.Replace(_wizard.Acceleration);
             entity.Replace(_wizard.Armour);

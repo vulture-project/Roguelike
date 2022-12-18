@@ -7,7 +7,7 @@ namespace States
     {
         private Animator _animator;
         private int _castSelfBuffTriggerHash;
-        private Transform _transform;        
+        private Transform _transform;
 
         private void Start()
         {
@@ -20,7 +20,7 @@ namespace States
         {
             _animator.SetTrigger(_castSelfBuffTriggerHash);
         }
-    
+
         public override void OnUpdate()
         {
         }

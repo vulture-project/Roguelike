@@ -1,5 +1,4 @@
 using Components;
-
 using UnityEngine;
 
 namespace Prefabs
@@ -10,7 +9,7 @@ namespace Prefabs
         public GameObject Prefab;
 
         public DamageComponent Damage;
-        
+
         public VelocityComponent Velocity;
     }
 }

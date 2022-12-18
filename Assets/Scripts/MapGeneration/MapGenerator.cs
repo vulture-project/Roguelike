@@ -1,6 +1,5 @@
 ﻿using Core;
 using Factories;
-
 using UnityEngine;
 
 namespace MapGeneration
@@ -17,12 +16,12 @@ namespace MapGeneration
             _healPotionFactory = HealPotionFactory.Instance();
             _wizardFactory = WizardFactory.Instance();
         }
-        
+
         public void Generate()
         {
             _wizardFactory.Spawn(Vector3.zero);
-            
-            _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));            
+
+            _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));
         }
     }
 }

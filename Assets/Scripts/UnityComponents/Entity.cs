@@ -1,5 +1,4 @@
 ﻿using Leopotam.Ecs;
-
 using UnityEngine;
 
 namespace UnityComponents

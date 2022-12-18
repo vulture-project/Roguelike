@@ -1,10 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Components
 {
     [Serializable]
     public struct LayerMaskComponent
     {
-        public UnityEngine.LayerMask GroundLayerMask;
+        public LayerMask GroundLayerMask;
     }
 }

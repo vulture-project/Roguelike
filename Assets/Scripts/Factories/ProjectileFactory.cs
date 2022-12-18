@@ -1,8 +1,7 @@
-﻿using Core;
-using Components;
-using Prefabs;
-
+﻿using Components;
+using Core;
 using Leopotam.Ecs;
+using Prefabs;
 using UnityComponents;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Factories
 
         [SerializeField]
         private Projectile _iceSpike;
-        
+
         private EcsWorld _world;
 
         public void Init()
@@ -24,7 +23,7 @@ namespace Factories
 
             _world = World.Instance().Get();
         }
-        
+
         public void SpawnFireBlast(Vector3 position, Vector3 direction)
         {
             SpawnProjectile(_fireBlast, position, direction);
@@ -34,7 +33,7 @@ namespace Factories
         {
             SpawnProjectile(_iceSpike, position, direction);
         }
-        
+
         private void SpawnProjectile(Projectile projectile, Vector3 position, Vector3 direction)
         {
             var clone = Instantiate(projectile.Prefab, position, Quaternion.identity);

@@ -1,5 +1,4 @@
 ﻿using Components;
-
 using UnityEngine;
 
 namespace Prefabs

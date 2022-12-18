@@ -1,10 +1,8 @@
 ﻿using Components;
 using Core;
+using Leopotam.Ecs;
 using Prefabs;
 using UnityComponents;
-
-using Leopotam.Ecs;
-
 using UnityEngine;
 
 namespace Factories

@@ -1,5 +1,4 @@
 using Components;
-
 using Leopotam.Ecs;
 
 namespace Systems
@@ -7,7 +6,7 @@ namespace Systems
     public class AnimatingMovementSystem : IEcsRunSystem
     {
         private EcsFilter<AnimatorComponent, MovementAnimationComponent, VelocityComponent> _filter;
-        
+
         public void Run()
         {
             foreach (var i in _filter)
