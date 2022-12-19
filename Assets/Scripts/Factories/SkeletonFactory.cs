@@ -32,8 +32,12 @@ namespace Factories
         public void Spawn(Vector3 position, GameObject navMeshRoom, GameObject enemy)
         {
             var clone = Instantiate(_skeleton.Prefab, position, Quaternion.identity);
-            HealthBar healthBar = clone.GetComponent<HealthBar>();
-            healthBar.gameObject.transform.parent.gameObject.GetComponent<Canvas>().worldCamera = Camera.main;
+
+            // FIXME: God I'm sorry for this!
+            GameObject canvas = clone.transform.Find("CanvasForHP").gameObject;
+            canvas.GetComponent<Canvas>().worldCamera = Camera.main;
+            
+            HealthBar healthBar = canvas.transform.Find("Health").gameObject.GetComponent<HealthBar>();
             
             var entity = _world.NewEntity();
             entity.Replace(_skeleton.Armour);
