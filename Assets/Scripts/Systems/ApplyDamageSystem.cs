@@ -14,8 +14,13 @@ namespace Systems
             {
                 ref var damage = ref _filter.Get1(i);
                 ref var health = ref _filter.Get2(i);
+                
+                Debug.Log($"Applied damage {damage.Value}, health: {health.Value}/{health.MaxValue} -> {health.Value - damage.Value}/{health.MaxValue}");
 
                 health.Value = Mathf.Clamp(health.Value - damage.Value, 0, health.MaxValue);
+                
+                var entity = _filter.GetEntity(i);
+                entity.Del<DamageComponent>();
             }
         }
     }

@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
     private Camera camera;
-    
+
     void Awake()
     {
         camera = Camera.main;

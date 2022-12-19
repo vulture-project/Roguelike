@@ -8,6 +8,7 @@ namespace AI.Common.Chase
     public class ChaseAction : AGameObjectBasedAction
     {
         private readonly GameObject _chased;
+        private readonly float _chasedRadius;
 
         private readonly NavMeshAgent _navMeshAgent;
 
@@ -19,6 +20,7 @@ namespace AI.Common.Chase
         {
             _navMeshAgent = owner.GetComponent<NavMeshAgent>();
             _chased = chased;
+            _chasedRadius = _chased.GetComponent<CapsuleCollider>().radius;
 
             _rebuildPathDist = rebuildPathDist;
             _sqrRebuildPathDist = rebuildPathDist * rebuildPathDist;
@@ -44,7 +46,7 @@ namespace AI.Common.Chase
         {
             return !Points.InOpenBall(_chased.transform.position,
                 _navMeshAgent.destination,
-                _sqrRebuildPathDist);
+                _chasedRadius + _rebuildPathDist);
         }
 
         private void SetDestinationToChased()

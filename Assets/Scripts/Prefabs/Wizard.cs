@@ -9,10 +9,12 @@ namespace Prefabs
         public GameObject Prefab;
 
         public AccelerationComponent Acceleration;
+        public DecelerationComponent Deceleration;
 
         public ArmourComponent Armour;
 
         public HealthComponent Health;
+        public ManaComponent Mana;
 
         public LayerMaskComponent LayerMask;
 

@@ -31,6 +31,16 @@ namespace Systems
                     z = Mathf.Clamp(z, -velocity.MaxValue.z, velocity.MaxValue.z);
                     velocity.Value += Vector3.forward * (z - velocity.Value.z);
                 }
+                
+                if (Mathf.Approximately(input.Value.x, 0.0f))
+                {
+                    input.Value.x = 0.0f;
+                }
+
+                if (Mathf.Approximately(input.Value.z, 0.0f))
+                {
+                    input.Value.z = 0.0f;
+                }
             }
         }
     }

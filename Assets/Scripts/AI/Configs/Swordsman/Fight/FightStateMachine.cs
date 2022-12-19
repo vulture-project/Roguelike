@@ -20,7 +20,7 @@ namespace AI.Configs.Swordsman.Fight
                 movementNotifier);
             MergeCore(this, _chaseStateMachine);
 
-            var fighter = new Fighter(agent, enemy, 2.0f);
+            var fighter = new Fighter(agent, enemy, 0.5f);
             var attackAction = new AttackAction(fighter);
             _chaseStateMachine.CatchState.AddAction(attackAction);
 

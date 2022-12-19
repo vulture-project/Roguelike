@@ -1,3 +1,4 @@
+using Components;
 using Factories;
 using Leopotam.Ecs;
 using MapGeneration;
@@ -7,8 +8,9 @@ namespace Core
 {
     public class World : Singleton<World>
     {
-        private EcsSystems _systems;
         private EcsWorld _world;
+        private EcsSystems _systems;
+        private EcsSystems _deferredSystems;
 
         private void Start()
         {
@@ -22,10 +24,12 @@ namespace Core
         private void Update()
         {
             _systems.Run();
+            _deferredSystems.Run();
         }
 
         private void OnDestroy()
         {
+            _deferredSystems.Destroy();
             _systems.Destroy();
             _world.Destroy();
         }
@@ -41,18 +45,27 @@ namespace Core
 
             _systems = new EcsSystems(_world)
                 .Add(new AccelerationSystem())
-                .Add(new AnimatingMovementSystem())
+                .Add(new AnimatingMovementForwardSystem())
+                .Add(new AnimatingMovementSidewaysSystem())
                 .Add(new ApplyDamageSystem())
                 .Add(new ApplyHealSystem())
+                .Add(new ApplyManaBoostSystem())
                 .Add(new DamageSystem())
                 .Add(new DecelerationSystem())
-                .Add(new DestroySystem())
                 .Add(new HealSystem())
+                .Add(new ManaBoostSystem())
                 .Add(new MovementInputSystem())
                 .Add(new MovementSystem())
-                .Add(new OrientationSystem());
+                .Add(new NavMeshMovementSystem())
+                .Add(new OrientationSystem())
+                .OneFrame<CollisionComponent>();
 
             _systems.Init();
+
+            _deferredSystems = new EcsSystems(_world)
+                .Add(new DestroySystem());
+            
+            _deferredSystems.Init();
         }
 
         private void InitFactories()
@@ -68,6 +81,9 @@ namespace Core
 
             var wizardFactory = GetComponent<WizardFactory>();
             wizardFactory.Init();
+            
+            var skeletonFactory = GetComponent<SkeletonFactory>();
+            skeletonFactory.Init();
         }
 
         private void InitMapGenerator()

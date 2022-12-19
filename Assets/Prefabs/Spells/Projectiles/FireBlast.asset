@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9146332246721054089, guid: e4588d839f97741428f6ef9c31bf3915, type: 3}
   Damage:
-    Value: 100
+    Value: 50
   Velocity:
     Value: {x: 0, y: 0, z: 15}
     MaxValue: {x: 0, y: 0, z: 15}

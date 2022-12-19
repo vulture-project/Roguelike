@@ -9,6 +9,7 @@ namespace AI.Configs.Swordsman.Fight
     {
         private readonly Catch _catch;
         private readonly Transform _enemyTransform;
+        private readonly float _enemyRadius;
 
         private readonly Transform _ownerTransform;
 
@@ -19,6 +20,10 @@ namespace AI.Configs.Swordsman.Fight
             _ownerTransform = owner.transform;
             _enemyTransform = enemy.transform;
 
+            // TODO: Handle other types of colliders!
+            var enemyCollider = enemy.GetComponent<CapsuleCollider>();
+            _enemyRadius = enemyCollider.radius;
+
             _catch = owner.GetComponent<Catch>();
 
             _heroLayerMask = LayerMask.GetMask("Hero");
@@ -26,9 +31,17 @@ namespace AI.Configs.Swordsman.Fight
 
         public override bool Decide()
         {
-            return Points.InOpenBall(_ownerTransform.position, _enemyTransform.position, _catch.SqrValue) &&
-                   Points.CheckObjectRaycast(new Ray(_ownerTransform.position, _ownerTransform.forward),
-                       _heroLayerMask);
+            Vector3 ownerPosition = _ownerTransform.position;
+            Vector3 enemyPosition = _enemyTransform.position;
+
+            // return true;
+
+            return ((enemyPosition - ownerPosition).magnitude <= _catch.Value + _enemyRadius) &&
+                   Points.CheckObjectRaycast(new Ray(ownerPosition, _ownerTransform.forward), _heroLayerMask);
+            
+            // return Points.InOpenBall(ownerPosition, enemyPosition - toEnemy * _enemyRadius, _catch.SqrValue) &&
+            //        Points.CheckObjectRaycast(new Ray(ownerPosition, _ownerTransform.forward),
+            //            _heroLayerMask);
         }
     }
 }
