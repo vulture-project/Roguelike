@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
     private Camera camera;
-    // Start is called before the first frame update
+
     void Awake()
     {
         camera = Camera.main;
@@ -30,7 +30,7 @@ public class HealthBar : MonoBehaviour
 
     void LateUpdate()
     {
-        // transform.LookAt(new Vector3(transform.position.x, camera.transform.position.y, camera.transform.position.z));
-        // transform.Rotate(0, 180, 0);
+        transform.LookAt(new Vector3(transform.position.x, camera.transform.position.y, camera.transform.position.z));
+        transform.Rotate(0, 180, 0);
     }
 }
