@@ -54,6 +54,7 @@ namespace Core
                 .Add(new DecelerationSystem())
                 .Add(new HealSystem())
                 .Add(new HealthBarSystem())
+                .Add(new HealthAndManaWizardSystem())
                 .Add(new ManaBoostSystem())
                 .Add(new MovementInputSystem())
                 .Add(new MovementSystem())

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarWithoutRotation : MonoBehaviour
+public class BarWithoutRotation : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
 

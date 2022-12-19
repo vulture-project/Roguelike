@@ -37,7 +37,7 @@ namespace Factories
             GameObject canvas = clone.transform.Find("CanvasForHP").gameObject;
             canvas.GetComponent<Canvas>().worldCamera = Camera.main;
             
-            HealthBar healthBar = canvas.transform.Find("Health").gameObject.GetComponent<HealthBar>();
+            Bar healthBar = canvas.transform.Find("Health").gameObject.GetComponent<Bar>();
             
             var entity = _world.NewEntity();
             entity.Replace(_skeleton.Armour);

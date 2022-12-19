@@ -19,5 +19,8 @@ namespace Prefabs
         public LayerMaskComponent LayerMask;
 
         public VelocityComponent Velocity;
+
+        public GameObject healthBar;
+        public GameObject manaBar;
     }
 }

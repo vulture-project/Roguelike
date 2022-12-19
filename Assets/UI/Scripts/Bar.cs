@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class Bar : MonoBehaviour
 {
+    [SerializeField] private GameObject canvas;
     [SerializeField] private Image healthBar;
-    
+
     private Camera camera;
 
     void Awake()
@@ -23,7 +24,7 @@ public class HealthBar : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.LookAt(new Vector3(transform.position.x, camera.transform.position.y, camera.transform.position.z));
-        transform.Rotate(0, 180, 0);
+        canvas.transform.LookAt(new Vector3(camera.transform.position.x, camera.transform.position.y, camera.transform.position.z));
+        canvas.transform.Rotate(0, 180, 0);
     }
 }

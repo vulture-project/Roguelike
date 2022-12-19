@@ -43,6 +43,8 @@ namespace Factories
             entity.Replace(new DamageTargetTag());
             entity.Replace(_wizard.Health);
             entity.Replace(_wizard.Mana);
+            entity.Replace(new AttachedHpAndManaComponent(_wizard.healthBar.GetComponent<BarWithoutRotation>(),
+                                                          _wizard.manaBar.GetComponent<BarWithoutRotation>()));
             entity.Replace(new HealTargetTag());
             entity.Replace(new ManaBoostTargetTag());
             entity.Replace(new InputComponent());

@@ -5,9 +5,9 @@ namespace Components
 {
     public struct AttachedHealthBarComponent
     {
-        public HealthBar HealthBar;
+        public Bar HealthBar;
 
-        public AttachedHealthBarComponent(HealthBar healthBar)
+        public AttachedHealthBarComponent(Bar healthBar)
         {
             HealthBar = healthBar;
         }

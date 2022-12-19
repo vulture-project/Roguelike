@@ -32,3 +32,6 @@ MonoBehaviour:
   Velocity:
     Value: {x: 0, y: 0, z: 0}
     MaxValue: {x: 4, y: 0, z: 6}
+  healthBar: {fileID: 3136027931220701612, guid: b97addb195ff9704d9377c3c53decd11,
+    type: 3}
+  manaBar: {fileID: 8599731182412344686, guid: e0044106a3fc0864b8a44b809e520778, type: 3}
