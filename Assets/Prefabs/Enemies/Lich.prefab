@@ -852,6 +852,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7449576162273175539}
   - component: {fileID: 7359050546067129093}
+  - component: {fileID: -2935264503406453249}
+  - component: {fileID: 838016039164589677}
+  - component: {fileID: 6100936178090863768}
   m_Layer: 0
   m_Name: Lich
   m_TagString: Untagged
@@ -896,3 +899,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2935264503406453249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455693736905438219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce504810426fa1c408d96a5ee6e710dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  arrowPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  room: {fileID: 0}
+--- !u!114 &838016039164589677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455693736905438219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c753b337de7a4eaf921dc15c3abab4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6100936178090863768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455693736905438219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2f4815b015bb94daf72aff0fa6a5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
