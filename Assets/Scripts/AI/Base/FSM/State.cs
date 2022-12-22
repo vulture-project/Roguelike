@@ -20,7 +20,7 @@ namespace AI.Base
 
         public void AddTransition(Transition transition)
         {
-            _transitions.Add(transition);
+            _transitions.Insert(0, transition);
         }
 
         public void OnEnter()
