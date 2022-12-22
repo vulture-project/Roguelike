@@ -21,11 +21,6 @@ namespace AI.Configs.Swordsman.Fight.Animations
             AttackFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
         public void HitStarted()
         {
             HitStartedEvent?.Invoke(this, EventArgs.Empty);
@@ -36,7 +31,6 @@ namespace AI.Configs.Swordsman.Fight.Animations
             RecoveredFromHitEvent?.Invoke(this, EventArgs.Empty);
         }
         
->>>>>>> Stashed changes
         public void Died()
         {
             Destroy(gameObject);

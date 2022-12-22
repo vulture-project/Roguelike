@@ -18,7 +18,6 @@ public class Bar : MonoBehaviour
 
     public void SetHP(float percentage)
     {
-        Debug.Log("Setting hp");
         healthBar.fillAmount = percentage;
     }
 
