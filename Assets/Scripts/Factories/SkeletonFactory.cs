@@ -1,10 +1,13 @@
+using AI.Common.Roam;
 using AI.Configs.Swordsman;
+using AI.Configs.Swordsman.Fight;
 using Components;
 using Core;
 using Leopotam.Ecs;
 using Prefabs;
 using UnityComponents;
 using UnityEngine;
+using Utils.Math;
 
 namespace Factories
 {
@@ -58,7 +61,12 @@ namespace Factories
             entity.Replace(_skeleton.Velocity);
 
             clone.GetComponent<Entity>().Set(entity);
-            clone.GetComponent<Swordsman>().Init(navMeshRoom, enemy);
+
+            RoamStateMachineConfig roamStateMachineConfig =
+                new RoamStateMachineConfig(new Range(1, 2), new Range(1, 2));
+            FightStateMachineConfig fightStateMachineConfig = new FightStateMachineConfig(0.5f);
+            
+            clone.GetComponent<Swordsman>().Init(navMeshRoom, enemy, new MasterStateMachineConfig(roamStateMachineConfig, fightStateMachineConfig));
         }
     }
 }

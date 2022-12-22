@@ -26,10 +26,10 @@ namespace AI.Configs.Archer.Fight
             _chaseStateMachine = new TimeoutChaseStateMachine(agent, enemy,
                 movementNotifier,
                 new Range(3, 4));
-            _dodgeStateMachine = new DodgeStateMachine(agent,
-                new Range(0, 0),
-                new Range(1, 2),
-                new Range(3, 4));
+            // _dodgeStateMachine = new DodgeStateMachine(agent,
+            //     new Range(0, 0),
+            //     new Range(1, 2),
+            //     new Range(3, 4));
             ConnectChaseAndDodge();
             MergeCore(this, _chaseStateMachine);
             MergeCore(this, _dodgeStateMachine);
@@ -57,9 +57,10 @@ namespace AI.Configs.Archer.Fight
                                                float projectileWidth,
                                                GameObject enemy)
         {
-            var arch = new Arch(1.5f, firePoint, projectileWidth);
-            var fighter = new Fighter(arch, enemy);
-            return new AttackAction(fighter);
+            // var arch = new Arch(1.5f, firePoint, projectileWidth);
+            // var fighter = new Fighter(arch, enemy);
+            // return new AttackAction(fighter);
+            return null;
         }
 
         private void BuildAttackAnimationState(GameObject agent, AnimationNotifier animationNotifier)
