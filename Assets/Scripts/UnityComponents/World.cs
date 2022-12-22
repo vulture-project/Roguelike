@@ -45,6 +45,8 @@ namespace Core
 
             _systems = new EcsSystems(_world)
                 .Add(new AccelerationSystem())
+                .Add(new AnimatingHitImpactSystem())
+                .Add(new AnimatingDeathSystem())
                 .Add(new AnimatingMovementForwardSystem())
                 .Add(new AnimatingMovementSidewaysSystem())
                 .Add(new ApplyDamageSystem())

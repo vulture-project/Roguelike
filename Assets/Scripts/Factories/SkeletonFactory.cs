@@ -16,6 +16,8 @@ namespace Factories
         private Camera _mainCamera;
 
         private int _velocityZHash;
+        private int _hitImpactHash;
+        private int _diedHash;
 
         private EcsWorld _world;
 
@@ -26,6 +28,8 @@ namespace Factories
             _world = World.Instance().Get();
 
             _velocityZHash = Animator.StringToHash("speedZ");
+            _hitImpactHash = Animator.StringToHash("hit");
+            _diedHash = Animator.StringToHash("deathBlow");
             _mainCamera = Camera.main;
         }
 
@@ -48,6 +52,8 @@ namespace Factories
             entity.Replace(_skeleton.Health);
             entity.Replace(new InputComponent());
             entity.Replace(new MovementForwardAnimationComponent(_velocityZHash));
+            entity.Replace(new HitImpactAnimationComponent(_hitImpactHash));
+            entity.Replace(new DeathAnimationComponent(_diedHash));
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
             entity.Replace(_skeleton.Velocity);
 

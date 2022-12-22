@@ -17,7 +17,7 @@ namespace AI.Common.Animations
         {
             AttackFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
-
+        
         public void Died()
         {
             Destroy(gameObject);
