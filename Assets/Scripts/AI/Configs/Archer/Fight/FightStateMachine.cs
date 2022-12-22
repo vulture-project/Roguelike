@@ -1,11 +1,11 @@
 ﻿using AI.Base;
-using AI.Common.Animations;
 using AI.Common.Chase;
 using AI.Common.Events;
-using AI.Configs.Archer.Fight.Dodge;
+using AI.Common.Dodge;
 using AI.Configs.Archer.Fight.Stuff;
 using UnityEngine;
 using Utils.Math;
+using AI.Configs.Archer.Fight.Animations;
 
 namespace AI.Configs.Archer.Fight
 {
@@ -14,12 +14,12 @@ namespace AI.Configs.Archer.Fight
         private readonly TimeoutChaseStateMachine _chaseStateMachine;
         private readonly DodgeStateMachine _dodgeStateMachine;
 
-        public FightStateMachine(GameObject agent, GameObject firePoint,
-            GameObject arrowPrefab, GameObject enemy,
-            MovementNotifier movementNotifier,
-            AnimationNotifier animationNotifier)
+        public FightStateMachine(GameObject agent, Transform firePoint,
+                                 float projectileWidth, GameObject enemy,
+                                 MovementNotifier movementNotifier,
+                                 AnimationNotifier animationNotifier)
         {
-            var attackAction = BuildAttackAction(firePoint, arrowPrefab, enemy);
+            var attackAction = BuildAttackAction(firePoint, projectileWidth, enemy);
 
             attackAction.NeedToComeCloser += movementNotifier.DispatchNeedToComeCloser;
 
@@ -53,11 +53,11 @@ namespace AI.Configs.Archer.Fight
             );
         }
 
-        private AttackAction BuildAttackAction(GameObject firePoint,
-            GameObject arrowPrefab,
-            GameObject enemy)
+        private AttackAction BuildAttackAction(Transform firePoint,
+                                               float projectileWidth,
+                                               GameObject enemy)
         {
-            var arch = new Arch(1.5f, firePoint.transform, arrowPrefab);
+            var arch = new Arch(1.5f, firePoint, projectileWidth);
             var fighter = new Fighter(arch, enemy);
             return new AttackAction(fighter);
         }
@@ -71,11 +71,8 @@ namespace AI.Configs.Archer.Fight
 
         private void BuildAttackAnimationTransitions(GameObject agent, AnimationNotifier animationNotifier)
         {
-            var toDecision = new ToMutingAnimationDecision(agent);
-            animationNotifier.AttackAnimationStarted += toDecision.OnAnimationStarted;
-
-            var fromDecision = new FromMutingAnimationDecision(agent);
-            animationNotifier.AttackAnimationFinished += fromDecision.OnAnimationFinished;
+            var toDecision = new ToAttackAnimationDecision(animationNotifier);
+            var fromDecision = new FromAttackAnimationDecision(animationNotifier);
 
             var toTransition = new Transition(toDecision, AttackAnimationState);
             var fromTransition = new Transition(fromDecision, toTransition);

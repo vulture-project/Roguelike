@@ -11,12 +11,18 @@ namespace AI.Common.Roam
 
         private CountdownTimer _timer;
 
-        public RoamStateMachine(GameObject agent, Range stayTime,
-            Range roamDistance)
+        public RoamStateMachine(GameObject agent, RoamStateMachineConfig roamStateMachineConfig) :
+            this(agent, roamStateMachineConfig.StayTime, roamStateMachineConfig.RoamDistance)
         {
-            _agent = agent;
+        }
+
+        public RoamStateMachine(GameObject agent, Range stayTime, Range roamDistance)
+        {
+             _agent = agent;
+
             BuildStayState(stayTime);
             BuildFollowState(roamDistance);
+
             BuildFollowToStayTransition();
             BuildStayToFollowTransition();
         }

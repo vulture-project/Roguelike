@@ -1,9 +1,9 @@
+﻿using UnityEngine;
 using System;
-using UnityEngine;
 
-namespace AI.Common.Animations
+namespace AI.Configs.Swordsman.Fight.Animations
 {
-    public class EventReceiver : MonoBehaviour
+    public class AnimationNotifier : MonoBehaviour
     {
         public event EventHandler AttackStartedEvent;
         public event EventHandler AttackFinishedEvent;

@@ -4,7 +4,7 @@ using AI.Common.Roam;
 using AI.Configs.Swordsman.Fight;
 using AI.Interaction;
 using UnityEngine;
-using Utils.Math;
+using AI.Configs.Swordsman.Fight.Animations;
 
 namespace AI.Configs.Swordsman
 {
@@ -15,14 +15,16 @@ namespace AI.Configs.Swordsman
         private readonly RoamStateMachine RoamStateMachine;
 
         public MasterStateMachine(GameObject agent, GameObject enemy,
-            SpottingManager spottingManager,
-            AnimationNotifier animationNotifier)
+                                  MasterStateMachineConfig config,
+                                  SpottingManager spottingManager,
+                                  AnimationNotifier animationNotifier)
         {
             var movementNotifier = new MovementNotifier();
 
-            RoamStateMachine = new RoamStateMachine(agent, new Range(1, 2), new Range(1, 2));
-            FightStateMachine = new FightStateMachine(agent, movementNotifier,
-                animationNotifier, enemy);
+            RoamStateMachine = new RoamStateMachine(agent, config.RoamStateMachineConfig);
+            FightStateMachine = new FightStateMachine(agent, config.FightStateMachineConfig,
+                                                      movementNotifier,
+                                                      animationNotifier, enemy);
 
             MergeCore(this, RoamStateMachine);
             MergeCore(this, FightStateMachine);
