@@ -22,7 +22,10 @@ namespace AI.Configs.Swordsman.Fight.Animations
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         public void HitStarted()
         {
             HitStartedEvent?.Invoke(this, EventArgs.Empty);
