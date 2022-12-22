@@ -21,6 +21,11 @@ namespace Systems
                 
                 var entity = _filter.GetEntity(i);
                 entity.Del<DamageComponent>();
+
+                if (health.Value == 0)
+                {
+                    entity.Replace(new DiedTag());
+                }
             }
         }
     }

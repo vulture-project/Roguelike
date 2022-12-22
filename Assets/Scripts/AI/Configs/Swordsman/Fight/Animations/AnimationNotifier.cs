@@ -17,7 +17,7 @@ namespace AI.Configs.Swordsman.Fight.Animations
         {
             AttackFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
-
+        
         public void Died()
         {
             Destroy(gameObject);
