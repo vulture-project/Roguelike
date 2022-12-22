@@ -10,7 +10,7 @@ namespace AI.Common.Watch
         private readonly GameObject _enemy;
 
         public WatchStateMachine(GameObject agent, GameObject enemy,
-            SpottingManager spottingManager)
+                                 SpottingManager spottingManager)
         {
             _agent = agent;
             _enemy = enemy;

@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 5261711838648666}
   - component: {fileID: 5261711838648662}
   - component: {fileID: 5261711838648661}
-  - component: {fileID: 5261711838648660}
+  - component: {fileID: 1775193653493092951}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -1003,8 +1003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4b1e36ab34c3b4da656ad38ab47875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  room: {fileID: 0}
 --- !u!114 &5261711838648667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c753b337de7a4eaf921dc15c3abab4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5261711838648660
+--- !u!114 &1775193653493092951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1072,7 +1070,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2355412335166290399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f3b766f38d43949da20793ccb1338b, type: 3}
+  m_Script: {fileID: 11500000, guid: deb5ecc28511ee244a46fcc8bd329ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2376050235765244182

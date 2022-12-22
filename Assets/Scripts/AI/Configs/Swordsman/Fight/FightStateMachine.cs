@@ -1,8 +1,8 @@
 ﻿using AI.Base;
-using AI.Common.Animations;
 using AI.Common.Chase;
 using AI.Common.Events;
 using AI.Configs.Swordsman.Fight.Stuff;
+using AI.Configs.Swordsman.Fight.Animations;
 using UnityEngine;
 
 namespace AI.Configs.Swordsman.Fight
@@ -12,15 +12,16 @@ namespace AI.Configs.Swordsman.Fight
         private readonly ChaseStateMachine _chaseStateMachine;
 
         public FightStateMachine(GameObject agent,
-            MovementNotifier movementNotifier,
-            AnimationNotifier animationNotifier,
-            GameObject enemy)
+                                 FightStateMachineConfig config,
+                                 MovementNotifier movementNotifier,
+                                 AnimationNotifier animationNotifier,
+                                 GameObject enemy)
         {
             _chaseStateMachine = new ChaseStateMachine(agent, enemy,
                 movementNotifier);
             MergeCore(this, _chaseStateMachine);
 
-            var fighter = new Fighter(agent, enemy, 0.5f);
+            var fighter = new Fighter(agent, enemy, config.ReloadTime);
             var attackAction = new AttackAction(fighter);
             _chaseStateMachine.CatchState.AddAction(attackAction);
 
@@ -40,11 +41,8 @@ namespace AI.Configs.Swordsman.Fight
 
         private void BuildAttackAnimationTransition(GameObject agent, AnimationNotifier animationNotifier)
         {
-            var toDecision = new ToMutingAnimationDecision(agent);
-            animationNotifier.AttackAnimationStarted += toDecision.OnAnimationStarted;
-
-            var fromDecision = new FromMutingAnimationDecision(agent);
-            animationNotifier.AttackAnimationFinished += fromDecision.OnAnimationFinished;
+            var toDecision = new ToAttackAnimationDecision(animationNotifier);
+            var fromDecision = new FromAttackAnimationDecision(animationNotifier);
 
             var toTransition = new Transition(toDecision, AttackAnimationState);
             var fromTransition = new Transition(fromDecision, toTransition);

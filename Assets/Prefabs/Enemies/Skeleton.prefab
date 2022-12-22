@@ -324,8 +324,8 @@ GameObject:
   - component: {fileID: 3725270773411140519}
   - component: {fileID: 3725270773411140523}
   - component: {fileID: 3725270773411140520}
-  - component: {fileID: 3725270773411140521}
   - component: {fileID: -5999625045221618447}
+  - component: {fileID: 1592195123315543627}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -471,18 +471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c753b337de7a4eaf921dc15c3abab4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3725270773411140521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373730317998076706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f3b766f38d43949da20793ccb1338b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5999625045221618447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +481,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fda9ab3aaca40448d63c0dfd5f223de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1592195123315543627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373730317998076706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb5ecc28511ee244a46fcc8bd329ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1394161371756104683

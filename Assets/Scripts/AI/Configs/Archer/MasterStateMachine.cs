@@ -5,6 +5,7 @@ using AI.Configs.Archer.Fight;
 using AI.Interaction;
 using UnityEngine;
 using Utils.Math;
+using AI.Configs.Archer.Fight.Animations;
 
 namespace AI.Configs.Archer
 {
@@ -12,19 +13,19 @@ namespace AI.Configs.Archer
     {
         private readonly MovementNotifier _movementNotifier;
 
-        public MasterStateMachine(GameObject agent, GameObject firePoint,
-            GameObject arrowPrefab, GameObject enemy,
-            SpottingManager spottingManager,
-            AnimationNotifier animationNotifier)
+        public MasterStateMachine(GameObject agent, Transform firePoint,
+                                  float projectileWidth, float reloadTime,
+                                  GameObject enemy, SpottingManager spottingManager,
+                                  AnimationNotifier animationNotifier)
         {
             _movementNotifier = new MovementNotifier();
 
             RoamStateMachine = new RoamStateMachine(agent,
-                new Range(1.0f, 2.0f),
-                new Range(1.0f, 2.0f));
-            FightStateMachine = new FightStateMachine(agent, firePoint, arrowPrefab,
-                enemy, _movementNotifier,
-                animationNotifier);
+                                                    new Range(1.0f, 2.0f),
+                                                    new Range(1.0f, 2.0f));
+            FightStateMachine = new FightStateMachine(agent, firePoint, projectileWidth,
+                                                      enemy, _movementNotifier,
+                                                      animationNotifier);
             MergeCore(this, RoamStateMachine);
             MergeCore(this, FightStateMachine);
 
