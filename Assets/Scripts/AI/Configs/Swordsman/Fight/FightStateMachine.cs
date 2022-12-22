@@ -25,21 +25,23 @@ namespace AI.Configs.Swordsman.Fight
             var attackAction = new AttackAction(fighter);
             _chaseStateMachine.CatchState.AddAction(attackAction);
 
-            BuildAttackAnimationState(agent, animationNotifier);
+            BuildAttackAnimationState(animationNotifier);
+            BuildHitAnimationState(animationNotifier);
 
             EntryState = _chaseStateMachine.EntryState;
         }
 
         public State AttackAnimationState { get; private set; }
+        public State HitAnimationState { get; private set; }
 
-        private void BuildAttackAnimationState(GameObject agent, AnimationNotifier animationNotifier)
+        private void BuildAttackAnimationState(AnimationNotifier animationNotifier)
         {
             AttackAnimationState = new State();
-            BuildAttackAnimationTransition(agent, animationNotifier);
+            BuildAttackAnimationTransition(animationNotifier);
             AddStateToList(AttackAnimationState);
         }
 
-        private void BuildAttackAnimationTransition(GameObject agent, AnimationNotifier animationNotifier)
+        private void BuildAttackAnimationTransition(AnimationNotifier animationNotifier)
         {
             var toDecision = new ToAttackAnimationDecision(animationNotifier);
             var fromDecision = new FromAttackAnimationDecision(animationNotifier);
@@ -49,6 +51,25 @@ namespace AI.Configs.Swordsman.Fight
 
             AddTransitionToAllStates(toTransition);
             AttackAnimationState.AddTransition(fromTransition);
+        }
+
+        private void BuildHitAnimationState(AnimationNotifier animationNotifier)
+        {
+            HitAnimationState = new State();
+            BuildHitAnimationTransition(animationNotifier);
+            AddStateToList(HitAnimationState);
+        }
+
+        private void BuildHitAnimationTransition(AnimationNotifier animationNotifier)
+        {
+            var toDecision = new ToHitAnimationDecision(animationNotifier);
+            var fromDecision = new FromHitAnimationDecision(animationNotifier);
+
+            var toTransition = new Transition(toDecision, HitAnimationState);
+            var fromTransition = new Transition(fromDecision, toTransition);
+
+            AddTransitionToAllStates(toTransition);
+            HitAnimationState.AddTransition(fromTransition);
         }
     }
 }

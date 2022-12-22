@@ -8,6 +8,11 @@ namespace AI.Configs.Swordsman.Fight.Animations
         public event EventHandler AttackStartedEvent;
         public event EventHandler AttackFinishedEvent;
 
+        public event EventHandler HitStartedEvent;
+        public event EventHandler RecoveredFromHitEvent;
+
+        public event EventHandler DiedEvent;
+
         public void AttackStarted()
         {
             AttackStartedEvent?.Invoke(this, EventArgs.Empty);
@@ -17,10 +22,20 @@ namespace AI.Configs.Swordsman.Fight.Animations
         {
             AttackFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
-        
-        public void Died()
+
+        public void HitStarted()
         {
-            Destroy(gameObject);
+            HitStartedEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void RecoveredFromHit()
+        {
+            RecoveredFromHitEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void StartedDying()
+        {
+            DiedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }
