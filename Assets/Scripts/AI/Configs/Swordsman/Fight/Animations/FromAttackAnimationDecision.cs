@@ -8,6 +8,7 @@ namespace AI.Configs.Swordsman.Fight.Animations
         public FromAttackAnimationDecision(AnimationNotifier animationNotifier)
         {
             animationNotifier.AttackFinishedEvent += OnAttackAnimationFinished;
+            animationNotifier.HitStartedEvent += OnHitStarted;
         }
 
         public override bool Decide()
@@ -21,6 +22,11 @@ namespace AI.Configs.Swordsman.Fight.Animations
         }
 
         private void OnAttackAnimationFinished(object sender, EventArgs args)
+        {
+            _attackAnimationFinished = true;
+        }
+
+        private void OnHitStarted(object sender, EventArgs args)
         {
             _attackAnimationFinished = true;
         }
