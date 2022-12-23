@@ -1,3 +1,4 @@
+using AI.Common.Aim;
 using AI.Common.Components;
 using AI.Common.Watch;
 using AI.Configs.Archer.Fight.Animations;
@@ -14,6 +15,7 @@ namespace AI.Configs.Archer
 
         private MasterStateMachine _masterStateMachine;
         private WatchStateMachine _watchStateMachine;
+        private AimStateMachine _aimStateMachine;
 
         private void Update()
         {
@@ -27,27 +29,20 @@ namespace AI.Configs.Archer
             _animationNotifier = GetComponent<AnimationNotifier>();
             _spottingManager = room.GetComponent<Room>().SpottingManager;
 
-            BuildStateMachines(room, enemy, config);
+            BuildStateMachines(enemy, config);
             _watchStateMachine.OnEntry();
             _masterStateMachine.OnEntry();
-
-            var fov = gameObject.GetComponent<FieldOfView>();
-            fov.Value = 12.0f;
-
-            var catchComp = gameObject.GetComponent<Catch>();
-            catchComp.Value = 6.0f;
+            _aimStateMachine.OnEntry();
         }
 
-        private void BuildStateMachines(GameObject room, GameObject enemy,
+        private void BuildStateMachines(GameObject enemy,
                                         MasterStateMachineConfig config)
         {
-            var animationNotifier = GetComponent<AnimationNotifier>();
-            var spottingManager = room.GetComponent<Room>().SpottingManager;
-
-            _watchStateMachine = new WatchStateMachine(gameObject, enemy, spottingManager);
+            _watchStateMachine = new WatchStateMachine(gameObject, enemy, _spottingManager);
             _masterStateMachine = new MasterStateMachine(gameObject, config,
-                                                         enemy, spottingManager,
-                                                         animationNotifier);
+                                                         enemy, _spottingManager,
+                                                         _animationNotifier);
+            _aimStateMachine = new AimStateMachine(config.AimStateMachineConfig);
         }
     }
 }

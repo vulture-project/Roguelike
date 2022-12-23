@@ -1,4 +1,5 @@
-﻿using AI.Common.Roam;
+﻿using AI.Common.Aim;
+using AI.Common.Roam;
 using AI.Configs.Archer.Fight;
 
 namespace AI.Configs.Archer
@@ -7,12 +8,15 @@ namespace AI.Configs.Archer
     {
         public RoamStateMachineConfig RoamStateMachineConfig;
         public FightStateMachineConfig FightStateMachineConfig;
+        public AimStateMachineConfig AimStateMachineConfig;
 
         public MasterStateMachineConfig(RoamStateMachineConfig roamStateMachineConfig,
-                                        FightStateMachineConfig fightStateMachineConfig)
+                                        FightStateMachineConfig fightStateMachineConfig,
+                                        AimStateMachineConfig aimStateMachineConfig)
         {
             RoamStateMachineConfig = roamStateMachineConfig;
             FightStateMachineConfig = fightStateMachineConfig;
+            AimStateMachineConfig = aimStateMachineConfig;
         }
     }
 }
