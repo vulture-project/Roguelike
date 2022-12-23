@@ -1579,7 +1579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7795049188278579586}
   - component: {fileID: 7795049188278579613}
-  - component: {fileID: 7795049188278579612}
   - component: {fileID: 4838197995301432399}
   - component: {fileID: 7357020870185595033}
   - component: {fileID: 2507916659636128532}
@@ -1587,8 +1586,9 @@ GameObject:
   - component: {fileID: 4072040054628440858}
   - component: {fileID: 5016624660416906272}
   - component: {fileID: 4891446772827075543}
-  - component: {fileID: 5887003010890663772}
-  - component: {fileID: -7791636717401485220}
+  - component: {fileID: -7914861715856732999}
+  - component: {fileID: 6579518162138224870}
+  - component: {fileID: -6126262928669348517}
   m_Layer: 7
   m_Name: Wizard
   m_TagString: Untagged
@@ -1633,20 +1633,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &7795049188278579612
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795049188278579604}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 2.25
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &4838197995301432399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,6 +1682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b1428ec7dd47c18b5a51d363c9cdc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: 0
 --- !u!114 &4072040054628440858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1720,6 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459a3b62d63c468899e9cf9ef2e971e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: 1
 --- !u!114 &4891446772827075543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,7 +1726,7 @@ MonoBehaviour:
   - {fileID: 4072040054628440858}
   - {fileID: 5016624660416906272}
   _state: {fileID: 2507916659636128532}
---- !u!114 &5887003010890663772
+--- !u!114 &-7914861715856732999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1747,10 +1735,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 7795049188278579604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09db814000f4024fa96fda952f73639, type: 3}
+  m_Script: {fileID: 11500000, guid: 8352251513bb488fa49bb5b694da5f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &-7791636717401485220
+  _primaryAttack: {fileID: 8287956578683199529}
+  _projectileOnAlpha1: 0
+  _projectileOnAlpha4: 2
+  _projectileCastingState: {fileID: 8287956578683199529}
+  _selfBuffCastingState: {fileID: 4072040054628440858}
+  _spellMaintainingState: {fileID: 5016624660416906272}
+--- !u!136 &6579518162138224870
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795049188278579604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &-6126262928669348517
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1758,13 +1766,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7795049188278579604}
   serializedVersion: 2
-  m_Mass: 70
+  m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &7795049188288328877
 GameObject:

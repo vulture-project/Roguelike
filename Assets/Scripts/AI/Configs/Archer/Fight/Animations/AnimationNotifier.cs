@@ -5,11 +5,21 @@ namespace AI.Configs.Archer.Fight.Animations
 {
     public class AnimationNotifier : BaseAnimationNotifier
     {
-        public EventHandler ProjectileCastedEvent;
+        public EventHandler CastingProjectileStartedEvent;
+        public EventHandler ShootProjectileEvent;
+        public EventHandler CastingProjectileFinishedEvent;
 
-        public void ProjectileCasted()
+        public void CastingProjectileStarted()
         {
-            ProjectileCastedEvent?.Invoke(this, EventArgs.Empty);
+            CastingProjectileStartedEvent?.Invoke(this, EventArgs.Empty);
+        }
+        public void ShootProjectile()
+        {
+            ShootProjectileEvent?.Invoke(this, EventArgs.Empty);
+        }
+        public void CastingProjectileFinished()
+        {
+            CastingProjectileFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

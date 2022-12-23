@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -374,7 +374,6 @@ GameObject:
   - component: {fileID: 739933297}
   - component: {fileID: 739933301}
   - component: {fileID: 739933302}
-  - component: {fileID: 739933303}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -450,6 +449,7 @@ MonoBehaviour:
     type: 3}
   _planePlane: {fileID: 3809046582641034701, guid: 8464a21ca40544a6492888c869f56cf2,
     type: 3}
+  _room: {fileID: 1979204543}
 --- !u!114 &739933298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireBlast: {fileID: 11400000, guid: 066f6b0a679bfe1429d51ad1b76132bd, type: 2}
   _iceSpike: {fileID: 11400000, guid: 8d6a9e2d4b71fed4da680ae97b94b17d, type: 2}
+  _magicBlast: {fileID: 11400000, guid: fb5562c56562448dab359d3d4e59b3a1, type: 2}
 --- !u!114 &739933300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,45 +517,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spider: {fileID: 11400000, guid: 11881b278c57046388a10fcecb0eb444, type: 2}
---- !u!114 &739933303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739933293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 974f85d30c904d1a888f215550dccb06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedPotion: {fileID: 11400000, guid: 05ae8f8033f0d4d93a34bbf202a2c6c1, type: 2}
---- !u!1 &922535249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3307130658190509444, guid: aefc7a261e4246e42849c4469389945f,
-    type: 3}
-  m_PrefabInstance: {fileID: 373526595}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &922535253
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922535249}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 296f58fe9cb1dbf47bc1175056d37112, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1009142160
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,4 +812,48 @@ Transform:
   - {fileID: 648643862}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1979204543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1979204545}
+  - component: {fileID: 1979204544}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1979204544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979204543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cbdda225fbcc1e4dbaa7fdaab8579c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1979204545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979204543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

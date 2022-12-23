@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8958051905550495428, guid: 0039461c4d49c4bb28fee7771b6a314f, type: 3}
   Armour:
-    Value: 0
+    Value: 1
   Health:
     Value: 50
     MaxValue: 50
   Velocity:
     Value: {x: 0, y: 0, z: 0}
-    MaxValue: {x: 0, y: 0, z: 3}
+    MaxValue: {x: 0, y: 0, z: 10}

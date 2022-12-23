@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Prefabs
 {
-    [CreateAssetMenu(fileName = "Skeleton", menuName = "Enemies/Skeleton", order = 51)]
+    [CreateAssetMenu(fileName = "Skeleton", menuName = "Enemies/Skeleton", order = 52)]
     public class Skeleton : ScriptableObject
     {
         public GameObject Prefab;

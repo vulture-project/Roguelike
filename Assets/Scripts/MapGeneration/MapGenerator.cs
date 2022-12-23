@@ -31,6 +31,8 @@ namespace MapGeneration
         [SerializeField] private GameObject _tunnelFloor;
         [SerializeField] private GameObject _planePlane;
 
+        [SerializeField] private GameObject _room;
+        
         private Grid _grid;
         private List<Geometry.Rect> _rooms;
         
@@ -40,6 +42,8 @@ namespace MapGeneration
         private WizardFactory _wizardFactory;
         private SkeletonFactory _skeletonFactory;
         private SpiderFactory _spiderFactory;
+        private OrkFactory _orkFactory;
+        private LichFactory _lichFactory;
         public void Init()
         {
             SetInstance(this);
@@ -49,6 +53,8 @@ namespace MapGeneration
             _wizardFactory = WizardFactory.Instance();
             _skeletonFactory = SkeletonFactory.Instance();
             _spiderFactory = SpiderFactory.Instance();
+            _orkFactory = OrkFactory.Instance();
+            _lichFactory = LichFactory.Instance();
         }
         
         // public class HelloWorld
@@ -87,17 +93,17 @@ namespace MapGeneration
             Debug.Assert(_levelNum > 0);
             Debug.Assert(_roomMinDim <= _roomMaxDim);
 
-            Debug.Log("Map creation started");
+            // Debug.Log("Map creation started");
             var numOfRooms = _levelNum;
             (_grid, _rooms) = RoomsArranger.ArrangeRooms(_mapDensityScale, numOfRooms, _roomMinDim / _tunnelWidth, _roomMaxDim / _tunnelWidth, _seed);
-            Debug.Log("Rooms arranging finished");
+            // Debug.Log("Rooms arranging finished");
             
             var tunnelCreator = new TunnelCreator(_grid, _rooms, (int)_tunnelWidth);
             tunnelCreator.CreateTunnels();
-            Debug.Log("Tunnels creation finished");
+            // Debug.Log("Tunnels creation finished");
 
             CreateGameObjects();
-            Debug.Log("Map creation finished");
+            // Debug.Log("Map creation finished");
 
             var plane = Instantiate(_planePlane, new Vec3(0.5f, 0, 0.5f), Quaternion.identity);
             plane.transform.localScale = new Vec3(_grid.Dim, 1, _grid.Dim);
@@ -108,15 +114,19 @@ namespace MapGeneration
 
             var position = spawnRoom.Pos + new Vector2Int(spawnRoom.Width / 2, spawnRoom.Height / 2);
             var realPosition = new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth);
+ 
             _wizardFactory.Spawn(realPosition);
             
             _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 5));
             _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 10));
             _healPotionFactory.Spawn(realPosition + new Vector3(2f, 0f, 2f));
             
-            // _manaPotionFactory.Spawn(new Vector3(-2f, 0f, 2f));
+            var wizard = _wizardFactory.Spawn(realPosition);
+            
+            // _skeletonFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
+            _spiderFactory.Spawn(realPosition + new Vector3(-5f, 0, 5f), _room, wizard);
+            _orkFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
         }
-
 
         private GameObject WhichWallToInstantiate(CellType cellVal)
         {

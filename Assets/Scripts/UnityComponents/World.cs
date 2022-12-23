@@ -99,6 +99,12 @@ namespace Core
             
             var spiderFactory = GetComponent<SpiderFactory>();
             spiderFactory.Init();
+
+            var orkFactory = GetComponent<OrkFactory>();
+            orkFactory.Init();
+            
+            var lichFactory = GetComponent<LichFactory>();
+            lichFactory.Init();
         }
 
         private void InitMapGenerator()

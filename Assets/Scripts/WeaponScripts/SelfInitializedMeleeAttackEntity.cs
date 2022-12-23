@@ -7,16 +7,16 @@ using UnityEngine;
 
 namespace WeaponScripts
 {
-    public class SelfInitializedEntitySword : MonoBehaviour
+    public class SelfInitializedMeleeAttackEntity : MonoBehaviour
     {
-        [SerializeField] private SkeletonSword _skeletonSword;
+        [SerializeField] private MeleeAttack _meleeAttack;
         
         void Start()
         {
             var world = World.Instance().Get();
             
             var entity = world.NewEntity();
-            entity.Replace(_skeletonSword.Damage);
+            entity.Replace(_meleeAttack.Damage);
             entity.Replace(new DamageSourceTag());
 
             GetComponent<Entity>().Set(entity);
