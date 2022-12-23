@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HitImpactDestroyScript : MonoBehaviour
 {
-    [SerializeField] private float _duration = 1.5f;
+    [SerializeField] private float _duration = 3f;
 
     private float _durationLeft;
 
