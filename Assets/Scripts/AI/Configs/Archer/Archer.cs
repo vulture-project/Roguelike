@@ -21,6 +21,7 @@ namespace AI.Configs.Archer
         {
             _watchStateMachine?.Execute();
             _masterStateMachine?.Execute();
+            _aimStateMachine?.Execute();
         }
 
         public void Init(GameObject room, GameObject enemy,
