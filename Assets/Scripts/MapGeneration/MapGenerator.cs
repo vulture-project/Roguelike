@@ -41,6 +41,7 @@ namespace MapGeneration
         private WizardFactory _wizardFactory;
         private SkeletonFactory _skeletonFactory;
         private SpiderFactory _spiderFactory;
+        private OrkFactory _orkFactory;
         private LichFactory _lichFactory;
         public void Init()
         {
@@ -48,6 +49,7 @@ namespace MapGeneration
             _wizardFactory = WizardFactory.Instance();
             _skeletonFactory = SkeletonFactory.Instance();
             _spiderFactory = SpiderFactory.Instance();
+            _orkFactory = OrkFactory.Instance();
             _lichFactory = LichFactory.Instance();
         }
         
@@ -112,7 +114,8 @@ namespace MapGeneration
             var wizard = _wizardFactory.Spawn(realPosition);
             
             // _skeletonFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
-            _spiderFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
+            _spiderFactory.Spawn(realPosition + new Vector3(-5f, 0, 5f), _room, wizard);
+            _orkFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
         }
 
         private GameObject WhichWallToInstantiate(CellType cellVal)
