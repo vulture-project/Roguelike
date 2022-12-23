@@ -38,9 +38,7 @@ namespace AI.Configs.Swordsman
         }
 
         private void BuildStateMachines(GameObject enemy, MasterStateMachineConfig config)
-        {
-            Debug.Log("BuildStateMachines");
-
+        { 
             _watchStateMachine = new WatchStateMachine(gameObject, enemy, _spottingManager);
             _masterStateMachine = new MasterStateMachine(gameObject, enemy, config,
                                                          _spottingManager,

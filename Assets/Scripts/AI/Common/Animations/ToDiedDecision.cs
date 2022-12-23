@@ -1,13 +1,15 @@
-﻿using AI.Base;
+using AI.Base;
+using AI.Configs.Swordsman.Fight.Animations;
 using System;
+using UnityEngine;
 
-namespace AI.Common.Animations
+namespace AI.Configs.Swordsman
 {
     public class ToDiedDecision : ADecision
     {
-        public ToDiedDecision(BaseAnimationNotifier animationNotifier)
+        public ToDiedDecision(AnimationNotifier animationNotifier)
         {
-            animationNotifier.StartedDyingEvent += OnDied;
+            animationNotifier.DiedEvent += OnDied;
         }
 
         public override bool Decide()

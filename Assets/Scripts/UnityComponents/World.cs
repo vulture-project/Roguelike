@@ -88,6 +88,9 @@ namespace Core
             
             var skeletonFactory = GetComponent<SkeletonFactory>();
             skeletonFactory.Init();
+            
+            var spiderFactory = GetComponent<SpiderFactory>();
+            spiderFactory.Init();
         }
 
         private void InitMapGenerator()
