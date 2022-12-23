@@ -52,6 +52,7 @@ namespace Factories
             entity.Replace(new AttachedHpAndManaComponent(healthBar, manaBar));
             entity.Replace(new HealTargetTag());
             entity.Replace(new ManaBoostTargetTag());
+            entity.Replace(new SpeedBoostTargetTag());
             entity.Replace(new InputComponent());
             entity.Replace(_wizard.LayerMask);
             entity.Replace(new MovementForwardAnimationComponent(_velocityZHash));
