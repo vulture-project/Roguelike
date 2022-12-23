@@ -8,6 +8,12 @@ namespace AI.Common.Chase
     public class TimeoutChaseStateMachine : ChaseStateMachine
     {
         public TimeoutChaseStateMachine(GameObject agent, GameObject enemy,
+            MovementNotifier movementNotifier, TimeoutChaseStateMachineConfig config) :
+            this(agent, enemy, movementNotifier, config.Timeout)
+        {
+        }
+
+        public TimeoutChaseStateMachine(GameObject agent, GameObject enemy,
             MovementNotifier movementNotifier,
             Range timeout) :
             base(agent, enemy, movementNotifier)

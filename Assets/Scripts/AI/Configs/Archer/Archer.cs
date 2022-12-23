@@ -22,13 +22,12 @@ namespace AI.Configs.Archer
         }
 
         public void Init(GameObject room, GameObject enemy,
-                         Transform firePoint, float projectileWidth,
-                         float reloadTime)
+                         MasterStateMachineConfig config)
         {
             _animationNotifier = GetComponent<AnimationNotifier>();
             _spottingManager = room.GetComponent<Room>().SpottingManager;
 
-            BuildStateMachines(room, enemy, firePoint, projectileWidth, reloadTime);
+            BuildStateMachines(room, enemy, config);
             _watchStateMachine.OnEntry();
             _masterStateMachine.OnEntry();
 
@@ -40,15 +39,13 @@ namespace AI.Configs.Archer
         }
 
         private void BuildStateMachines(GameObject room, GameObject enemy,
-                                        Transform firePoint, float projectileWidth,
-                                        float reloadTime)
+                                        MasterStateMachineConfig config)
         {
             var animationNotifier = GetComponent<AnimationNotifier>();
             var spottingManager = room.GetComponent<Room>().SpottingManager;
+
             _watchStateMachine = new WatchStateMachine(gameObject, enemy, spottingManager);
-            _masterStateMachine = new MasterStateMachine(gameObject, firePoint,
-                                                         projectileWidth,
-                                                         reloadTime,
+            _masterStateMachine = new MasterStateMachine(gameObject, config,
                                                          enemy, spottingManager,
                                                          animationNotifier);
         }

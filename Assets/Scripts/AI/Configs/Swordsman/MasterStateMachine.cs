@@ -14,6 +14,8 @@ namespace AI.Configs.Swordsman
 
         private readonly FightStateMachine FightStateMachine;
         private readonly RoamStateMachine RoamStateMachine;
+
+        private State _hitAnimationState; 
         private State _diedState;
 
         public MasterStateMachine(GameObject agent, GameObject enemy,
@@ -30,8 +32,9 @@ namespace AI.Configs.Swordsman
 
             MergeCore(this, RoamStateMachine);
             MergeCore(this, FightStateMachine);
-
             BuildRoamToFightTransition(spottingManager);
+
+            BuildHitAnimationState(animationNotifier);
             BuildDiedState(animationNotifier);
 
             EntryState = RoamStateMachine.EntryState;
@@ -57,6 +60,25 @@ namespace AI.Configs.Swordsman
             var toDiedDecision = new ToDiedDecision(animationNotifier);
             var toDiedTransition = new Transition(toDiedDecision, _diedState);
             AddTransitionToAllStates(toDiedTransition);
+        }
+
+        private void BuildHitAnimationState(AnimationNotifier animationNotifier)
+        {
+            _hitAnimationState = new State();
+            BuildHitAnimationTransition(animationNotifier);
+            AddStateToList(_hitAnimationState);
+        }
+
+        private void BuildHitAnimationTransition(AnimationNotifier animationNotifier)
+        {
+            var toDecision = new ToHitAnimationDecision(animationNotifier);
+            var fromDecision = new FromHitAnimationDecision(animationNotifier);
+
+            var toTransition = new Transition(toDecision, _hitAnimationState);
+            var fromTransition = new Transition(fromDecision, toTransition);
+
+            AddTransitionToAllStates(toTransition);
+            _hitAnimationState.AddTransition(fromTransition);
         }
     }
 }

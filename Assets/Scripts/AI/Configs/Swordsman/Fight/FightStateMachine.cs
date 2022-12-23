@@ -22,18 +22,16 @@ namespace AI.Configs.Swordsman.Fight
                 movementNotifier);
             MergeCore(this, _chaseStateMachine);
 
-            var fighter = new Fighter(agent, enemy, config.ReloadTime);
+            var fighter = new Fighter(agent, config.ReloadTime);
             var attackAction = new AttackAction(fighter);
             _chaseStateMachine.CatchState.AddAction(attackAction);
 
             BuildAttackAnimationState(animationNotifier);
-            BuildHitAnimationState(animationNotifier);
 
             EntryState = _chaseStateMachine.EntryState;
         }
 
         public State AttackAnimationState { get; private set; }
-        public State HitAnimationState { get; private set; }
 
         private void BuildAttackAnimationState(AnimationNotifier animationNotifier)
         {
@@ -52,25 +50,6 @@ namespace AI.Configs.Swordsman.Fight
 
             AddTransitionToAllStates(toTransition);
             AttackAnimationState.AddTransition(fromTransition);
-        }
-
-        private void BuildHitAnimationState(AnimationNotifier animationNotifier)
-        {
-            HitAnimationState = new State();
-            BuildHitAnimationTransition(animationNotifier);
-            AddStateToList(HitAnimationState);
-        }
-
-        private void BuildHitAnimationTransition(AnimationNotifier animationNotifier)
-        {
-            var toDecision = new ToHitAnimationDecision(animationNotifier);
-            var fromDecision = new FromHitAnimationDecision(animationNotifier);
-
-            var toTransition = new Transition(toDecision, HitAnimationState);
-            var fromTransition = new Transition(fromDecision, toTransition);
-
-            AddTransitionToAllStates(toTransition);
-            HitAnimationState.AddTransition(fromTransition);
         }
     }
 }

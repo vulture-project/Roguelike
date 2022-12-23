@@ -9,26 +9,19 @@ namespace AI.Configs.Swordsman.Fight.Stuff
         private readonly Animator _animator;
         private readonly int _attackHash;
 
-        private GameObject _enemy;
-
-        private Transform _enemyTransform;
-
         private readonly LayerMask _heroLayerMask;
         private readonly float _reloadTime;
 
-        private Sword _sword;
         private readonly CountdownTimer _timer;
 
         private readonly Transform _transform;
 
-        public Fighter(GameObject owner, GameObject enemy, float reloadTime)
+        public Fighter(GameObject owner, float reloadTime)
         {
             _transform = owner.transform;
 
             _animator = owner.GetComponent<Animator>();
             _attackHash = Animator.StringToHash("attack");
-
-            _enemy = enemy;
 
             _heroLayerMask = LayerMask.GetMask("Hero");
 
