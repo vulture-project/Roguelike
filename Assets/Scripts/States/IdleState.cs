@@ -18,10 +18,6 @@ namespace States
             {
                 _stateSwitch.SwitchTo(_spellBook.GetPrimaryAttack());
             }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                _stateSwitch.SwitchTo(_spellBook.GetSecondaryAttack());
-            }
         }
 
         public override void OnExit()

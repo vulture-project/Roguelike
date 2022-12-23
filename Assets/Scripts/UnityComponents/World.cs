@@ -91,6 +91,9 @@ namespace Core
             
             var spiderFactory = GetComponent<SpiderFactory>();
             spiderFactory.Init();
+
+            var lichFactory = GetComponent<LichFactory>();
+            lichFactory.Init();
         }
 
         private void InitMapGenerator()

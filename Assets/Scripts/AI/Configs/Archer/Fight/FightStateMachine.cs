@@ -18,7 +18,7 @@ namespace AI.Configs.Archer.Fight
                                  GameObject enemy, MovementNotifier movementNotifier,
                                  AnimationNotifier animationNotifier)
         {
-            var attackAction = BuildAttackAction(agent, config);
+            var attackAction = BuildAttackAction(agent, animationNotifier, config);
 
             attackAction.NeedToComeCloser += movementNotifier.DispatchNeedToComeCloser;
 
@@ -54,9 +54,11 @@ namespace AI.Configs.Archer.Fight
         }
 
         private AttackAction BuildAttackAction(GameObject agent,
+                                               AnimationNotifier animationNotifier,
                                                FightStateMachineConfig config)
         {
-            var arch = new Arch(agent, config.ReloadTime, config.FirePoint, config.ProjectileWidth);
+            var arch = new Arch(agent, animationNotifier, config.ReloadTime,
+                config.FirePoint, config.ProjectileWidth, config.ProjectileType);
             var fighter = new Fighter(arch);
             return new AttackAction(fighter);
         }

@@ -74,7 +74,7 @@ namespace Factories
             DodgeStateMachineConfig dodgeStateMachineConfig =
                 new DodgeStateMachineConfig(roamStateMachineConfig, new Range(2, 3));
             FightStateMachineConfig fightStateMachineConfig = new FightStateMachineConfig(dodgeStateMachineConfig, 
-                new TimeoutChaseStateMachineConfig(new Range(3, 4)), firePoint.GetTransform(), 1, 0.25f);
+                new TimeoutChaseStateMachineConfig(new Range(3, 4)), firePoint.GetTransform(), 1, 0.25f, ProjectileType.FireBlast);
             MasterStateMachineConfig masterStateMachineConfig =
                 new MasterStateMachineConfig(roamStateMachineConfig, fightStateMachineConfig);
 

@@ -126,6 +126,8 @@ GameObject:
   - component: {fileID: 9146332246721054088}
   - component: {fileID: 6789420539659430298}
   - component: {fileID: -922845016429587825}
+  - component: {fileID: 6541184264730999694}
+  - component: {fileID: -4215367199301303191}
   m_Layer: 0
   m_Name: LichPoisonSpell
   m_TagString: Untagged
@@ -141,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9146332246721054089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.167, y: 0.39, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -158,7 +160,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9146332246721054089}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -179,6 +181,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6541184264730999694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146332246721054089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fda9ab3aaca40448d63c0dfd5f223de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4215367199301303191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146332246721054089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66475e3c70f847c4920b63744077b173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9146332248247919665
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +246,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9146332248247919665}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 8ed9e31fdcd5a4dd4971ee140d52dc6f, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0

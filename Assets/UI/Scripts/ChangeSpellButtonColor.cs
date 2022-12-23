@@ -19,12 +19,10 @@ public class ChangeSpellButtonColor : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
-            Debug.Log("Changing image color on light\n");
             image.color = lightColor;
         }
         else if (Input.GetKeyUp(key))
         {
-            Debug.Log("Changing image color on light\n");
             image.color = originalColor;
         }
     }
