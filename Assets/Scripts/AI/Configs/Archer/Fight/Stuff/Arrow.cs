@@ -8,7 +8,7 @@ namespace AI.Configs.Archer.Fight.Stuff
         private GameObject enemy;
         // private Health _enemyHealth;
 
-        private float _damage = 50.0f;
+        // private float _damage = 50.0f;
         private readonly float _speed = 15.0f;
 
         private void Awake()

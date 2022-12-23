@@ -1,6 +1,7 @@
 ﻿using AI.Base;
 using AI.Configs.Swordsman.Fight.Animations;
 using System;
+using UnityEngine;
 
 namespace AI.Configs.Swordsman
 {
@@ -13,8 +14,6 @@ namespace AI.Configs.Swordsman
 
         public override bool Decide()
         {
-            if (_died)
-                UnityEngine.Debug.Log("died");
             return _died;
         }
 

@@ -9,11 +9,11 @@ public class Bar : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private Image healthBar;
 
-    private Camera camera;
+    private Camera _camera;
 
-    void Awake()
+    private void Awake()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     public void SetHP(float percentage)
@@ -21,9 +21,10 @@ public class Bar : MonoBehaviour
         healthBar.fillAmount = percentage;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
-        canvas.transform.LookAt(new Vector3(camera.transform.position.x, camera.transform.position.y, camera.transform.position.z));
+        var position = _camera.transform.position;
+        canvas.transform.LookAt(new Vector3(position.x, position.y, position.z));
         canvas.transform.Rotate(0, 180, 0);
     }
 }

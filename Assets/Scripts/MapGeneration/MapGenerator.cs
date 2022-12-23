@@ -30,7 +30,7 @@ namespace MapGeneration
         public void Generate()
         {
             _wizard = _wizardFactory.Spawn(Vector3.zero);
-            _skeletonFactory.Spawn(new Vector3(-3f, 0f, -5f), _navMeshRoom, _wizard);
+            _skeletonFactory.Spawn(new Vector3(-3f, 0f, 5f), _navMeshRoom, _wizard);
 
             _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));
             _manaPotionFactory.Spawn(new Vector3(-2f, 0f, 2f));

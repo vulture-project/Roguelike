@@ -7,10 +7,11 @@ namespace AI.Configs.Swordsman.Fight.Animations
     {
         public event EventHandler AttackStartedEvent;
         public event EventHandler AttackFinishedEvent;
-
+ 
         public event EventHandler HitStartedEvent;
         public event EventHandler RecoveredFromHitEvent;
 
+        public event EventHandler StartedDyingEvent;
         public event EventHandler DiedEvent;
 
         public void AttackStarted()
@@ -34,6 +35,11 @@ namespace AI.Configs.Swordsman.Fight.Animations
         }
 
         public void StartedDying()
+        {
+            StartedDyingEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void Died()
         {
             DiedEvent?.Invoke(this, EventArgs.Empty);
         }
