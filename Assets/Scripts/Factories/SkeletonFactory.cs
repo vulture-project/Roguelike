@@ -60,6 +60,8 @@ namespace Factories
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
             entity.Replace(_skeleton.Velocity);
 
+            entity.Replace(new GameObjectComponent(clone));
+            
             clone.GetComponent<Entity>().Set(entity);
 
             RoamStateMachineConfig roamStateMachineConfig =
