@@ -11,7 +11,8 @@ namespace Factories
     {
         FireBlast,
         IceSpike,
-        MagicBlast
+        MagicBlast,
+        LichPoison
     }
     
     public class ProjectileFactory : Singleton<ProjectileFactory>
@@ -24,6 +25,9 @@ namespace Factories
 
         [SerializeField]
         private Projectile _magicBlast;
+
+        [SerializeField] 
+        private Projectile _lichPoison;
         
         private EcsWorld _world;
 
@@ -46,6 +50,9 @@ namespace Factories
                     break;
                 case ProjectileType.MagicBlast:
                     SpawnProjectile(_magicBlast, position, direction);
+                    break;
+                case ProjectileType.LichPoison:
+                    SpawnProjectile(_lichPoison, position, direction);
                     break;
             }
         }

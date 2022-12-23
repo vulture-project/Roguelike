@@ -42,7 +42,7 @@ namespace States
 
         public void MaintainFinished()
         {
-            if (!Input.GetButton("Fire2"))
+            if (!Input.GetButton("Fire1"))
             {
                 _stateSwitch.SwitchTo<IdleState>();
             }

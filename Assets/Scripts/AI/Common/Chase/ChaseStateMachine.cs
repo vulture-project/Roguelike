@@ -9,7 +9,7 @@ namespace AI.Common.Chase
         public ChaseStateMachine(GameObject agent, GameObject enemy,
             MovementNotifier movementNotifier)
         {
-            Debug.Log("inits chase state machine");
+            // Debug.Log("inits chase state machine");
             InitStates(agent, enemy);
             InitTransitions(agent, enemy, movementNotifier);
         }

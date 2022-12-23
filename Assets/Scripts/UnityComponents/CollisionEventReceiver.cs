@@ -17,13 +17,16 @@ namespace UnityComponents
         private void OnTriggerEnter(Collider collision)
         {
             var entity = collision.gameObject.GetComponent<Entity>();
-            if (entity != null) _entity.Get().Replace(new CollisionComponent(entity.Get()));
+            if (entity != null)
+            {
+                _entity.Get().Replace(new CollisionComponent(entity.Get()));
+            }
             // else _entity.Get().Replace(new DestroyTag());
         }
 
         private void OnTriggerExit(Collider collision)
         {
-            _entity.Get().Del<CollisionComponent>();
+            // _entity.Get().Del<CollisionComponent>();
         }
     }
 }

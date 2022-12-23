@@ -21,9 +21,8 @@ namespace MapGeneration
         [SerializeField] private int _columnsMaxNum = 8;
         [SerializeField] private uint _skeletonsNumMax = 5;
         [SerializeField] private uint _spidersNumMax = 5;
-        [SerializeField] private uint _orcsNumMax = 5;
-        [SerializeField] private uint _lichesNumMax = 5;
-        [SerializeField] private uint _golemsNumMax = 5;
+        [SerializeField] private uint _orkNumMax = 5;
+        [SerializeField] private uint _lichNumMax = 5;
         [SerializeField] private uint _levelNum = 20; // value from 1 to inf
         [SerializeField] private uint _roomMinDim = 40;
         [SerializeField] private uint _roomMaxDim = 50;
@@ -141,6 +140,22 @@ namespace MapGeneration
                     var pos = room.Pos + new Vec2i(_randomGenerator.Next(0, room.Width),
                         _randomGenerator.Next(0, room.Height));
                     _spiderFactory.Spawn(new Vec3(pos.x, 0, pos.y), curRoomPrefab, wizard);
+                }
+                
+                var lichNum = _randomGenerator.Next(0, (int)_lichNumMax + 1);
+                for (var i = 0; i < lichNum; ++i)
+                {
+                    var pos = room.Pos + new Vec2i(_randomGenerator.Next(0, room.Width),
+                        _randomGenerator.Next(0, room.Height));
+                    _lichFactory.Spawn(new Vec3(pos.x, 0, pos.y), curRoomPrefab, wizard);
+                }
+                
+                var orkNum = _randomGenerator.Next(0, (int)_orkNumMax + 1);
+                for (var i = 0; i < orkNum; ++i)
+                {
+                    var pos = room.Pos + new Vec2i(_randomGenerator.Next(0, room.Width),
+                        _randomGenerator.Next(0, room.Height));
+                    _orkFactory.Spawn(new Vec3(pos.x, 0, pos.y), curRoomPrefab, wizard);
                 }
             }
         }

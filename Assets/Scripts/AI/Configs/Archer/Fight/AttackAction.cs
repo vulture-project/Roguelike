@@ -26,7 +26,7 @@ namespace AI.Configs.Archer.Fight
 
         private void OnNeedToComeCloser()
         {
-            Debug.Log("need to come closer in fighter");
+            // Debug.Log("need to come closer in fighter");
             NeedToComeCloser?.Invoke(this, EventArgs.Empty);
         }
     }

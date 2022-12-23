@@ -18,7 +18,7 @@ namespace Systems
                 icon.Icon.SetActive(true);
                 _icon = icon.Icon;
                 _is_active = true;
-                Debug.Log("ACTIVE");
+                // Debug.Log("ACTIVE");
             }
             else if (_is_active)
             {
