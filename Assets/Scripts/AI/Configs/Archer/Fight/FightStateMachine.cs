@@ -29,9 +29,8 @@ namespace AI.Configs.Archer.Fight
 
             ConnectChaseAndDodge();
             MergeCore(this, _chaseStateMachine);
-            MergeCore(this, _dodgeStateMachine);
-
             AddActionToAllStates(attackAction);
+            MergeCore(this, _dodgeStateMachine);
 
             BuildCastState(animationNotifier);
 

@@ -23,7 +23,7 @@ namespace AI.Base
             {
                 _currentState?.OnExit();
                 _currentState = value;
-                _currentState.OnEnter();
+                _currentState.OnEnter(this);
             }
         }
 
@@ -35,7 +35,7 @@ namespace AI.Base
         public virtual void OnEntry()
         {
             CurrentState = EntryState;
-            CurrentState.OnEnter();
+            CurrentState.OnEnter(this);
         }
 
         public virtual void Execute()
@@ -52,6 +52,12 @@ namespace AI.Base
         {
             foreach (var state in _states)
                 state.AddTransition(transition);
+        }
+
+        public void AddPreTransitionToAllStates(Transition transition)
+        {
+            foreach (var state in _states)
+                state.AddPreTransition(transition);
         }
 
         public void AddActionToAllStates(AAction action)

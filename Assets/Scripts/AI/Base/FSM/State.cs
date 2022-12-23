@@ -5,11 +5,13 @@ namespace AI.Base
     public class State
     {
         private readonly List<AAction> _actions;
+        private readonly List<Transition> _preTransitions;
         private readonly List<Transition> _transitions;
 
         public State()
         {
             _actions = new List<AAction>();
+            _preTransitions = new List<Transition>();
             _transitions = new List<Transition>();
         }
 
@@ -23,14 +25,27 @@ namespace AI.Base
             _transitions.Insert(0, transition);
         }
 
-        public void OnEnter()
+        public void AddPreTransition(Transition transition)
         {
+            _preTransitions.Insert(0, transition);
+        }
+
+        public void OnEnter(StateMachine stateMachine)
+        {
+            foreach (var preTransition in _preTransitions)
+                if (preTransition.Transit(stateMachine))
+                    break;
+
             foreach (var action in _actions)
                 action.OnEnter();
         }
 
         public void Execute(StateMachine stateMachine)
         {
+            foreach (var preTransition in _preTransitions)
+                if (preTransition.Transit(stateMachine))
+                    break;
+
             foreach (var action in _actions)
                 action.Execute();
 
