@@ -1,6 +1,8 @@
 using AI.Common.Chase;
+using AI.Common.Components;
 using AI.Common.Dodge;
 using AI.Common.Roam;
+using AI.Common.Watch;
 using AI.Configs.Archer;
 using AI.Configs.Archer.Fight;
 using Utils.Math;
@@ -43,6 +45,11 @@ namespace Factories
         public void Spawn(Vector3 position, GameObject navMeshRoom, GameObject enemy)
         {
             var clone = Instantiate(_lich.Prefab, position, Quaternion.identity);
+            var fov = clone.GetComponent<FieldOfView>();
+            fov.Value = 20.0f;
+
+            var catchComp = clone.GetComponent<Catch>();
+            catchComp.Value = 10.0f;
 
             // FIXME: God I'm sorry for this!
             GameObject canvas = clone.transform.Find("CanvasForHP").gameObject;
@@ -70,11 +77,11 @@ namespace Factories
 
             var firePoint = clone.GetComponent<FirePoint>();
             
-            RoamStateMachineConfig roamStateMachineConfig = new RoamStateMachineConfig(new Range(1, 2), new Range(1, 2));
+            RoamStateMachineConfig roamStateMachineConfig = new RoamStateMachineConfig(new Range(1, 2), new Range(3, 4));
             DodgeStateMachineConfig dodgeStateMachineConfig =
-                new DodgeStateMachineConfig(roamStateMachineConfig, new Range(2, 3));
+                new DodgeStateMachineConfig(roamStateMachineConfig, new Range(1, 2));
             FightStateMachineConfig fightStateMachineConfig = new FightStateMachineConfig(dodgeStateMachineConfig, 
-                new TimeoutChaseStateMachineConfig(new Range(3, 4)), firePoint.GetTransform(), 1, 0.25f, ProjectileType.FireBlast);
+                new TimeoutChaseStateMachineConfig(new Range(3, 4)), firePoint.GetTransform(), 2, 0.25f, ProjectileType.FireBlast);
             MasterStateMachineConfig masterStateMachineConfig =
                 new MasterStateMachineConfig(roamStateMachineConfig, fightStateMachineConfig);
 

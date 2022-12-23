@@ -37,6 +37,7 @@ namespace AI.Configs.Archer.Fight.Stuff
             _firePointTransform = firePoint;
             _agent = agent;
             _projectileWidth = projectileWidth;
+            _projectileType = projectileType;
 
             _reloadTime = reloadTime;
             _timer = new CountdownTimer();
@@ -76,6 +77,7 @@ namespace AI.Configs.Archer.Fight.Stuff
         private void BuildRays()
         {
             _middleRay.origin = _agent.transform.position;
+            _middleRay.origin += Vector3.up;
 
             var toRight = 0.5f * _projectileWidth * _agent.transform.right;
             var toLeft = -toRight;
