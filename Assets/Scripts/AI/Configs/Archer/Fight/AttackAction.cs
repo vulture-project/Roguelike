@@ -1,6 +1,7 @@
 using System;
 using AI.Base;
 using AI.Configs.Archer.Fight.Stuff;
+using UnityEngine;
 
 namespace AI.Configs.Archer.Fight
 {
@@ -25,6 +26,7 @@ namespace AI.Configs.Archer.Fight
 
         private void OnNeedToComeCloser()
         {
+            Debug.Log("need to come closer in fighter");
             NeedToComeCloser?.Invoke(this, EventArgs.Empty);
         }
     }

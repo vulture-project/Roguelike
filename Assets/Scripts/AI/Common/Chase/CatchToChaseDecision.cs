@@ -32,7 +32,10 @@ namespace AI.Common.Chase
                              _persecutorAgentTransform.position,
                              _persecutorCatch.SqrValue) ||
                          _needToComeCloser;
-            _needToComeCloser = false;
+            if (_needToComeCloser)
+            {
+                _needToComeCloser = false;
+            }
             return result;
         }
 

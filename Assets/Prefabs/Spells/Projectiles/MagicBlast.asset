@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99be1be3bb2f40bbb71ad02e78df9ed2, type: 3}
+  m_Name: MagicBlast
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6127234035221886994, guid: 7ed0462e1caba4fd3b4fe27a8a5eb145, type: 3}
+  ImpactPrefab: {fileID: 7197575986301328715, guid: e6f80bbbbc7e447a8a0c2999892e6ce3,
+    type: 3}
+  Damage:
+    Value: 50
+  Velocity:
+    Value: {x: 0, y: 0, z: 15}
+    MaxValue: {x: 0, y: 0, z: 15}

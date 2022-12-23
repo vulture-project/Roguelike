@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1e1c62091d41fa889787666ccec9de, type: 3}
+  m_Name: Lich
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 554983766190193082, guid: d492690fa64e942f78754ebad9590072, type: 3}
+  Armour:
+    Value: 100
+  Health:
+    Value: 100
+    MaxValue: 100
+  Velocity:
+    Value: {x: 0, y: 0, z: 0}
+    MaxValue: {x: 0, y: 0, z: 3}

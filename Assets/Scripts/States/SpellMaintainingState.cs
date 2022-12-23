@@ -7,6 +7,9 @@ namespace States
     [RequireComponent(typeof(Animator), typeof(FirePoint))]
     public class SpellMaintainingState : State
     {
+        [SerializeField]
+        private ProjectileType _projectile;
+        
         private Animator _animator;
         private int _castMaintainHash;
         private FirePoint _firePoint;
@@ -34,12 +37,15 @@ namespace States
 
         public void Maintain()
         {
-            ProjectileFactory.Instance().SpawnIceSpike(_firePoint.Position(), transform.forward);
+            ProjectileFactory.Instance().Spawn(_projectile, _firePoint.Position(), transform.forward);
         }
 
         public void MaintainFinished()
         {
-            if (!Input.GetButton("Fire2")) _stateSwitch.SwitchTo<IdleState>();
+            if (!Input.GetButton("Fire2"))
+            {
+                _stateSwitch.SwitchTo<IdleState>();
+            }
         }
     }
 }

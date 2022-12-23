@@ -1,5 +1,6 @@
 ﻿using AI.Common.Chase;
 using AI.Common.Dodge;
+using Factories;
 using UnityEngine;
 
 namespace AI.Configs.Archer.Fight
@@ -13,15 +14,19 @@ namespace AI.Configs.Archer.Fight
         public float ReloadTime;
         public float ProjectileWidth;
 
+        public ProjectileType ProjectileType;
+
         public FightStateMachineConfig(DodgeStateMachineConfig dodgeStateMachineConfig,
                                        TimeoutChaseStateMachineConfig timeoutChaseStateMachineConfig,
-                                       Transform firePoint, float reloadTime, float projectileWidth)
+                                       Transform firePoint, float reloadTime, float projectileWidth,
+                                       ProjectileType projectileType)
         {
             DodgeStateMachineConfig = dodgeStateMachineConfig;
             TimeoutChaseStateMachineConfig = timeoutChaseStateMachineConfig;
             FirePoint = firePoint;
             ReloadTime = reloadTime;
             ProjectileWidth = projectileWidth;
+            ProjectileType = projectileType;
         }
     }
 }

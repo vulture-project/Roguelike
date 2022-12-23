@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 3725270773411140527}
   - component: {fileID: 3725270773411140526}
   - component: {fileID: 3725270773411140513}
-  - component: {fileID: 3725270773411140518}
   - component: {fileID: 3725270773411140519}
   - component: {fileID: 3725270773411140523}
   - component: {fileID: 3725270773411140520}
@@ -413,18 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4b1e36ab34c3b4da656ad38ab47875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3725270773411140518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373730317998076706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6af5fbb2f3a54d4e91f721ba6290d03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3725270773411140519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +434,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2286,7 +2273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b5a35dd1f10415f9108d5f8b67e751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonSword: {fileID: 11400000, guid: e1e9bd3c865534745bd661bcb95bb310, type: 2}
+  _meleeAttack: {fileID: 11400000, guid: e1e9bd3c865534745bd661bcb95bb310, type: 2}
 --- !u!114 &1806868255726850747
 MonoBehaviour:
   m_ObjectHideFlags: 0

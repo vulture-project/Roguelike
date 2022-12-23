@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99be1be3bb2f40bbb71ad02e78df9ed2, type: 3}
+  m_Name: LichPoisonSpell
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 9146332246721054089, guid: 67be0c4dd930d4bb28fb0dabbed285e9, type: 3}
+  ImpactPrefab: {fileID: 7197575986301328715, guid: 86fdbc895c9c04f079e5f5983584db8e,
+    type: 3}
+  Damage:
+    Value: 50
+  Velocity:
+    Value: {x: 0, y: 0, z: 25}
+    MaxValue: {x: 0, y: 0, z: 25}

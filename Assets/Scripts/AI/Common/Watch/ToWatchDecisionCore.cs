@@ -40,7 +40,7 @@ namespace AI.Common.Watch
         {
             var ray = new Ray(_ownerTransform.position + Vector3.up,
                 _enemyTransform.position - _ownerTransform.position);
-            Debug.DrawRay(ray.origin, ray.direction);
+            Debug.DrawRay(ray.origin, ray.direction * 4);
             return Points.CheckObjectRaycast(ray, _heroLayerMask);
         }
     }

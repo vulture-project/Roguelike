@@ -15,12 +15,10 @@ namespace AI.Configs.Archer
 
         private MasterStateMachine _masterStateMachine;
         private WatchStateMachine _watchStateMachine;
-        private AimStateMachine _aimStateMachine;
 
         private void Update()
         {
             _watchStateMachine?.Execute();
-            _aimStateMachine?.Execute();
             _masterStateMachine?.Execute();
         }
 
@@ -33,7 +31,6 @@ namespace AI.Configs.Archer
             BuildStateMachines(enemy, config);
             _watchStateMachine.OnEntry();
             _masterStateMachine.OnEntry();
-            _aimStateMachine.OnEntry();
         }
 
         private void BuildStateMachines(GameObject enemy,
@@ -43,7 +40,6 @@ namespace AI.Configs.Archer
             _masterStateMachine = new MasterStateMachine(gameObject, config,
                                                          enemy, _spottingManager,
                                                          _animationNotifier);
-            _aimStateMachine = new AimStateMachine(config.AimStateMachineConfig);
         }
     }
 }

@@ -42,6 +42,8 @@ namespace MapGeneration
         [SerializeField] private GameObject _navMeshPlane;
         [SerializeField] private GameObject _roomPrefab;
 
+        [SerializeField] private GameObject _room;
+        
         private Grid _grid;
         private List<Geometry.Rect> _rooms;
         private Random _randomGenerator;
@@ -49,20 +51,24 @@ namespace MapGeneration
         
         private HealPotionFactory _healPotionFactory;
         private ManaPotionFactory _manaPotionFactory;
+        private SpeedPotionFactory _speedPotionFactory;
         private WizardFactory _wizardFactory;
         private SkeletonFactory _skeletonFactory;
         private SpiderFactory _spiderFactory;
-        // private OrcFactory _orcFactory;
-        // private LichFactory _lichFactory;
-        // private GolemFactory _golemFactory;
+        private OrkFactory _orkFactory;
+        private LichFactory _lichFactory;
+        
         public void Init()
         {
             SetInstance(this);
             _healPotionFactory = HealPotionFactory.Instance();
             _manaPotionFactory = ManaPotionFactory.Instance();
+            _speedPotionFactory = SpeedPotionFactory.Instance();
             _wizardFactory = WizardFactory.Instance();
             _skeletonFactory = SkeletonFactory.Instance();
             _spiderFactory = SpiderFactory.Instance();
+            _orkFactory = OrkFactory.Instance();
+            _lichFactory = LichFactory.Instance();
         }
 
         public void Generate()
@@ -74,26 +80,17 @@ namespace MapGeneration
             _randomGenerator = new Random(_seed);
             _wallCnt = 0;
 
-            Debug.Log("Map creation started");
             var numOfRooms = _levelNum;
             (_grid, _rooms) = RoomsArranger.ArrangeRooms(_mapDensityScale, numOfRooms, _roomMinDim / _tunnelWidth, _roomMaxDim / _tunnelWidth, _randomGenerator);
-            Debug.Log("Rooms arranging finished");
             
             var tunnelCreator = new TunnelCreator(_grid, _rooms, (int)_tunnelWidth);
             tunnelCreator.CreateTunnels();
-            Debug.Log("Tunnels creation finished");
 
             InstantiateWallsAndFloors();
-            Debug.Log("Walls finished");
             AddNavMesh();
             TranslateRoomCoordinates();
             InstantiateInterior();
-            Debug.Log("Interior finished");
             SpawnHeroes();
-            Debug.Log("SpawnHeroes finished");
-
-            // _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));
-            // _manaPotionFactory.Spawn(new Vector3(-2f, 0f, 2f));
         }
         
         private Vec3 TranslateCoordinate(Vec2 pos)

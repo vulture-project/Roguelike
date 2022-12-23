@@ -29,12 +29,6 @@ namespace AI.Configs.Swordsman
             BuildStateMachines(enemy, config);
             _watchStateMachine.OnEntry();
             _masterStateMachine.OnEntry();
-
-            var fov = gameObject.GetComponent<FieldOfView>();
-            fov.Value = 20.0f;
-
-            var catchComp = gameObject.GetComponent<Catch>();
-            catchComp.Value = 3.0f;
         }
 
         private void BuildStateMachines(GameObject enemy, MasterStateMachineConfig config)

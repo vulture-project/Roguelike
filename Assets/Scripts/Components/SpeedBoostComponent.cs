@@ -1,7 +1,11 @@
+using System;
+
 namespace Components
 {
-    public class SpeedBoostComponent
+    [Serializable]
+    public struct SpeedBoostComponent
     {
-        
+        public float Value;
+        public float Duration;
     }
 }

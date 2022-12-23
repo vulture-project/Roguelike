@@ -40,6 +40,8 @@ namespace Factories
             var healthBar = cameraCanvas.transform.Find("Health").GetComponent<BarWithoutRotation>();
             var manaBar = cameraCanvas.transform.Find("Mana").GetComponent<BarWithoutRotation>();
 
+            var speedUpIcon = cameraCanvas.transform.Find("SpeedUpIcon").gameObject;
+            
             var entity = _world.NewEntity();
             entity.Replace(_wizard.Acceleration);
             entity.Replace(_wizard.Deceleration);
@@ -52,13 +54,14 @@ namespace Factories
             entity.Replace(new AttachedHpAndManaComponent(healthBar, manaBar));
             entity.Replace(new HealTargetTag());
             entity.Replace(new ManaBoostTargetTag());
+            entity.Replace(new SpeedBoostTargetTag());
             entity.Replace(new InputComponent());
             entity.Replace(_wizard.LayerMask);
             entity.Replace(new MovementForwardAnimationComponent(_velocityZHash));
             entity.Replace(new MovementSidewaysAnimationComponent(_velocityXHash));
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
             entity.Replace(_wizard.Velocity);
-
+            entity.Replace(new SpeedBoostIconComponent(speedUpIcon));
             clone.GetComponent<Entity>().Set(entity);
 
             _mainCamera.gameObject.transform.SetParent(clone.transform);

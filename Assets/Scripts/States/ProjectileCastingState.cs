@@ -1,5 +1,6 @@
 using Factories;
 using UnityComponents;
+
 using UnityEngine;
 
 namespace States
@@ -7,6 +8,9 @@ namespace States
     [RequireComponent(typeof(Animator), typeof(FirePoint))]
     public class ProjectileCastingState : State
     {
+        [SerializeField]
+        private ProjectileType _projectile;
+        
         private Animator _animator;
         private int _castProjectileTriggerHash;
         private FirePoint _firePoint;
@@ -31,9 +35,14 @@ namespace States
         {
         }
 
+        public void SetProjectile(ProjectileType projectile)
+        {
+            _projectile = projectile;
+        }
+        
         public void ShootProjectile()
         {
-            ProjectileFactory.Instance().SpawnFireBlast(_firePoint.Position(), transform.forward);
+            ProjectileFactory.Instance().Spawn(_projectile, _firePoint.Position(), transform.forward);
         }
 
         public void ProjectileCastingFinished()

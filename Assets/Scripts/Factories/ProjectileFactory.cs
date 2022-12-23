@@ -7,6 +7,13 @@ using UnityEngine;
 
 namespace Factories
 {
+    public enum ProjectileType
+    {
+        FireBlast,
+        IceSpike,
+        MagicBlast
+    }
+    
     public class ProjectileFactory : Singleton<ProjectileFactory>
     {
         [SerializeField]
@@ -15,6 +22,9 @@ namespace Factories
         [SerializeField]
         private Projectile _iceSpike;
 
+        [SerializeField]
+        private Projectile _magicBlast;
+        
         private EcsWorld _world;
 
         public void Init()
@@ -24,14 +34,20 @@ namespace Factories
             _world = World.Instance().Get();
         }
 
-        public void SpawnFireBlast(Vector3 position, Vector3 direction)
+        public void Spawn(ProjectileType projectile, Vector3 position, Vector3 direction)
         {
-            SpawnProjectile(_fireBlast, position, direction);
-        }
-
-        public void SpawnIceSpike(Vector3 position, Vector3 direction)
-        {
-            SpawnProjectile(_iceSpike, position, direction);
+            switch (projectile)
+            {
+                case ProjectileType.FireBlast:
+                    SpawnProjectile(_fireBlast, position, direction);
+                    break;
+                case ProjectileType.IceSpike:
+                    SpawnProjectile(_iceSpike, position, direction);
+                    break;
+                case ProjectileType.MagicBlast:
+                    SpawnProjectile(_magicBlast, position, direction);
+                    break;
+            }
         }
 
         private void SpawnProjectile(Projectile projectile, Vector3 position, Vector3 direction)
@@ -44,6 +60,7 @@ namespace Factories
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
             entity.Replace(projectile.Velocity);
             entity.Replace(new GameObjectComponent(clone));
+            entity.Replace(new SpellImpactComponent(projectile.ImpactPrefab));
 
             clone.transform.forward = direction;
             clone.GetComponent<Entity>().Set(entity);

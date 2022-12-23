@@ -8,15 +8,12 @@ namespace AI.Configs.Archer
     {
         public RoamStateMachineConfig RoamStateMachineConfig;
         public FightStateMachineConfig FightStateMachineConfig;
-        public AimStateMachineConfig AimStateMachineConfig;
 
         public MasterStateMachineConfig(RoamStateMachineConfig roamStateMachineConfig,
-                                        FightStateMachineConfig fightStateMachineConfig,
-                                        AimStateMachineConfig aimStateMachineConfig)
+                                        FightStateMachineConfig fightStateMachineConfig)
         {
             RoamStateMachineConfig = roamStateMachineConfig;
             FightStateMachineConfig = fightStateMachineConfig;
-            AimStateMachineConfig = aimStateMachineConfig;
         }
     }
 }
