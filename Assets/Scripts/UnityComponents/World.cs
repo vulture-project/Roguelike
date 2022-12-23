@@ -52,12 +52,14 @@ namespace Core
                 .Add(new ApplyDamageSystem())
                 .Add(new ApplyHealSystem())
                 .Add(new ApplyManaBoostSystem())
+                .Add(new ApplySpeedBoostSystem())
                 .Add(new DamageSystem())
                 .Add(new DecelerationSystem())
                 .Add(new HealSystem())
                 .Add(new HealthBarSystem())
                 .Add(new HealthAndManaWizardSystem())
                 .Add(new ManaBoostSystem())
+                .Add(new SpeedBoostSystem())
                 .Add(new MovementInputSystem())
                 .Add(new MovementSystem())
                 .Add(new NavMeshMovementSystem())
@@ -79,6 +81,9 @@ namespace Core
 
             var manaPotionFactory = GetComponent<ManaPotionFactory>();
             manaPotionFactory.Init();
+            
+            var speedPotionFactory = GetComponent<SpeedPotionFactory>();
+            speedPotionFactory.Init();
 
             var projectileFactory = GetComponent<ProjectileFactory>();
             projectileFactory.Init();

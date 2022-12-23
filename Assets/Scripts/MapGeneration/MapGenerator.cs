@@ -36,6 +36,7 @@ namespace MapGeneration
         
         private HealPotionFactory _healPotionFactory;
         private ManaPotionFactory _manaPotionFactory;
+        private SpeedPotionFactory _speedPotionFactory;
         private WizardFactory _wizardFactory;
         private SkeletonFactory _skeletonFactory;
         private SpiderFactory _spiderFactory;
@@ -44,6 +45,7 @@ namespace MapGeneration
             SetInstance(this);
             _healPotionFactory = HealPotionFactory.Instance();
             _manaPotionFactory = ManaPotionFactory.Instance();
+            _speedPotionFactory = SpeedPotionFactory.Instance();
             _wizardFactory = WizardFactory.Instance();
             _skeletonFactory = SkeletonFactory.Instance();
             _spiderFactory = SpiderFactory.Instance();
@@ -105,9 +107,13 @@ namespace MapGeneration
             var spawnRoom = _rooms[0];
 
             var position = spawnRoom.Pos + new Vector2Int(spawnRoom.Width / 2, spawnRoom.Height / 2);
-            _wizardFactory.Spawn(new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth));
+            var realPosition = new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth);
+            _wizardFactory.Spawn(realPosition);
             
-            // _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));
+            _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 5));
+            _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 10));
+            _healPotionFactory.Spawn(realPosition + new Vector3(2f, 0f, 2f));
+            
             // _manaPotionFactory.Spawn(new Vector3(-2f, 0f, 2f));
         }
 
