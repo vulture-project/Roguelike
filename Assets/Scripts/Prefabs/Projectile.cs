@@ -7,6 +7,7 @@ namespace Prefabs
     public class Projectile : ScriptableObject
     {
         public GameObject Prefab;
+        public GameObject ImpactPrefab;
 
         public DamageComponent Damage;
 

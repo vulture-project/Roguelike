@@ -55,6 +55,7 @@ namespace Core
                 .Add(new ApplySpeedBoostSystem())
                 .Add(new DamageSystem())
                 .Add(new DecelerationSystem())
+                .Add(new DropSystem())
                 .Add(new HealSystem())
                 .Add(new HealthBarSystem())
                 .Add(new HealthAndManaWizardSystem())
@@ -64,6 +65,7 @@ namespace Core
                 .Add(new MovementSystem())
                 .Add(new NavMeshMovementSystem())
                 .Add(new OrientationSystem())
+                .Add(new SpellImpactSystem())
                 .OneFrame<CollisionComponent>();
 
             _systems.Init();

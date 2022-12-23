@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: FireBlast
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9146332246721054089, guid: e4588d839f97741428f6ef9c31bf3915, type: 3}
+  ImpactPrefab: {fileID: 7197575986301328715, guid: 9ac2d41c88e844cd1b5da481b39567ea,
+    type: 3}
   Damage:
     Value: 50
   Velocity:
