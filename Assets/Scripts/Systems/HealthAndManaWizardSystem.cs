@@ -16,6 +16,8 @@ namespace Systems
                 ref var health = ref _filter.Get2(i);
                 ref var mana = ref _filter.Get3(i);
 
+                Debug.Log(mana.Value.ToString());
+                
                 bars.HealthBar.SetHP((float)health.Value / health.MaxValue);
                 bars.ManaBar.SetHP((float)mana.Value / mana.MaxValue);
             }
