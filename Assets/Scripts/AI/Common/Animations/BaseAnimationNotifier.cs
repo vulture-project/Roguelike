@@ -7,36 +7,41 @@ namespace AI.Common.Animations
     {
         public event EventHandler AttackStartedEvent;
         public event EventHandler AttackFinishedEvent;
-
+ 
         public event EventHandler HitStartedEvent;
         public event EventHandler RecoveredFromHitEvent;
 
         public event EventHandler StartedDyingEvent;
         public event EventHandler DiedEvent;
 
-        public virtual void AttackStarted()
+        public void AttackStarted()
         {
             AttackStartedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public virtual void AttackFinished()
+        public void AttackFinished()
         {
             AttackFinishedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public virtual void HitStarted()
+        public void HitStarted()
         {
             HitStartedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public virtual void RecoveredFromHit()
+        public void RecoveredFromHit()
         {
             RecoveredFromHitEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public virtual void StartedDying()
+        public void StartedDying()
         {
             StartedDyingEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void Died()
+        {
+            DiedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

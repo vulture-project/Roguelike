@@ -1,11 +1,12 @@
 using AI.Base;
-using AI.Common.Death;
 using AI.Common.Events;
 using AI.Common.Roam;
 using AI.Configs.Swordsman.Fight;
 using AI.Interaction;
-using UnityEngine;
+using AI.Common.Animations;
 using AI.Configs.Swordsman.Fight.Animations;
+using UnityEngine;
+using AI.Common.Death;
 
 namespace AI.Configs.Swordsman
 {
@@ -14,6 +15,10 @@ namespace AI.Configs.Swordsman
 
         private readonly FightStateMachine FightStateMachine;
         private readonly RoamStateMachine RoamStateMachine;
+
+        private State _hitAnimationState;
+        private State _diedState;
+
         public MasterStateMachine(GameObject agent, GameObject enemy,
                                   MasterStateMachineConfig config,
                                   SpottingManager spottingManager,
@@ -28,10 +33,11 @@ namespace AI.Configs.Swordsman
 
             MergeCore(this, RoamStateMachine);
             MergeCore(this, FightStateMachine);
-
             BuildRoamToFightTransition(spottingManager);
-            BuildDeath(agent, animationNotifier);
-            
+
+            BuildHitAnimationState(animationNotifier);
+            BuildDiedState(agent, animationNotifier);
+
             EntryState = RoamStateMachine.EntryState;
         }
 
@@ -43,14 +49,39 @@ namespace AI.Configs.Swordsman
             RoamStateMachine.AddTransitionToAllStates(roamToFightTransition);
         }
 
-        private void BuildDeath(GameObject agent, AnimationNotifier animationNotifier)
+        private void BuildDiedState(GameObject agent, AnimationNotifier animationNotifier)
         {
-            var died = new State();
-            died.AddAction(new DieAction(agent));
+            _diedState = new State();
+            var dieAction = new DieAction(agent);
+            _diedState.AddAction(dieAction);
+            BuildDiedStateTransition(animationNotifier);
+            AddStateToList(_diedState);
+        }
+
+        private void BuildDiedStateTransition(AnimationNotifier animationNotifier)
+        {
             var toDiedDecision = new ToDiedDecision(animationNotifier);
-            var toDiedTransition = new Transition(toDiedDecision, died);
+            var toDiedTransition = new Transition(toDiedDecision, _diedState);
             AddTransitionToAllStates(toDiedTransition);
-            AddStateToList(died);
+        }
+
+        private void BuildHitAnimationState(AnimationNotifier animationNotifier)
+        {
+            _hitAnimationState = new State();
+            BuildHitAnimationTransition(animationNotifier);
+            AddStateToList(_hitAnimationState);
+        }
+
+        private void BuildHitAnimationTransition(AnimationNotifier animationNotifier)
+        {
+            var toDecision = new ToHitAnimationDecision(animationNotifier);
+            var fromDecision = new FromHitAnimationDecision(animationNotifier);
+
+            var toTransition = new Transition(toDecision, _hitAnimationState);
+            var fromTransition = new Transition(fromDecision, toTransition);
+
+            AddTransitionToAllStates(toTransition);
+            _hitAnimationState.AddTransition(fromTransition);
         }
     }
 }
