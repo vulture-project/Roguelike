@@ -34,15 +34,19 @@ namespace MapGeneration
         private Grid _grid;
         private List<Geometry.Rect> _rooms;
         
-        // private HealPotionFactory _healPotionFactory;
-        // private ManaPotionFactory _manaPotionFactory;
-        // private WizardFactory _wizardFactory;
+        private HealPotionFactory _healPotionFactory;
+        private ManaPotionFactory _manaPotionFactory;
+        private WizardFactory _wizardFactory;
+        private SkeletonFactory _skeletonFactory;
+        private SpiderFactory _spiderFactory;
         public void Init()
         {
             SetInstance(this);
-            // _healPotionFactory = HealPotionFactory.Instance();
-            // _manaPotionFactory = ManaPotionFactory.Instance();
-            // _wizardFactory = WizardFactory.Instance();
+            _healPotionFactory = HealPotionFactory.Instance();
+            _manaPotionFactory = ManaPotionFactory.Instance();
+            _wizardFactory = WizardFactory.Instance();
+            _skeletonFactory = SkeletonFactory.Instance();
+            _spiderFactory = SpiderFactory.Instance();
         }
         
         // public class HelloWorld
@@ -98,7 +102,11 @@ namespace MapGeneration
             var m = plane.GetComponent<NavMeshSurface>();
             m.BuildNavMesh();
 
-            // _wizardFactory.Spawn(Vector3.zero);
+            var spawnRoom = _rooms[0];
+
+            var position = spawnRoom.Pos + new Vector2Int(spawnRoom.Width / 2, spawnRoom.Height / 2);
+            _wizardFactory.Spawn(new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth));
+            
             // _healPotionFactory.Spawn(new Vector3(2f, 0f, 2f));
             // _manaPotionFactory.Spawn(new Vector3(-2f, 0f, 2f));
         }
@@ -139,22 +147,25 @@ namespace MapGeneration
 
             var rotation = pos1.x == pos2.x ? Quaternion.identity : Quaternion.Euler(0, 90, 0);
 
-            if (pos1.x != pos2.x)
-            {
-                for (var i = 0; i < _tunnelWidth; ++i)
-                {
-                    Instantiate(WhichWallToInstantiate(cellVal),
-                        new Vec3(_tunnelWidth * pos1.x + i, 0, _tunnelWidth * pos1.y), rotation);
-                }
-            }
-            else
-            {
-                for (var i = 0; i < _tunnelWidth; ++i)
-                {
-                    Instantiate(WhichWallToInstantiate(cellVal),
-                        new Vec3(_tunnelWidth * pos1.x, 0, _tunnelWidth * pos1.y + i), rotation);
-                }
-            }
+            Instantiate(WhichWallToInstantiate(cellVal),
+                new Vec3(_tunnelWidth * pos1.x, 0, _tunnelWidth * pos1.y), rotation);
+            
+            // if (pos1.x != pos2.x)
+            // {
+            //     for (var i = 0; i < _tunnelWidth; ++i)
+            //     {
+            //         Instantiate(WhichWallToInstantiate(cellVal),
+            //             new Vec3(_tunnelWidth * pos1.x + i, 0, _tunnelWidth * pos1.y), rotation);
+            //     }
+            // }
+            // else
+            // {
+            //     for (var i = 0; i < _tunnelWidth; ++i)
+            //     {
+            //         Instantiate(WhichWallToInstantiate(cellVal),
+            //             new Vec3(_tunnelWidth * pos1.x, 0, _tunnelWidth * pos1.y + i), rotation);
+            //     }
+            // }
         }
         
         // public static Vec2 Rotate(Vector2 v, float degrees) {
@@ -311,14 +322,7 @@ namespace MapGeneration
                     {
                         InstantiateWall(x + 1, y, x + 1, y + 1, cellVal);
                     }
-
-                    for (var i = 0; i < _tunnelWidth; ++i)
-                    {
-                        for (var j = 0; j < _tunnelWidth; ++j)
-                        {
-                            Instantiate(WhichFloorToInstantiate(cellVal), new Vec3(_tunnelWidth * x + i, 0, _tunnelWidth * y + j), Quaternion.identity);
-                        }
-                    }
+                    Instantiate(WhichFloorToInstantiate(cellVal), new Vec3(_tunnelWidth * x, 0, _tunnelWidth * y), Quaternion.identity);
                 }
             }
 

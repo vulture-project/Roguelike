@@ -34,6 +34,8 @@ namespace Factories
         {
             var clone = Instantiate(_wizard.Prefab, position, Quaternion.identity);
 
+            _mainCamera.transform.position += position;
+
             var entity = _world.NewEntity();
             entity.Replace(_wizard.Acceleration);
             entity.Replace(_wizard.Deceleration);
