@@ -1,7 +1,6 @@
 namespace Components
 {
-    public class SpeedBoostComponent
+    public struct SpeedBoostComponent
     {
-        
     }
 }
