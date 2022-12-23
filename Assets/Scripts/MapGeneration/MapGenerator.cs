@@ -11,13 +11,19 @@ using Core;
 using Factories;
 using MapGeneration.Algorithms;
 using Unity.AI.Navigation;
+using Random = System.Random;
 
 namespace MapGeneration
 {
     public class MapGenerator : Singleton<MapGenerator>
     {
-        // FIXME: ArrangeRooms is need to be fixed, mapDensityScale > 0.4 crashes program
-        [SerializeField] private float _mapDensityScale; // value from 0 to 1
+        [SerializeField] private float _mapDensityScale = 0.2f; // value from 0 to 1
+        [SerializeField] private int _columnsMaxNum = 8;
+        [SerializeField] private uint _skeletonsNumMax = 5;
+        [SerializeField] private uint _spidersNumMax = 5;
+        [SerializeField] private uint _orcsNumMax = 5;
+        [SerializeField] private uint _lichesNumMax = 5;
+        [SerializeField] private uint _golemsNumMax = 5;
         [SerializeField] private uint _levelNum = 20; // value from 1 to inf
         [SerializeField] private uint _roomMinDim = 40;
         [SerializeField] private uint _roomMaxDim = 50;
@@ -26,15 +32,22 @@ namespace MapGeneration
 
         // walls are ought to be 1 meter, floors are 1 by 1 meter
         [SerializeField] private GameObject _roomWall;
+        [SerializeField] private GameObject _roomWallWithTorch;
+        [SerializeField] private GameObject _tunnelWallWithTorch;
         [SerializeField] private GameObject _tunnelWall;
         [SerializeField] private GameObject _roomFloor;
         [SerializeField] private GameObject _tunnelFloor;
-        [SerializeField] private GameObject _planePlane;
+        [SerializeField] private GameObject _column0;
+        [SerializeField] private GameObject _column1;
+        [SerializeField] private GameObject _navMeshPlane;
+        [SerializeField] private GameObject _roomPrefab;
 
         [SerializeField] private GameObject _room;
         
         private Grid _grid;
         private List<Geometry.Rect> _rooms;
+        private Random _randomGenerator;
+        private int _wallCnt;
         
         private HealPotionFactory _healPotionFactory;
         private ManaPotionFactory _manaPotionFactory;
@@ -44,6 +57,7 @@ namespace MapGeneration
         private SpiderFactory _spiderFactory;
         private OrkFactory _orkFactory;
         private LichFactory _lichFactory;
+        
         public void Init()
         {
             SetInstance(this);
@@ -56,36 +70,6 @@ namespace MapGeneration
             _orkFactory = OrkFactory.Instance();
             _lichFactory = LichFactory.Instance();
         }
-        
-        // public class HelloWorld
-        // {
-        //     struct S
-        //     {
-        //         public int a;
-        //         public int b;
-        //     }
-        //
-        //     class MM
-        //     {
-        //         public S s;
-        //
-        //         public MM(S s_)
-        //         {
-        //             s = s_;
-        //         }
-        //
-        //         public (S s, MM) Lol()
-        //         {
-        //             s.a = 1;
-        //             s.b = 1;
-        //             return (s, this);
-        //         }
-        //     }
-        //     public static void Main(string[] args)
-        //     {
-        //         Console.WriteLine(Math.Round(2.9, MidpointRounding.AwayFromZero));
-        //     }
-        // }
 
         public void Generate()
         {
@@ -93,60 +77,107 @@ namespace MapGeneration
             Debug.Assert(_levelNum > 0);
             Debug.Assert(_roomMinDim <= _roomMaxDim);
 
-            // Debug.Log("Map creation started");
+            _randomGenerator = new Random(_seed);
+            _wallCnt = 0;
+
             var numOfRooms = _levelNum;
-            (_grid, _rooms) = RoomsArranger.ArrangeRooms(_mapDensityScale, numOfRooms, _roomMinDim / _tunnelWidth, _roomMaxDim / _tunnelWidth, _seed);
-            // Debug.Log("Rooms arranging finished");
+            (_grid, _rooms) = RoomsArranger.ArrangeRooms(_mapDensityScale, numOfRooms, _roomMinDim / _tunnelWidth, _roomMaxDim / _tunnelWidth, _randomGenerator);
             
             var tunnelCreator = new TunnelCreator(_grid, _rooms, (int)_tunnelWidth);
             tunnelCreator.CreateTunnels();
-            // Debug.Log("Tunnels creation finished");
 
-            CreateGameObjects();
-            // Debug.Log("Map creation finished");
+            InstantiateWallsAndFloors();
+            AddNavMesh();
+            TranslateRoomCoordinates();
+            InstantiateInterior();
+            SpawnHeroes();
+        }
+        
+        private Vec3 TranslateCoordinate(Vec2 pos)
+        {
+            return new Vec3(pos.x * _tunnelWidth, 0, pos.y * _tunnelWidth);
+        }
 
-            var plane = Instantiate(_planePlane, new Vec3(0.5f, 0, 0.5f), Quaternion.identity);
+        private Vec3 TranslateCoordinate(Vec2i pos)
+        {
+            return new Vec3(pos.x * _tunnelWidth, 0, pos.y * _tunnelWidth);
+        }
+        
+        private Vec3 GetVec3(Vec2i pos)
+        {
+            return new Vec3(pos.x, 0, pos.y);
+        }
+        
+        private void TranslateRoomCoordinates()
+        {
+            foreach (var room in _rooms)
+            {
+                room.Pos *= (int)_tunnelWidth;
+                room.Width *= (int)_tunnelWidth;
+                room.Height *= (int)_tunnelWidth;
+            }
+        }
+        
+        private void SpawnHeroes() {
+            var spawnRoom = _rooms[0];
+            var position = spawnRoom.Pos + new Vec2i(spawnRoom.Width / 2, spawnRoom.Height / 2);
+            var wizard = _wizardFactory.Spawn(new Vec3(position.x, 0, position.y));
+
+            foreach (var room in _rooms)
+            {
+                var curRoomPrefab = Instantiate(_roomPrefab, Vector3.zero, Quaternion.identity);
+                
+                var skeletonsNum = _randomGenerator.Next(0, (int)_skeletonsNumMax + 1);
+                for (var i = 0; i < skeletonsNum; ++i)
+                {
+                    var pos = room.Pos + new Vec2i(_randomGenerator.Next(0, room.Width),
+                        _randomGenerator.Next(0, room.Height));
+                    _skeletonFactory.Spawn(new Vec3(pos.x, 0, pos.y), curRoomPrefab, wizard);
+                }
+                
+                var spidersNum = _randomGenerator.Next(0, (int)_spidersNumMax + 1);
+                for (var i = 0; i < spidersNum; ++i)
+                {
+                    var pos = room.Pos + new Vec2i(_randomGenerator.Next(0, room.Width),
+                        _randomGenerator.Next(0, room.Height));
+                    _spiderFactory.Spawn(new Vec3(pos.x, 0, pos.y), curRoomPrefab, wizard);
+                }
+            }
+        }
+
+        private void AddNavMesh() {
+            var plane = Instantiate(_navMeshPlane, new Vec3(0.5f, 0, 0.5f), Quaternion.identity);
             plane.transform.localScale = new Vec3(_grid.Dim, 1, _grid.Dim);
             var m = plane.GetComponent<NavMeshSurface>();
             m.BuildNavMesh();
 
-            var spawnRoom = _rooms[0];
-
-            var position = spawnRoom.Pos + new Vector2Int(spawnRoom.Width / 2, spawnRoom.Height / 2);
-            var realPosition = new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth);
- 
-            var wizard = _wizardFactory.Spawn(realPosition);
-            
-            _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 5));
-            _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 10));
-            _healPotionFactory.Spawn(realPosition + new Vector3(2f, 0f, 2f));
-            
-            _skeletonFactory.Spawn(realPosition + new Vector3(8f, 0, 8f), _room, wizard);
-            _spiderFactory.Spawn(realPosition + new Vector3(-8f, 0, 4f), _room, wizard);
-            _orkFactory.Spawn(realPosition + new Vector3(-4f, 0, 8f), _room, wizard);
-            _lichFactory.Spawn(realPosition + new Vector3(-8f, 0, -8f), _room, wizard);
+            // var plane = Instantiate(_navMeshPlane, new Vec3(0.5f, 0, 0.5f), Quaternion.identity);
+            // var x = 
+            //     plane.transform.localScale = TranslateCoordinate(new Vec2i(_grid.Dim, _grid.Dim));
+            // var m = plane.GetComponent<NavMeshSurface>();
+            // m.BuildNavMesh();
         }
 
         private GameObject WhichWallToInstantiate(CellType cellVal)
         {
-            return _roomWall;
-            // return cellVal switch
-            // {
-            //     CellType.Room => _roomWall,
-            //     CellType.Tunnel => _tunnelWall,
-            //     _ => throw new Exception("should not be here")
-            // };
+            switch (cellVal)
+            {
+                case CellType.Room:
+                    return (_wallCnt++ % 4 == 0 ? _roomWall : _roomWallWithTorch);
+                case CellType.Tunnel:
+                    return (_wallCnt++ % 4 == 0 ? _tunnelWall : _tunnelWallWithTorch);
+                default: throw new Exception("should not be here");
+            }
         }
         
         private GameObject WhichFloorToInstantiate(CellType cellVal)
         {
-            return _roomFloor;
-            // return cellVal switch
-            // {
-            //     CellType.Room => _roomFloor,
-            //     CellType.Tunnel => _tunnelFloor,
-            //     _ => throw new Exception("should not be here")
-            // };
+            return cellVal switch
+            {
+                CellType.Room => _roomFloor,
+                CellType.Tunnel => _tunnelFloor,
+                _ => throw new Exception("should not be here")
+            };
         }
         
         private void InstantiateWall(int x1, int y1, int x2, int y2, CellType cellVal)
@@ -162,36 +193,8 @@ namespace MapGeneration
 
             var rotation = pos1.x == pos2.x ? Quaternion.identity : Quaternion.Euler(0, 90, 0);
 
-            Instantiate(WhichWallToInstantiate(cellVal),
-                new Vec3(_tunnelWidth * pos1.x, 0, _tunnelWidth * pos1.y), rotation);
-            
-            // if (pos1.x != pos2.x)
-            // {
-            //     for (var i = 0; i < _tunnelWidth; ++i)
-            //     {
-            //         Instantiate(WhichWallToInstantiate(cellVal),
-            //             new Vec3(_tunnelWidth * pos1.x + i, 0, _tunnelWidth * pos1.y), rotation);
-            //     }
-            // }
-            // else
-            // {
-            //     for (var i = 0; i < _tunnelWidth; ++i)
-            //     {
-            //         Instantiate(WhichWallToInstantiate(cellVal),
-            //             new Vec3(_tunnelWidth * pos1.x, 0, _tunnelWidth * pos1.y + i), rotation);
-            //     }
-            // }
+            Instantiate(WhichWallToInstantiate(cellVal), TranslateCoordinate(pos1), rotation);
         }
-        
-        // public static Vec2 Rotate(Vector2 v, float degrees) {
-        //     var sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-        //     var cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-        //     var tx = v.x;
-        //     var ty = v.y;
-        //     v.x = (cos * tx) - (sin * ty);
-        //     v.y = (sin * tx) + (cos * ty);
-        //     return v;
-        // }
 
         private void InstantiateDiagonalWall(Vec2 pos1, Vec2 pos2)
         {
@@ -207,35 +210,10 @@ namespace MapGeneration
                     angle = -angle;
                 
                 var rot = Quaternion.Euler(0, angle, 0);
-                Instantiate(_tunnelWall, new Vec3(_tunnelWidth * pos.x, 0, _tunnelWidth * pos.y), rot);
+                Instantiate(_tunnelWall, TranslateCoordinate(pos), rot);
                 pos += dir;
             }
         }
-        
-        private void GraphDump(List<EdgeAdjacent>[] graph, List<Delaunay.Vertex> vertices)
-        {
-            for (var i = 0; i < graph.Length; ++i)
-            {
-                var v1 = vertices[i];
-                foreach (var edge in graph[i])
-                {
-                    var v2 = vertices[edge.v_id];
-                    InstantiateDiagonalWall(v1.Position, v2.Position);
-                }
-            }
-        }
-        
-        // private void DumpMst(List<EdgeAdjacent>[] mst, List<Delaunay.Vertex> vertices)
-        // {
-        //     for (var i = 0; i < mst.Length; ++i)
-        //     {
-        //         var v1 = vertices[i];
-        //         foreach (var edge in mst[i])
-        //         {
-        //             
-        //         }
-        //     }
-        // }
 
         private void GenerateBorder()
         {
@@ -244,71 +222,15 @@ namespace MapGeneration
                 for (var y = 0; y < _grid.Dim; ++y)
                 {
                     if (x == 0 || y == 0 || x == _grid.Dim - 1 || y == _grid.Dim - 1)
-                        Instantiate(_tunnelFloor, new Vec3(_tunnelWidth * x, 0, _tunnelWidth * y),
+                        Instantiate(_tunnelFloor, TranslateCoordinate(new Vec2i(x, y)),
                             Quaternion.identity);
                 }
             }
         }
-        //
-        // private enum Dir
-        // {
-        //     Right,
-        //     Down,
-        //     Left,
-        //     Up
-        // };
-        //
-        // private class NextPosFinder
-        // {
-        //     private int _x;
-        //     private int _y;
-        //     private Dir _tileDir;
-        //     private Dir _traverseDir;
-        //     private readonly Grid _grid;
-        //
-        //     public NextPosFinder(Grid grid)
-        //     {
-        //         _traverseDir = Dir.Up;
-        //         _grid = grid;
-        //         var gridDim = _grid.Dim;
-        //         for (var y = 0; y < gridDim; ++y)
-        //         {
-        //             for (var x = 0; x < gridDim; ++x)
-        //             {
-        //                 if (_grid.Data[x, y] != CellType.None)
-        //                 {
-        //                     _x = x;
-        //                     _y = y;
-        //                     if (x == 0)
-        //                     {
-        //                         
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        //
-        //     public (Vec2i, Dir) GetNextPos()
-        //     {
-        //         var returnCell = new Vec2i(_x, _y);
-        //         if (_traverseDir == Dir.Right)
-        //         {
-        //             ++_x;
-        //             if (_x >= _grid.Dim || _grid.Data[_x, _y] == CellType.None)
-        //             {
-        //                 _traverseDir = Dir.Down;
-        //                 --_x;
-        //                 --_y;
-        //                 if ()
-        //             }
-        //         }
-        //     }
-        // };
 
-        private void CreateGameObjects()
+        private void InstantiateWallsAndFloors()
         {
             var gridDim = _grid.Dim;
-            // var nextTile = new NextTileGiver(_grid);
             for (var x = 0; x < gridDim; ++x)
             {
                 for (var y = 0; y < gridDim; ++y)
@@ -337,11 +259,58 @@ namespace MapGeneration
                     {
                         InstantiateWall(x + 1, y, x + 1, y + 1, cellVal);
                     }
-                    Instantiate(WhichFloorToInstantiate(cellVal), new Vec3(_tunnelWidth * x, 0, _tunnelWidth * y), Quaternion.identity);
+                    Instantiate(WhichFloorToInstantiate(cellVal), TranslateCoordinate(new Vec2i(x, y)), Quaternion.identity);
                 }
             }
 
             GenerateBorder();
+        }
+
+        private static void AddElemIfAble(List<Vec2i> list, Vec2i elem)
+        {
+            if (list.Count == 0)
+            {
+                list.Add(elem);
+                return;
+            }
+            foreach (var v in list)
+            {
+                if (Vec2i.Distance(v, elem) < 8)
+                {
+                    return;
+                }
+            }
+            list.Add(elem);
+        }
+
+        private void InstantiateInterior()
+        {
+            foreach (var room in _rooms)
+            {
+                var w = room.Width / 2;
+                var h = room.Height / 2;
+                float area = w * h;
+                var columnsNum = Convert.ToUInt32(_randomGenerator.Next(0, _columnsMaxNum / 4 + 1));
+                var maxNumOfIter = 1000;
+                var colPositions = new List<Vec2i>();
+                for (var i = 0; i < maxNumOfIter && colPositions.Count < columnsNum; ++i)
+                {
+                    AddElemIfAble(colPositions,
+                        new Vec2i(_randomGenerator.Next(2, w - 2), _randomGenerator.Next(2, h - 2)));
+                }
+
+                foreach (var colPos in colPositions)
+                {
+                    var roomLeftUp = room.Pos + new Vec2i(0, room.Height);
+                    var roomRightDown = room.Pos + new Vec2i(room.Width, 0);
+                    var roomRightUp = room.Pos + new Vec2i(room.Width, room.Height);
+                    var pos = colPos + room.Pos;
+                    Instantiate(_column0, GetVec3(pos), Quaternion.identity);
+                    Instantiate(_column1, GetVec3(new Vec2i(pos.x, roomLeftUp.y - colPos.y - 2)), Quaternion.identity);
+                    Instantiate(_column1, GetVec3(new Vec2i(roomRightDown.x - colPos.x - 2, pos.y)), Quaternion.identity);
+                    Instantiate(_column0, GetVec3(roomRightUp - colPos - new Vec2i(2, 2)), Quaternion.identity);
+                }
+            }
         }
     }
 }

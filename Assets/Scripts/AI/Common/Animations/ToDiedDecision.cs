@@ -1,5 +1,6 @@
 using AI.Base;
 using System;
+using UnityEngine;
 
 namespace AI.Common.Animations
 {
@@ -17,6 +18,7 @@ namespace AI.Common.Animations
 
         private void OnDied(object sender, EventArgs args)
         {
+            Debug.Log("died");
             _died = true;
         }
 

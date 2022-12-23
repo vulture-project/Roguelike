@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using MapGeneration.MapPrimitives;
-using UnityEngine;
 using Grid = MapGeneration.MapPrimitives.Grid;
 using Random = System.Random;
 using Vec2i = UnityEngine.Vector2Int;
@@ -27,16 +26,17 @@ namespace MapGeneration
             }
         }
         
-        public static (Grid, List<Geometry.Rect>) ArrangeRooms(float mapDensityScale, uint numOfRooms, uint roomMinDim, uint roomMaxDim, int seed)
+        public static (Grid, List<Geometry.Rect>) ArrangeRooms(float mapDensityScale, uint numOfRooms, uint roomMinDim, uint roomMaxDim, Random randomGenerator)
         {
             var rooms = new List<Geometry.Rect>();
-            var random = new Random(seed);
             var widths = new uint[numOfRooms];
             var heights = new uint[numOfRooms];
             for (var i = 0; i < numOfRooms; ++i)
             {
-                widths[i] = Convert.ToUInt32(random.Next((int)roomMinDim, (int)roomMaxDim));
-                heights[i] = Convert.ToUInt32(random.Next((int)roomMinDim, (int)roomMaxDim));
+                var randW = Convert.ToUInt32(randomGenerator.Next((int)roomMinDim, (int)roomMaxDim + 1));
+                var randH = Convert.ToUInt32(randomGenerator.Next((int)roomMinDim, (int)roomMaxDim + 1));
+                widths[i] = randW + (randW % 2 == 0 ? 1u : 0u);
+                heights[i] = randH + (randH % 2 == 0 ? 1u : 0u);
             }
 
             float totalArea = 0;
@@ -56,10 +56,10 @@ namespace MapGeneration
                 var newRoomOverlaps = true;
                 while (newRoomOverlaps)
                 {
-                    if (iterationsNum == 100000) throw new Exception("nah");
+                    if (iterationsNum == 100000) return (grid, rooms);
                     ++iterationsNum;
-                    newRoom.Pos.x = random.Next(0, (int)(grid.Dim - widths[i]));
-                    newRoom.Pos.y = random.Next(0, (int)(grid.Dim - heights[i]));
+                    newRoom.Pos.x = randomGenerator.Next(0, (int)(grid.Dim - widths[i]));
+                    newRoom.Pos.y = randomGenerator.Next(0, (int)(grid.Dim - heights[i]));
                     if (!DoesNewRoomOverlap(rooms, newRoom))
                     {
                         newRoomOverlaps = false;
