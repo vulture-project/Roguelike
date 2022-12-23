@@ -8,13 +8,11 @@ namespace AI.Configs.Swordsman
     {
         public ToDiedDecision(AnimationNotifier animationNotifier)
         {
-            animationNotifier.DiedEvent += OnDied;
+            animationNotifier.StartedDyingEvent += OnDied;
         }
 
         public override bool Decide()
         {
-            if (_died)
-                UnityEngine.Debug.Log("died");
             return _died;
         }
 
