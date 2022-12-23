@@ -1,12 +1,11 @@
 ﻿using AI.Base;
-using AI.Configs.Swordsman.Fight.Animations;
 using System;
 
-namespace AI.Configs.Swordsman
+namespace AI.Common.Animations
 {
     public class ToDiedDecision : ADecision
     {
-        public ToDiedDecision(AnimationNotifier animationNotifier)
+        public ToDiedDecision(BaseAnimationNotifier animationNotifier)
         {
             animationNotifier.StartedDyingEvent += OnDied;
         }

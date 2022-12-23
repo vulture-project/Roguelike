@@ -1,6 +1,7 @@
 ﻿using AI.Base;
 using AI.Common.Chase;
 using AI.Common.Events;
+using AI.Common.Animations;
 using AI.Configs.Swordsman.Fight.Stuff;
 using AI.Configs.Swordsman.Fight.Animations;
 using UnityEngine;

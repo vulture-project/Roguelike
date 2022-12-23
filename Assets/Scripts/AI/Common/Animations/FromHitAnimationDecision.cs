@@ -1,11 +1,11 @@
 ﻿using AI.Base;
 using System;
 
-namespace AI.Configs.Swordsman.Fight.Animations
+namespace AI.Common.Animations
 {
     public class FromHitAnimationDecision : ADecision
     {
-        public FromHitAnimationDecision(AnimationNotifier animationNotifier)
+        public FromHitAnimationDecision(BaseAnimationNotifier animationNotifier)
         {
             animationNotifier.RecoveredFromHitEvent += OnRecoveredFromHit;
         }

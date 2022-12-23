@@ -3,8 +3,9 @@ using AI.Common.Events;
 using AI.Common.Roam;
 using AI.Configs.Swordsman.Fight;
 using AI.Interaction;
-using UnityEngine;
+using AI.Common.Animations;
 using AI.Configs.Swordsman.Fight.Animations;
+using UnityEngine;
 
 namespace AI.Configs.Swordsman
 {
