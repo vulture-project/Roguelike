@@ -80,6 +80,5 @@ namespace AI.Configs.Archer
             AddTransitionToAllStates(toTransition);
             _hitAnimationState.AddTransition(fromTransition);
         }
-
     }
 }

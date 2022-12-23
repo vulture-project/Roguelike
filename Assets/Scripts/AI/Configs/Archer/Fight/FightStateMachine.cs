@@ -30,12 +30,15 @@ namespace AI.Configs.Archer.Fight
             ConnectChaseAndDodge();
             MergeCore(this, _chaseStateMachine);
             MergeCore(this, _dodgeStateMachine);
+
             AddActionToAllStates(attackAction);
-            BuildAttackAnimationState(animationNotifier);
+
+            BuildCastState(animationNotifier);
+
             EntryState = _chaseStateMachine.EntryState;
         }
 
-        public State AttackAnimationState { get; private set; }
+        public State CastState { get; private set; }
 
         public void ConnectChaseAndDodge()
         {
@@ -58,22 +61,22 @@ namespace AI.Configs.Archer.Fight
             return new AttackAction(fighter);
         }
 
-        private void BuildAttackAnimationState(AnimationNotifier animationNotifier)
+        private void BuildCastState(AnimationNotifier animationNotifier)
         {
-            AttackAnimationState = new State();
-            BuildAttackAnimationTransitions(animationNotifier);
-            AddStateToList(AttackAnimationState);
+            CastState = new State();
+            BuildCastTransition(animationNotifier);
+            AddStateToList(CastState);
         }
 
-        private void BuildAttackAnimationTransitions(AnimationNotifier animationNotifier)
+        private void BuildCastTransition(AnimationNotifier animationNotifier)
         {
-            var toDecision = new ToAttackAnimationDecision(animationNotifier);
-            var fromDecision = new FromAttackAnimationDecision(animationNotifier);
+            var toDecision = new ToCastDecision(animationNotifier);
+            var fromDecision = new FromCastDecision(animationNotifier);
 
-            var toTransition = new Transition(toDecision, AttackAnimationState);
+            var toTransition = new Transition(toDecision, CastState);
             var fromTransition = new Transition(fromDecision, toTransition);
             AddTransitionToAllStates(toTransition);
-            AttackAnimationState.AddTransition(fromTransition);
+            CastState.AddTransition(fromTransition);
         }
     }
 }
