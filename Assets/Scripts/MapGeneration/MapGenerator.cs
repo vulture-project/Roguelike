@@ -45,11 +45,9 @@ namespace MapGeneration
         public void Init()
         {
             SetInstance(this);
-            // _healPotionFactory = HealPotionFactory.Instance();
-            // _manaPotionFactory = ManaPotionFactory.Instance();
             _wizardFactory = WizardFactory.Instance();
-            // _skeletonFactory = SkeletonFactory.Instance();
-            // _spiderFactory = SpiderFactory.Instance();
+            _skeletonFactory = SkeletonFactory.Instance();
+            _spiderFactory = SpiderFactory.Instance();
             _lichFactory = LichFactory.Instance();
         }
         
@@ -112,8 +110,9 @@ namespace MapGeneration
             var realPosition = new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth);
 
             var wizard = _wizardFactory.Spawn(realPosition);
-
-            _lichFactory.Spawn(realPosition + new Vector3(4f, 0f, 4f), _room, wizard);
+            
+            // _skeletonFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
+            _spiderFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
         }
 
         private GameObject WhichWallToInstantiate(CellType cellVal)
