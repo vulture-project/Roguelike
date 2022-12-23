@@ -1,11 +1,11 @@
-﻿using AI.Base;
+﻿using UnityEngine;
+using AI.Base;
 using AI.Common.Chase;
 using AI.Common.Events;
 using AI.Common.Dodge;
-using AI.Configs.Archer.Fight.Stuff;
-using UnityEngine;
-using Utils.Math;
+using AI.Common.Animations;
 using AI.Configs.Archer.Fight.Animations;
+using AI.Configs.Archer.Fight.Stuff;
 
 namespace AI.Configs.Archer.Fight
 {
@@ -14,27 +14,24 @@ namespace AI.Configs.Archer.Fight
         private readonly TimeoutChaseStateMachine _chaseStateMachine;
         private readonly DodgeStateMachine _dodgeStateMachine;
 
-        public FightStateMachine(GameObject agent, Transform firePoint,
-                                 float projectileWidth, GameObject enemy,
-                                 MovementNotifier movementNotifier,
+        public FightStateMachine(GameObject agent, FightStateMachineConfig config,
+                                 GameObject enemy, MovementNotifier movementNotifier,
                                  AnimationNotifier animationNotifier)
         {
-            var attackAction = BuildAttackAction(firePoint, projectileWidth, enemy);
+            var attackAction = BuildAttackAction(agent, config);
 
             attackAction.NeedToComeCloser += movementNotifier.DispatchNeedToComeCloser;
 
             _chaseStateMachine = new TimeoutChaseStateMachine(agent, enemy,
-                movementNotifier,
-                new Range(3, 4));
-            // _dodgeStateMachine = new DodgeStateMachine(agent,
-            //     new Range(0, 0),
-            //     new Range(1, 2),
-            //     new Range(3, 4));
+                                                              movementNotifier,
+                                                              config.TimeoutChaseStateMachineConfig);
+            _dodgeStateMachine = new DodgeStateMachine(agent, config.DodgeStateMachineConfig);
+
             ConnectChaseAndDodge();
             MergeCore(this, _chaseStateMachine);
             MergeCore(this, _dodgeStateMachine);
             AddActionToAllStates(attackAction);
-            BuildAttackAnimationState(agent, animationNotifier);
+            BuildAttackAnimationState(animationNotifier);
             EntryState = _chaseStateMachine.EntryState;
         }
 
@@ -53,24 +50,22 @@ namespace AI.Configs.Archer.Fight
             );
         }
 
-        private AttackAction BuildAttackAction(Transform firePoint,
-                                               float projectileWidth,
-                                               GameObject enemy)
+        private AttackAction BuildAttackAction(GameObject agent,
+                                               FightStateMachineConfig config)
         {
-            // var arch = new Arch(1.5f, firePoint, projectileWidth);
-            // var fighter = new Fighter(arch, enemy);
-            // return new AttackAction(fighter);
-            return null;
+            var arch = new Arch(agent, config.ReloadTime, config.FirePoint, config.ProjectileWidth);
+            var fighter = new Fighter(arch);
+            return new AttackAction(fighter);
         }
 
-        private void BuildAttackAnimationState(GameObject agent, AnimationNotifier animationNotifier)
+        private void BuildAttackAnimationState(AnimationNotifier animationNotifier)
         {
             AttackAnimationState = new State();
-            BuildAttackAnimationTransitions(agent, animationNotifier);
+            BuildAttackAnimationTransitions(animationNotifier);
             AddStateToList(AttackAnimationState);
         }
 
-        private void BuildAttackAnimationTransitions(GameObject agent, AnimationNotifier animationNotifier)
+        private void BuildAttackAnimationTransitions(AnimationNotifier animationNotifier)
         {
             var toDecision = new ToAttackAnimationDecision(animationNotifier);
             var fromDecision = new FromAttackAnimationDecision(animationNotifier);

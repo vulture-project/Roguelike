@@ -3,8 +3,8 @@ using AI.Common.Events;
 using AI.Common.Roam;
 using AI.Configs.Archer.Fight;
 using AI.Interaction;
+using AI.Common.Animations;
 using UnityEngine;
-using Utils.Math;
 using AI.Configs.Archer.Fight.Animations;
 
 namespace AI.Configs.Archer
@@ -13,23 +13,27 @@ namespace AI.Configs.Archer
     {
         private readonly MovementNotifier _movementNotifier;
 
-        public MasterStateMachine(GameObject agent, Transform firePoint,
-                                  float projectileWidth, float reloadTime,
+        private State _hitAnimationState;
+        private State _diedState;
+
+        public MasterStateMachine(GameObject agent,
+                                  MasterStateMachineConfig config,
                                   GameObject enemy, SpottingManager spottingManager,
                                   AnimationNotifier animationNotifier)
         {
             _movementNotifier = new MovementNotifier();
 
-            RoamStateMachine = new RoamStateMachine(agent,
-                                                    new Range(1.0f, 2.0f),
-                                                    new Range(1.0f, 2.0f));
-            FightStateMachine = new FightStateMachine(agent, firePoint, projectileWidth,
+            RoamStateMachine = new RoamStateMachine(agent, config.RoamStateMachineConfig);
+            FightStateMachine = new FightStateMachine(agent, config.FightStateMachineConfig,
                                                       enemy, _movementNotifier,
                                                       animationNotifier);
             MergeCore(this, RoamStateMachine);
             MergeCore(this, FightStateMachine);
 
             InitRoamToFightTransition(spottingManager);
+
+            BuildHitAnimationState(animationNotifier);
+            BuildDiedState(animationNotifier);
 
             EntryState = RoamStateMachine.EntryState;
         }
@@ -43,5 +47,39 @@ namespace AI.Configs.Archer
             var roamToFightTransition = new Transition(roamToFightDecision, FightStateMachine.EntryState);
             RoamStateMachine.AddTransitionToAllStates(roamToFightTransition);
         }
+
+        private void BuildDiedState(AnimationNotifier animationNotifier)
+        {
+            _diedState = new State();
+            BuildDiedStateTransition(animationNotifier);
+            AddStateToList(_diedState);
+        }
+
+        private void BuildDiedStateTransition(AnimationNotifier animationNotifier)
+        {
+            var toDiedDecision = new ToDiedDecision(animationNotifier);
+            var toDiedTransition = new Transition(toDiedDecision, _diedState);
+            AddTransitionToAllStates(toDiedTransition);
+        }
+
+        private void BuildHitAnimationState(AnimationNotifier animationNotifier)
+        {
+            _hitAnimationState = new State();
+            BuildHitAnimationTransition(animationNotifier);
+            AddStateToList(_hitAnimationState);
+        }
+
+        private void BuildHitAnimationTransition(AnimationNotifier animationNotifier)
+        {
+            var toDecision = new ToHitAnimationDecision(animationNotifier);
+            var fromDecision = new FromHitAnimationDecision(animationNotifier);
+
+            var toTransition = new Transition(toDecision, _hitAnimationState);
+            var fromTransition = new Transition(fromDecision, toTransition);
+
+            AddTransitionToAllStates(toTransition);
+            _hitAnimationState.AddTransition(fromTransition);
+        }
+
     }
 }

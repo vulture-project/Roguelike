@@ -1,41 +1,8 @@
-﻿using UnityEngine;
-using System;
+﻿using AI.Common.Animations;
 
 namespace AI.Configs.Swordsman.Fight.Animations
 {
-    public class AnimationNotifier : MonoBehaviour
+    public class AnimationNotifier : BaseAnimationNotifier
     {
-        public event EventHandler AttackStartedEvent;
-        public event EventHandler AttackFinishedEvent;
-
-        public event EventHandler HitStartedEvent;
-        public event EventHandler RecoveredFromHitEvent;
-
-        public event EventHandler DiedEvent;
-
-        public void AttackStarted()
-        {
-            AttackStartedEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void AttackFinished()
-        {
-            AttackFinishedEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void HitStarted()
-        {
-            HitStartedEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void RecoveredFromHit()
-        {
-            RecoveredFromHitEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void StartedDying()
-        {
-            DiedEvent?.Invoke(this, EventArgs.Empty);
-        }
     }
 }

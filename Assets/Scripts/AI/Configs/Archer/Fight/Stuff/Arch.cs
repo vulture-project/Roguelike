@@ -6,13 +6,15 @@ namespace AI.Configs.Archer.Fight.Stuff
 {
     public class Arch
     {
-        private readonly GameObject _arrowPrefab;
-
         private readonly Transform _firePointTransform;
+        private readonly float _projectileWidth;
         private readonly float _reloadEps = 1.0f;
 
         private readonly float _reloadTime;
         private readonly CountdownTimer _timer;
+
+        private readonly Animator _animator;
+        private readonly int _attackHash;
 
         private readonly LayerMask _heroLayerMask;
 
@@ -20,24 +22,28 @@ namespace AI.Configs.Archer.Fight.Stuff
         private Ray _middleRay;
         private Ray _rightRay;
 
-        public Arch(float reloadTime, Transform firePoint,
-            GameObject arrowPrefab)
+        public Arch(GameObject agent,
+                    float reloadTime, Transform firePoint,
+                    float projectileWidth)
         {
+            _firePointTransform = firePoint;
+            _projectileWidth = projectileWidth;
+
             _reloadTime = reloadTime;
             _timer = new CountdownTimer();
             _timer.Restart(0.0f);
 
-            _heroLayerMask = LayerMask.GetMask("Hero");
+            _animator = agent.GetComponent<Animator>();
+            _attackHash = Animator.StringToHash("attack");
 
-            _firePointTransform = firePoint;
-            _arrowPrefab = arrowPrefab;
+            _heroLayerMask = LayerMask.GetMask("Hero");
         }
 
         public void TryShoot()
         {
             if (CanShoot())
             {
-                SpawnArrow();
+                _animator.SetTrigger(_attackHash);
                 _timer.Restart(_reloadTime + Random.Range(0, _reloadEps));
             }
         }
@@ -58,20 +64,12 @@ namespace AI.Configs.Archer.Fight.Stuff
             return _timer.IsDown();
         }
 
-        private void SpawnArrow()
-        {
-            Object.Instantiate(_arrowPrefab,
-                _firePointTransform.position,
-                Quaternion.LookRotation(
-                    _firePointTransform.forward));
-        }
-
         private void BuildRays()
         {
             _middleRay.origin = _firePointTransform.position -
                                 _firePointTransform.localScale.x * _firePointTransform.forward;
 
-            var toRight = 0.5f * _firePointTransform.localScale.x * _firePointTransform.right;
+            var toRight = 0.5f * _projectileWidth * _firePointTransform.right;
             var toLeft = -toRight;
 
             _leftRay.origin = _middleRay.origin + toLeft;
