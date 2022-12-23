@@ -2,6 +2,7 @@
 using AI.Common.Events;
 using AI.Common.Roam;
 using AI.Common.Animations;
+using AI.Common.Death;
 using AI.Configs.Archer.Fight;
 using AI.Interaction;
 using UnityEngine;
@@ -14,7 +15,8 @@ namespace AI.Configs.Archer
         private readonly MovementNotifier _movementNotifier;
 
         private State _hitAnimationState;
-        private State _diedState;
+        
+        private DeathStateMachine DeathStateMachine;
 
         public MasterStateMachine(GameObject agent,
                                   MasterStateMachineConfig config,
@@ -27,13 +29,15 @@ namespace AI.Configs.Archer
             FightStateMachine = new FightStateMachine(agent, config.FightStateMachineConfig,
                                                       enemy, _movementNotifier,
                                                       animationNotifier);
+            InitRoamToFightTransition(spottingManager);
+            DeathStateMachine = new DeathStateMachine(animationNotifier, agent);
+
             MergeCore(this, RoamStateMachine);
             MergeCore(this, FightStateMachine);
-
-            InitRoamToFightTransition(spottingManager);
-
             BuildHitAnimationState(animationNotifier);
-            BuildDiedState(animationNotifier);
+
+            BuildTransitionToDeath(animationNotifier);
+            MergeCore(this, DeathStateMachine);
 
             EntryState = RoamStateMachine.EntryState;
         }
@@ -48,18 +52,11 @@ namespace AI.Configs.Archer
             RoamStateMachine.AddTransitionToAllStates(roamToFightTransition);
         }
 
-        private void BuildDiedState(AnimationNotifier animationNotifier)
+        private void BuildTransitionToDeath(AnimationNotifier animationNotifier)
         {
-            _diedState = new State();
-            BuildDiedStateTransition(animationNotifier);
-            AddStateToList(_diedState);
-        }
-
-        private void BuildDiedStateTransition(AnimationNotifier animationNotifier)
-        {
-            var toDiedDecision = new ToDiedDecision(animationNotifier);
-            var toDiedTransition = new Transition(toDiedDecision, _diedState);
-            AddTransitionToAllStates(toDiedTransition);
+            var toDecision = new ToStartedDyingDecision(animationNotifier);
+            var toTransition = new Transition(toDecision, DeathStateMachine.EntryState);
+            AddTransitionToAllStates(toTransition);
         }
 
         private void BuildHitAnimationState(AnimationNotifier animationNotifier)

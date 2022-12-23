@@ -1,5 +1,6 @@
-using AI.Base;
+﻿using AI.Base;
 using System;
+using System.Diagnostics;
 
 namespace AI.Common.Animations
 {
@@ -12,6 +13,7 @@ namespace AI.Common.Animations
 
         public override bool Decide()
         {
+            UnityEngine.Debug.Log("died");
             return _died;
         }
 

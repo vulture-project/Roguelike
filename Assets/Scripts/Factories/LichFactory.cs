@@ -76,7 +76,7 @@ namespace Factories
             clone.GetComponent<Entity>().Set(entity);
 
             var firePoint = clone.GetComponent<FirePoint>();
-            
+
             RoamStateMachineConfig roamStateMachineConfig = new RoamStateMachineConfig(new Range(1, 2), new Range(3, 4));
             DodgeStateMachineConfig dodgeStateMachineConfig =
                 new DodgeStateMachineConfig(new RoamStateMachineConfig(new Range(0, 0), new Range(3, 4)), new Range(2, 3));
