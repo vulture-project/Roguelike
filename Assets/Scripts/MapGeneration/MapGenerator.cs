@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Grid = MapGeneration.MapPrimitives.Grid;
@@ -109,7 +109,6 @@ namespace MapGeneration
             var position = spawnRoom.Pos + new Vector2Int(spawnRoom.Width / 2, spawnRoom.Height / 2);
             var realPosition = new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth);
             _wizardFactory.Spawn(realPosition);
-            
             _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 5));
             _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 10));
             _healPotionFactory.Spawn(realPosition + new Vector3(2f, 0f, 2f));

@@ -35,10 +35,11 @@ namespace Factories
             var clone = Instantiate(_wizard.Prefab, position, Quaternion.identity);
 
             _mainCamera.transform.position += position;
-            
+
             var cameraCanvas = GameObject.Find("CameraCanvas");
-            var healthBar = cameraCanvas.transform.Find("Health").GetComponent<BarWithoutRotation>();
-            var manaBar = cameraCanvas.transform.Find("Mana").GetComponent<BarWithoutRotation>();
+            var playerStats = cameraCanvas.transform.Find("PlayerStats");
+            var healthBar = playerStats.transform.Find("Health").GetComponent<BarWithoutRotation>();
+            var manaBar = playerStats.transform.Find("Mana").GetComponent<BarWithoutRotation>();
 
             var speedUpIcon = cameraCanvas.transform.Find("SpeedUpIcon").gameObject;
             
