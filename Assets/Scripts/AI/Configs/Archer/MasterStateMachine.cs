@@ -1,9 +1,9 @@
 ﻿using AI.Base;
 using AI.Common.Events;
 using AI.Common.Roam;
+using AI.Common.Animations;
 using AI.Configs.Archer.Fight;
 using AI.Interaction;
-using AI.Common.Animations;
 using UnityEngine;
 using AI.Configs.Archer.Fight.Animations;
 

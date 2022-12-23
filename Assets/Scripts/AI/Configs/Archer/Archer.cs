@@ -20,6 +20,7 @@ namespace AI.Configs.Archer
         private void Update()
         {
             _watchStateMachine?.Execute();
+            _aimStateMachine?.Execute();
             _masterStateMachine?.Execute();
         }
 
