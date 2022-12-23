@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: LichPoisonSpell
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9146332246721054089, guid: 67be0c4dd930d4bb28fb0dabbed285e9, type: 3}
+  ImpactPrefab: {fileID: 7197575986301328715, guid: 86fdbc895c9c04f079e5f5983584db8e,
+    type: 3}
   Damage:
     Value: 50
   Velocity:

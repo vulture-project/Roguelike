@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7795049188278579604, guid: 0859fa7f02c0f4ca48df24dd55c66ec0, type: 3}
   Acceleration:
-    Value: {x: 5, y: 0, z: 5}
+    Value: {x: 5, y: 0, z: 20}
   Deceleration:
-    Value: {x: 75, y: 0, z: 50}
+    Value: {x: 75, y: 0, z: 75}
   Armour:
     Value: 10
   Health:
@@ -31,7 +31,4 @@ MonoBehaviour:
       m_Bits: 64
   Velocity:
     Value: {x: 0, y: 0, z: 0}
-    MaxValue: {x: 4, y: 0, z: 6}
-  healthBar: {fileID: 3136027931220701612, guid: b97addb195ff9704d9377c3c53decd11,
-    type: 3}
-  manaBar: {fileID: 8599731182412344686, guid: e0044106a3fc0864b8a44b809e520778, type: 3}
+    MaxValue: {x: 4, y: 0, z: 10}

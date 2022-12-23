@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 7211675005794242383}
   - component: {fileID: 7800613664278946597}
   - component: {fileID: 1521988594385621707}
+  - component: {fileID: 5305230571246246615}
   m_Layer: 5
   m_Name: SpeedUpIcon
   m_TagString: Untagged
@@ -347,6 +348,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5305230571246246615
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307130658190509444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 296f58fe9cb1dbf47bc1175056d37112, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4035599718024959632
 GameObject:
   m_ObjectHideFlags: 0

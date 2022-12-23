@@ -115,17 +115,16 @@ namespace MapGeneration
             var position = spawnRoom.Pos + new Vector2Int(spawnRoom.Width / 2, spawnRoom.Height / 2);
             var realPosition = new Vector3(position.x * _tunnelWidth, 0, position.y * _tunnelWidth);
  
-            _wizardFactory.Spawn(realPosition);
+            var wizard = _wizardFactory.Spawn(realPosition);
             
             _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 5));
             _speedPotionFactory.Spawn(realPosition + new Vector3(-5, 0, 10));
             _healPotionFactory.Spawn(realPosition + new Vector3(2f, 0f, 2f));
             
-            var wizard = _wizardFactory.Spawn(realPosition);
-            
-            // _skeletonFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
-            _spiderFactory.Spawn(realPosition + new Vector3(-5f, 0, 5f), _room, wizard);
-            _orkFactory.Spawn(realPosition + new Vector3(5f, 0, 5f), _room, wizard);
+            _skeletonFactory.Spawn(realPosition + new Vector3(8f, 0, 8f), _room, wizard);
+            _spiderFactory.Spawn(realPosition + new Vector3(-8f, 0, 4f), _room, wizard);
+            _orkFactory.Spawn(realPosition + new Vector3(-4f, 0, 8f), _room, wizard);
+            _lichFactory.Spawn(realPosition + new Vector3(-8f, 0, -8f), _room, wizard);
         }
 
         private GameObject WhichWallToInstantiate(CellType cellVal)

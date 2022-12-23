@@ -19,6 +19,7 @@ namespace Systems
 
                 if (!activeAffect.Applied)
                 {
+                    velocity.Value *= speedBoost.Value;
                     velocity.MaxValue *= speedBoost.Value;
                     activeAffect.Applied = true;
                 }
@@ -27,6 +28,7 @@ namespace Systems
 
                 if (activeAffect.DurationLeft <= 0f)
                 {
+                    velocity.Value /= speedBoost.Value;
                     velocity.MaxValue /= speedBoost.Value;
                     
                     var entity = _filter.GetEntity(i);

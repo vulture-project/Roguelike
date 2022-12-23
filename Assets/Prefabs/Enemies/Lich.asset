@@ -19,5 +19,5 @@ MonoBehaviour:
     Value: 100
     MaxValue: 100
   Velocity:
-    Value: {x: 0, y: 0, z: 10}
-    MaxValue: {x: 0, y: 0, z: 10}
+    Value: {x: 0, y: 0, z: 0}
+    MaxValue: {x: 0, y: 0, z: 3}
