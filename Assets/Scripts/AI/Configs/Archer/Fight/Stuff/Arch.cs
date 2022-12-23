@@ -34,7 +34,7 @@ namespace AI.Configs.Archer.Fight.Stuff
             _timer.Restart(0.0f);
 
             _animator = agent.GetComponent<Animator>();
-            _attackHash = Animator.StringToHash("attack");
+            _attackHash = Animator.StringToHash("castProjectile");
 
             _heroLayerMask = LayerMask.GetMask("Hero");
         }

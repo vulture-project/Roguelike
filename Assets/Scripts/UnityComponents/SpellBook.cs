@@ -1,4 +1,5 @@
-﻿using States;
+﻿using System;
+using States;
 using UnityEngine;
 
 namespace UnityComponents
@@ -19,6 +20,13 @@ namespace UnityComponents
         public State GetSecondaryAttack()
         {
             return _secondaryAttack;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+            }
         }
     }
 }

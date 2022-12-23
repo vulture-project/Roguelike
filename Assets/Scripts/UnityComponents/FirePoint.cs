@@ -11,5 +11,10 @@ namespace UnityComponents
         {
             return _firePoint.transform.position;
         }
+
+        public Transform GetTransform()
+        {
+            return _firePoint.transform;
+        }
     }
 }
