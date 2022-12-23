@@ -61,6 +61,7 @@ namespace Core
                 .Add(new HealthAndManaWizardSystem())
                 .Add(new ManaBoostSystem())
                 .Add(new SpeedBoostSystem())
+                .Add(new SpeedBoostIconSystem())
                 .Add(new MovementInputSystem())
                 .Add(new MovementSystem())
                 .Add(new NavMeshMovementSystem())

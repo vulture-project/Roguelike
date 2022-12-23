@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace Systems
 {
-    public class SpeedBoostIconSystem : IEcsSystem
+    public class SpeedBoostIconSystem : IEcsRunSystem
     {
         private EcsFilter<SpeedBoostComponent, SpeedBoostIconComponent> _filter;
         private GameObject _icon;
+        private bool _is_active = false;
         
         public void Run()
         {
@@ -16,12 +17,14 @@ namespace Systems
                 var icon = _filter.Get2(0);
                 icon.Icon.SetActive(true);
                 _icon = icon.Icon;
+                _is_active = true;
+                Debug.Log("ACTIVE");
             }
-            else
+            else if (_is_active)
             {
                 _icon.SetActive(false);
+                _is_active = false;
             }
-            
         }
     }
 }

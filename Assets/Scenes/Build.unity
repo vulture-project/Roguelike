@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,6 +130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1521988594385621707, guid: aefc7a261e4246e42849c4469389945f,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1574885181554581810, guid: aefc7a261e4246e42849c4469389945f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -239,6 +244,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307130658190509444, guid: aefc7a261e4246e42849c4469389945f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002927257627338015, guid: aefc7a261e4246e42849c4469389945f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aefc7a261e4246e42849c4469389945f, type: 3}
@@ -514,6 +529,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedPotion: {fileID: 11400000, guid: 05ae8f8033f0d4d93a34bbf202a2c6c1, type: 2}
+--- !u!1 &922535249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3307130658190509444, guid: aefc7a261e4246e42849c4469389945f,
+    type: 3}
+  m_PrefabInstance: {fileID: 373526595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &922535253
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922535249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 296f58fe9cb1dbf47bc1175056d37112, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1009142160
 GameObject:
   m_ObjectHideFlags: 0
