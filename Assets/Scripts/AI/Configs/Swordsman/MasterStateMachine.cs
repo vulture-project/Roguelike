@@ -55,7 +55,7 @@ namespace AI.Configs.Swordsman
         {
             var toDecision = new ToStartedDyingDecision(animationNotifier);
             var toTransition = new Transition(toDecision, DeathStateMachine.EntryState);
-            AddTransitionToAllStates(toTransition);
+            AddPreTransitionToAllStates(toTransition);
         }
 
         private void BuildHitAnimationState(AnimationNotifier animationNotifier)
@@ -73,7 +73,7 @@ namespace AI.Configs.Swordsman
             var toTransition = new Transition(toDecision, _hitAnimationState);
             var fromTransition = new Transition(fromDecision, toTransition);
 
-            AddTransitionToAllStates(toTransition);
+            AddPreTransitionToAllStates(toTransition);
             _hitAnimationState.AddTransition(fromTransition);
         }
     }
