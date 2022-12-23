@@ -44,6 +44,7 @@ namespace Factories
             entity.Replace(new TransformComponent(clone.GetComponent<Transform>()));
             entity.Replace(projectile.Velocity);
             entity.Replace(new GameObjectComponent(clone));
+            entity.Replace(new SpellImpactComponent(projectile.ImpactPrefab));
 
             clone.transform.forward = direction;
             clone.GetComponent<Entity>().Set(entity);

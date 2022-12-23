@@ -52,6 +52,7 @@ namespace Factories
             entity.Replace(new AttachedHealthBarComponent(healthBar));
             entity.Replace(new AnimatorComponent(clone.GetComponent<Animator>()));
             entity.Replace(new DamageTargetTag());
+            entity.Replace(new PotionDropTag());
             entity.Replace(_spider.Health);
             entity.Replace(new InputComponent());
             entity.Replace(new MovementForwardAnimationComponent(_velocityZHash));
