@@ -36,11 +36,13 @@ namespace AI.Common.Animations
 
         public void StartedDying()
         {
+            Debug.Log("started dying in notifier");
             StartedDyingEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void Died()
         {
+            Debug.Log("Died in notifier");
             DiedEvent?.Invoke(this, EventArgs.Empty);
         }
     }

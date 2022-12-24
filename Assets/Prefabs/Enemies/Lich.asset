@@ -16,8 +16,8 @@ MonoBehaviour:
   Armour:
     Value: 100
   Health:
-    Value: 100
-    MaxValue: 100
+    Value: 150
+    MaxValue: 150
   Velocity:
     Value: {x: 0, y: 0, z: 0}
     MaxValue: {x: 0, y: 0, z: 3}

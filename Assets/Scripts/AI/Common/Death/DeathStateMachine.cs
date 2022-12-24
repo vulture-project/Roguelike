@@ -15,6 +15,9 @@ namespace AI.Common.Death
 
             var toDiedDecision = new ToDiedDecision(animationNotifier);
             StartedDyingState.AddTransition(new Transition(toDiedDecision, DiedState));
+            
+            AddStateToList(StartedDyingState);
+            AddStateToList(DiedState);
 
             EntryState = StartedDyingState;
         }

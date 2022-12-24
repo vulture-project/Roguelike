@@ -86,9 +86,9 @@ namespace MapGeneration
             tunnelCreator.CreateTunnels();
 
             InstantiateWallsAndFloors();
-            AddNavMesh();
             TranslateRoomCoordinates();
             InstantiateInterior();
+            AddNavMesh();
             SpawnHeroes();
         }
         
@@ -121,7 +121,10 @@ namespace MapGeneration
             var spawnRoom = _rooms[0];
             var position = spawnRoom.Pos + new Vec2i(spawnRoom.Width / 2, spawnRoom.Height / 2);
             var wizard = _wizardFactory.Spawn(new Vec3(position.x, 0, position.y));
-
+            var curRoom = Instantiate(_roomPrefab, Vector3.zero, Quaternion.identity);
+            // _skeletonFactory.Spawn(wizard.transform.position = new Vector3(5f, 0f, 5f), curRoom, wizard);
+            // _orkFactory.Spawn(new Vec3(position.x + 5, 0, position.y + 5), curRoom, wizard);
+            
             foreach (var room in _rooms)
             {
                 var curRoomPrefab = Instantiate(_roomPrefab, Vector3.zero, Quaternion.identity);

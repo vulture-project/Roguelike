@@ -15,7 +15,11 @@ namespace Systems
                 ref var deathAnimation = ref _filter.Get2(i);
                 ref var died = ref _filter.Get3(i);
 
-                animator.Animator.SetTrigger(deathAnimation.DiedHash);
+                if (!died.StartedDying)
+                {
+                    died.StartedDying = true;
+                    animator.Animator.SetTrigger(deathAnimation.DiedHash);
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using AI.Base;
 using System;
 using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 namespace AI.Common.Animations
 {
@@ -13,12 +14,15 @@ namespace AI.Common.Animations
 
         public override bool Decide()
         {
-            UnityEngine.Debug.Log("died");
+            Debug.Log("decides to died");
+            if (_died)
+                Debug.Log("decision died");
             return _died;
         }
 
         private void OnDied(object sender, EventArgs args)
         {
+            Debug.Log("OnDied");
             _died = true;
         }
 

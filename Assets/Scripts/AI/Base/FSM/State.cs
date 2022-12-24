@@ -34,7 +34,7 @@ namespace AI.Base
         {
             foreach (var preTransition in _preTransitions)
                 if (preTransition.Transit(stateMachine))
-                    break;
+                    return;
 
             foreach (var action in _actions)
                 action.OnEnter();
@@ -44,7 +44,7 @@ namespace AI.Base
         {
             foreach (var preTransition in _preTransitions)
                 if (preTransition.Transit(stateMachine))
-                    break;
+                    return;
 
             foreach (var action in _actions)
                 action.Execute();

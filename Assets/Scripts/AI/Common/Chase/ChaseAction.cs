@@ -28,6 +28,7 @@ namespace AI.Common.Chase
 
         public override void OnEnter()
         {
+            _navMeshAgent.enabled = true;
             SetDestinationToChased();
         }
 
@@ -39,7 +40,7 @@ namespace AI.Common.Chase
 
         public override void OnExit()
         {
-            _navMeshAgent.destination = _navMeshAgent.transform.position;
+            _navMeshAgent.enabled = false;
         }
 
         private bool NeedToChangePath()

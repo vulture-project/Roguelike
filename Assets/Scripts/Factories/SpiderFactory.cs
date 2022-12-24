@@ -1,4 +1,6 @@
+using AI.Common.Components;
 using AI.Common.Roam;
+using AI.Common.Watch;
 using AI.Configs.Swordsman;
 using AI.Configs.Swordsman.Fight;
 using Components;
@@ -39,6 +41,11 @@ namespace Factories
         public void Spawn(Vector3 position, GameObject navMeshRoom, GameObject enemy)
         {
             var clone = Instantiate(_spider.Prefab, position, Quaternion.identity);
+            var fov = clone.GetComponent<FieldOfView>();
+            fov.Value = 20.0f;
+
+            var catchComp = clone.GetComponent<Catch>();
+            catchComp.Value = 2f;
 
             // FIXME: God I'm sorry for this!
             GameObject canvas = clone.transform.Find("CanvasForHP").gameObject;

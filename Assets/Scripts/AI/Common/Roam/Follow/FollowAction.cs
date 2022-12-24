@@ -20,6 +20,7 @@ namespace AI.Common.Roam
 
         public override void OnEnter()
         {
+            _navMeshAgent.enabled = true;
             var currPos = _navMeshAgent.transform.position;
             var randomVector = GetRandomVector();
             _navMeshAgent.SetDestination(currPos + randomVector);
@@ -29,7 +30,7 @@ namespace AI.Common.Roam
 
         public override void OnExit()
         {
-            _navMeshAgent.destination = _navMeshAgent.transform.position;
+            _navMeshAgent.enabled = false;
         }
 
         private Vector3 GetRandomVector()

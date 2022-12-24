@@ -16,7 +16,7 @@ MonoBehaviour:
   ImpactPrefab: {fileID: 7197575986301328715, guid: 86fdbc895c9c04f079e5f5983584db8e,
     type: 3}
   Damage:
-    Value: 50
+    Value: 75
   Velocity:
     Value: {x: 0, y: 0, z: 25}
     MaxValue: {x: 0, y: 0, z: 25}

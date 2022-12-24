@@ -45,7 +45,7 @@ namespace Factories
             fov.Value = 20.0f;
 
             var catchComp = clone.GetComponent<Catch>();
-            catchComp.Value = 5.0f;
+            catchComp.Value = 3.0f;
 
             // FIXME: God I'm sorry for this!
             GameObject canvas = clone.transform.Find("CanvasForHP").gameObject;

@@ -439,9 +439,9 @@ MonoBehaviour:
   _mapDensityScale: 0.2
   _columnsMaxNum: 12
   _skeletonsNumMax: 2
-  _spidersNumMax: 2
+  _spidersNumMax: 1
   _orkNumMax: 1
-  _lichNumMax: 1
+  _lichNumMax: 2
   _levelNum: 12
   _roomMinDim: 25
   _roomMaxDim: 40
@@ -623,7 +623,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 1, g: 0.7849077, b: 0.5424528, a: 1}
   m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
@@ -798,8 +798,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0

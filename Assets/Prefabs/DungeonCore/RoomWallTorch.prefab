@@ -5086,7 +5086,7 @@ VisualEffect:
       - m_Value: {x: 22.356968, y: 2.854081, z: 0.5946002, w: 0}
         m_Name: Color
         m_Overridden: 1
-      - m_Value: {x: 56.701008, y: 4.7498226, z: 0, w: 0}
+      - m_Value: {x: 28.350506, y: 2.3485625, z: 0, w: 0}
         m_Name: FlameColor
         m_Overridden: 1
     m_Uint:
@@ -5260,7 +5260,7 @@ VisualEffect:
       - m_Value: {x: 22.356968, y: 2.854081, z: 0.5946002, w: 0}
         m_Name: Color
         m_Overridden: 1
-      - m_Value: {x: 56.701008, y: 4.7498226, z: 0, w: 0}
+      - m_Value: {x: 28.350506, y: 2.3485625, z: 0, w: 0}
         m_Name: FlameColor
         m_Overridden: 1
     m_Uint:

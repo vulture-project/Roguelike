@@ -20,8 +20,8 @@ MonoBehaviour:
   Armour:
     Value: 10
   Health:
-    Value: 100
-    MaxValue: 100
+    Value: 800
+    MaxValue: 800
   Mana:
     Value: 100
     MaxValue: 100
