@@ -12,12 +12,11 @@ namespace Systems
             foreach (var i in _filter)
             {
                 ref var transform = ref _filter.Get1(i);
-                ref var follower = ref _filter.Get2(i);
+                ref var target = ref _filter.Get2(i);
 
-                ref var targetTransform = ref follower.Target.Get<TransformComponent>();
+                ref var targetTransform = ref target.Target.Get<TransformComponent>();
 
-                transform.Transform.forward =
-                    (targetTransform.Transform.position - transform.Transform.position).normalized;
+                transform.Transform.position = targetTransform.Transform.position + target.Offset;
             }
         }
     }

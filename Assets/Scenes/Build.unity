@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414726, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 739933305}
   - component: {fileID: 739933304}
   - component: {fileID: 739933303}
+  - component: {fileID: 739933306}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -574,6 +575,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedPotion: {fileID: 11400000, guid: 05ae8f8033f0d4d93a34bbf202a2c6c1, type: 2}
+--- !u!114 &739933306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739933293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a05867fafd94f8a9d08fa67d8af1cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selfBuff: {fileID: 11400000, guid: f81cb692dccd04b5ba53a9bd7a694c14, type: 2}
 --- !u!1 &1009142160
 GameObject:
   m_ObjectHideFlags: 0

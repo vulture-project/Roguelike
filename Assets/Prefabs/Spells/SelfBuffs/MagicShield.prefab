@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8877124910257083273}
   - component: {fileID: 8877124910257083272}
   - component: {fileID: 8877124910257083275}
-  - component: {fileID: 8877124910257083279}
+  - component: {fileID: 6270804702848303639}
   m_Layer: 0
   m_Name: MagicShield
   m_TagString: Untagged
@@ -95,11 +95,11 @@ SphereCollider:
   m_GameObject: {fileID: 8877124910257083274}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8877124910257083279
+--- !u!114 &6270804702848303639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8877124910257083274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b5eb6602ff54e3bbec84c43887ea3a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fda9ab3aaca40448d63c0dfd5f223de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8877124910867032470
