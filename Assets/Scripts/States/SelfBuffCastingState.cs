@@ -1,3 +1,4 @@
+using Factories;
 using UnityEngine;
 
 namespace States
@@ -31,6 +32,7 @@ namespace States
 
         public void SelfBuff()
         {
+            SelfBuffFactory.Instance().Spawn(gameObject);
         }
 
         public void CastingSelfBuffFinished()

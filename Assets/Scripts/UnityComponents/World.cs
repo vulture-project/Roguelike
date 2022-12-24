@@ -1,10 +1,12 @@
 using Components;
+using Core;
 using Factories;
-using Leopotam.Ecs;
 using MapGeneration;
 using Systems;
 
-namespace Core
+using Leopotam.Ecs;
+
+namespace UnityComponents
 {
     public class World : Singleton<World>
     {
@@ -56,6 +58,7 @@ namespace Core
                 .Add(new DamageSystem())
                 .Add(new DecelerationSystem())
                 .Add(new DropSystem())
+                .Add(new FollowSystem())
                 .Add(new HealSystem())
                 .Add(new HealthBarSystem())
                 .Add(new HealthAndManaWizardSystem())
@@ -82,29 +85,32 @@ namespace Core
             var healPotionFactory = GetComponent<HealPotionFactory>();
             healPotionFactory.Init();
 
+            var lichFactory = GetComponent<LichFactory>();
+            lichFactory.Init();
+            
             var manaPotionFactory = GetComponent<ManaPotionFactory>();
             manaPotionFactory.Init();
-            
-            var speedPotionFactory = GetComponent<SpeedPotionFactory>();
-            speedPotionFactory.Init();
+
+            var orkFactory = GetComponent<OrkFactory>();
+            orkFactory.Init();
 
             var projectileFactory = GetComponent<ProjectileFactory>();
             projectileFactory.Init();
 
-            var wizardFactory = GetComponent<WizardFactory>();
-            wizardFactory.Init();
+            var selfBuffFactory = GetComponent<SelfBuffFactory>();
+            selfBuffFactory.Init();
             
             var skeletonFactory = GetComponent<SkeletonFactory>();
             skeletonFactory.Init();
             
+            var speedPotionFactory = GetComponent<SpeedPotionFactory>();
+            speedPotionFactory.Init();
+            
             var spiderFactory = GetComponent<SpiderFactory>();
             spiderFactory.Init();
 
-            var orkFactory = GetComponent<OrkFactory>();
-            orkFactory.Init();
-            
-            var lichFactory = GetComponent<LichFactory>();
-            lichFactory.Init();
+            var wizardFactory = GetComponent<WizardFactory>();
+            wizardFactory.Init();
         }
 
         private void InitMapGenerator()
