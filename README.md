@@ -2,7 +2,7 @@
 
 Вам предстоит отправится в опасное путешествие по подземельям от лица молодого мага Муссы.
 
-[<img src="https://i.imgur.com/FYnV2ui.jpg" width="50%">](https://drive.google.com/file/d/1NlBAFMMmyk2EFzahGXcNkUpBX-9Te5BD/view?usp=share_link "Gameplay video")
+[<img src="https://i.imgur.com/FYnV2ui.jpg">](https://drive.google.com/file/d/1NlBAFMMmyk2EFzahGXcNkUpBX-9Te5BD/view?usp=share_link "Gameplay video")
 
 ## Заклинания
 
